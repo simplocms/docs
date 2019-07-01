@@ -1,7 +1,7 @@
 {
   "docs": {
-    "Docusaurus": ["doc1"],
-    "First Category": ["doc2"],
+    "Basic": ["main"],
+    "Upgrade Guide": ["upgrade-guide/3.0.0-from-2"],
     "Second Category": ["doc3"]
   },
   "docs-other": {
