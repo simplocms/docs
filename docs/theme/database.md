@@ -1,6 +1,6 @@
 ---
-id: theme-database
-title: Theme database
+id: database
+title: Database
 ---
 
 # Theme database
