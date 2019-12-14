@@ -13,3 +13,6 @@ what for example verifies authentication of users or check if CSRF token is vali
 
 ## Middleware in SimploCMS
 
+SimploCMS contains custom middlewares, which are applied out of the box.
+
+> TODO
