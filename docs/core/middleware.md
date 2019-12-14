@@ -83,3 +83,7 @@ on some routes in application and ensure only permit access for administrators.
 Next middleware, what is also defined in middleware group, is `ApiEndPoint`. It is middleware, what helps to developers with 
 making correct api routes and set for these api routes `application/json` header. How you certainly know already, this middleware is also part of 
 `api` middleware group.
+
+The most middlewares are in the `front_web` middleware groups. It is completely SIMPLO CMS middleware group, which is not part of 
+default Laravel. First middleware is `FrontWeb` middleware, what is base middleware in `front_web` middleware group and this middleware 
+serves a lot of activities.
