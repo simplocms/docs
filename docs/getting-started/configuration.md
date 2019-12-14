@@ -17,7 +17,7 @@ sidebar_label: Configuration
 * **SESSION_DRIVER** - should have value `file`, which is standard for CMS. Session files will be stored in “storage/framework/sessions”. Don’t forget that `www-data` user needs write permissions to that directory.
 * **SESSION_LIFETIME** - this value decides, how long will user's session last in minutes.
 
-### SIMPLOCMS variables
+### SIMPLO CMS variables
 
 * **SENTRY_DSN** - keep default value. It helps us to track issues in system and fix them.
 * **GOOGLE_CLIENT_…** - keep defaults for these two values. It is reference to our google application for connecting to google analytics on dashboard of administration.

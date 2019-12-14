@@ -11,12 +11,12 @@ what for example verifies authentication of users or check if CSRF token is vali
 
 > For more information about Middleware, please visit official [Laravel documentation](https://laravel.com/docs/5.8/middleware)
 
-## Middleware in SimploCMS
+## Middleware in SIMPLO CMS
 
-SimploCMS contains custom middlewares, which are applied out of the box.
+SIMPLO CMS contains custom middlewares, which are applied out of the box.
 
 In `app/Http/Kernel.php` file, where developers can define middleware, you can see these middlewares. Including them, you can 
-also notice that here are more middleware groups than default of Laravel, what occur here because of SimploCMS.
+also notice that here are more middleware groups than default of Laravel, what occur here because of SIMPLO CMS.
 
 ```php
     /**
