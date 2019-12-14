@@ -2,7 +2,8 @@
   "docs": {
     "Getting Started": [
       "getting-started/installation",
-      "getting-started/directory-structure"
+      "getting-started/directory-structure",
+      "getting-started/setting"
     ],
     "Upgrade Guide": [
       "upgrade-guide/3.0.0-from-2"
