@@ -7,6 +7,9 @@
       "getting-started/setting",
       "getting-started/directory-structure"
     ],
+    "Core": [
+      "core/middleware"
+    ],
     "Upgrade Guide": [
       "upgrade-guide/3.0.0-from-2"
     ],
