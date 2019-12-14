@@ -4,8 +4,6 @@ title: Directory Structure
 sidebar_label: Directory Structure
 ---
 
-## Introduction
-
 SimploCMS is based on **Laravel PHP Framework** and it means that the default directory structure of **SimploCMS** is the same 
 like in Laravel.
 
