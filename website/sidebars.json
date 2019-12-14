@@ -3,8 +3,9 @@
     "Getting Started": [
       "getting-started/intro",
       "getting-started/installation",
-      "getting-started/directory-structure",
-      "getting-started/setting"
+      "getting-started/configuration",
+      "getting-started/setting",
+      "getting-started/directory-structure"
     ],
     "Upgrade Guide": [
       "upgrade-guide/3.0.0-from-2"
