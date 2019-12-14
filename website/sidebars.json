@@ -1,6 +1,7 @@
 {
   "docs": {
     "Getting Started": [
+      "getting-started/intro",
       "getting-started/installation",
       "getting-started/directory-structure",
       "getting-started/setting"

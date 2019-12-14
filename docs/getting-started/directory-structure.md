@@ -7,6 +7,8 @@ sidebar_label: Directory Structure
 SimploCMS is based on **Laravel PHP Framework** and it means that the default directory structure of **SimploCMS** is the same 
 like in Laravel.
 
+> If you want to know more details about **Directory Structure**, you can visit official [Laravel documentation](https://laravel.com/docs/5.8/structure)
+
 ## SimploCMS Directory Structure
 
 SimploCMS has custom default directories which you cannot find in the default directory structure in Laravel. In this section, you can 
@@ -46,5 +48,3 @@ with all available routes for administration panel of SimploCMS.
 The `themes` directory is the most important directory in SimploCMS, because here you can create your new theme (project). In the most cases 
 your source code will be in this directory and if you will not need to have more functionality in base SimploCMS, you will not need to change 
 source code somewhere outside of this directory.
-
-> If you want to know more details about **Directory Structure**, you can visit official [Laravel documentation](https://laravel.com/docs/5.8/structure)
