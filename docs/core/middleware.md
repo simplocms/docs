@@ -84,6 +84,11 @@ Next middleware, what is also defined in middleware group, is `ApiEndPoint`. It 
 making correct api routes and set for these api routes `application/json` header. How you certainly know already, this middleware is also part of 
 `api` middleware group.
 
-The most middlewares are in the `front_web` middleware groups. It is completely SIMPLO CMS middleware group, which is not part of 
-default Laravel. First middleware is `FrontWeb` middleware, what is base middleware in `front_web` middleware group and this middleware 
-serves a lot of activities.
+The most middlewares are in the `front_web` middleware group. It is completely SIMPLO CMS middleware group, which is not part of 
+default Laravel. First middleware is `FrontWeb`, what is base in `front_web` group and this middleware serves a lot of activities:
+- bind `FrontWebComposer`, which inserts global properties to each view
+- check custom redirects
+- url language verification
+
+In `front_web` middleware group, you can find `InjectFrontWebTools` middleware. It is easy middleware, which adds only CMS Toolbar and do 
+nothing more.
