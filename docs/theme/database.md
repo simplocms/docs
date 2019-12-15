@@ -77,7 +77,7 @@ class YourThemeSeeder extends Seeder
 
 ### Running Seeders
 
-Then, you insert your source code to the `run()` method instead of TODO comment, which you want this seeder runs. Before than you 
+Then, you insert your source code to the `run` method instead of TODO comment, which you want this seeder runs. Before than you 
 try to run this seeder, you have to need to regenerate Composer's autoloader. For this action, use:
 ```text 
 composer dump-autoload
@@ -88,4 +88,4 @@ you can use this Artisan command below for running your seeder:
 ```text
 php artisan db:seed --class=Theme\YourThemeSeeder
 ```
-After what you run this Artisan command, method `run()` will be executed with your source code.
+After what you run this Artisan command, method `run` will be executed with your source code.

@@ -79,12 +79,12 @@ final class ThemeServiceProvider extends AbstractThemeServiceProvider
 }
 ```
 
-For **register new configuration file**, you need to call `registerSystemConfigFrom()` method on `App\Services\ThemeService\ThemeService` object. 
-This object is obtained with calling `getThemeService()` method in `ThemeServiceProvider`. The `registerSystemConfigFrom()` method accepts only 
+For **register new configuration file**, you need to call `registerSystemConfigFrom` method on `App\Services\ThemeService\ThemeService` object. 
+This object is obtained with calling `getThemeService` method in `ThemeServiceProvider`. The `registerSystemConfigFrom()` method accepts only 
 one parameter `$key` as a string data type and this is key, what you defined in your new configuration file (in our example, the key is `auth`).
 
 ### How To Use Custom Configuration
 
-After what you create and register custom configuration, then you can easily use all of them in your theme everywhere. For use them, just call somewhere `config()` 
+After what you create and register custom configuration, then you can easily use all of them in your theme everywhere. For use them, just call somewhere `config` 
 helper function with specific key, for example `config('your.key')`. **Remember**, that you **don't need to prefix** your custom configuration key with 
 something special, it is completely the same like in default Laravel.
