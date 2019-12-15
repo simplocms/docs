@@ -62,7 +62,7 @@ $ npm i
 
 ## Configuration
 
-### File permissions
+### File Permissions
 
 You have to make sure, that Apache user has write permissions to directories `bootstrap` and `storage`.
 
@@ -73,7 +73,7 @@ $ chown -R :www-data .
 $ chmod -R ug+rwx ./bootstrap ./storage
 ```
 
-### Environment configuration
+### Environment Configuration
 
 ```bash
 # Copy preconfigured .env.example to .env
@@ -93,7 +93,7 @@ At this point, database connection should be configured. If there is a problem, 
 $ php artisan migrate --seed
 ```
 
-### Compile your assets
+### Compile Your Assets
 
 #### Development
 
@@ -115,7 +115,7 @@ On production server you want to compile assets to be minimized and not-readable
 $ npm run prod
 ```
 
-### Template installation
+### Template Installation
 
 1) You have to copy a theme into directory `themes`.
 2) If template contains `modules` directory, go to the template's directory and run command `composer dump-autoload`.
@@ -123,7 +123,7 @@ $ npm run prod
 4) Click on “Change” (Změnit) and then activate your template.
 
 
-### Image optimization
+### Image Optimization
 
 Media Library can optimize uploaded PNGs, JPGs, SVGs and GIFs by running them through a chain of various image optimization tools. It will use these optimizers if they are present on the server:
 

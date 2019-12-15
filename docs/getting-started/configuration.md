@@ -18,7 +18,7 @@ keep everything directly in project.
 
 > If you want to know more about **Configuration**, visit official [Laravel documentation](https://laravel.com/docs/5.8/configuration)
 
-## Laravel variables
+## Laravel Variables
 
 * **APP_ENV** - this value defines environment used on the server. It can have two different values: local that prepares the application for testing on the development server, and production that will fully optimize the application for the mass usage in production.
 * **APP_DEBUG** - this field determines whether debugging tools will be ON or OFF. Keep it in sync with APP_ENV, where if `APP_ENV=production` then always use `APP_DEBUG=false`, otherwise `APP_DEBUG=true`.
@@ -29,7 +29,7 @@ keep everything directly in project.
 * **SESSION_DRIVER** - should have value `file`, which is standard for CMS. Session files will be stored in “storage/framework/sessions”. Don’t forget that `www-data` user needs write permissions to that directory.
 * **SESSION_LIFETIME** - this value decides, how long will user's session last in minutes.
 
-## SIMPLO CMS variables
+## SIMPLO CMS Variables
 
 * **SENTRY_DSN** - keep default value. It helps us to track issues in system and fix them.
 * **GOOGLE_CLIENT_…** - keep defaults for these two values. It is reference to our google application for connecting to google analytics on dashboard of administration.

@@ -11,7 +11,7 @@ simply insert new records or make some updates of records in specific database t
 
 > For more details, go to read official [Laravel documentation](https://laravel.com/docs/5.8/eloquent)
 
-## How Does It Work In Theme?
+## How Does It Work In Theme
 
 > **!!!! TODO: It would be great to make some Artisan command for generate model simpler. !!!!**
 
@@ -35,3 +35,8 @@ table.
 
 > It is not necessary to keep directory of models like in the example above. You are completely free to make your custom directory for all models of your theme, 
 where you want.
+
+When you make new model, then you need to reload Composer's autoloader:
+```text 
+composer dump-autoload
+```

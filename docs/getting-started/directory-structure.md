@@ -21,7 +21,7 @@ find out more about this specific directory structure for SIMPLO CMS.
 The `config` directory contains default Laravel configuration files, but except of them you can also find some another configuration 
 files belongs to SIMPLO CMS. These configuration files can offer you new options, what you can use for your work.
 
-### The Database directory
+### The Database Directory
 
 The `database` directory contains `factories` directory, where you can see factory classes serving for inserting fake items to 
 database tables. It is very useful for testing. In `migrations` directory except of Laravel migration files, there are also some database migrations for SIMPLO CMS. 

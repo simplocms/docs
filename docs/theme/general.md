@@ -3,7 +3,7 @@ id: general
 title: General
 ---
 
-## How does it work
+## How Does It Work
 
 All themes are placed into `themes` directory in project's root directory. Theme is identifier by name of it's directory.
 

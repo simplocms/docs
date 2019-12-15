@@ -11,7 +11,7 @@ what for example verifies authentication of users or check if incoming CSRF toke
 
 > For more information about **Middleware**, please visit official [Laravel documentation](https://laravel.com/docs/5.8/middleware)
 
-## Middleware in SIMPLO CMS
+## Middleware In SIMPLO CMS
 
 SIMPLO CMS contains custom middlewares, which are applied out of the box.
 
@@ -74,12 +74,12 @@ them in the next paragraphs.
 
 First SIMPLO CMS middleware is `UserLocale`. This middleware is responsible for setting locale for user, but it works only 
 when user is authenticated, because user cannot set his default locale when he is not authenticated. This middleware is 
-only in middleware groups (specifically in `web` and `api`) and developer cannot use it as a named middleware.
+only in middleware groups (specifically in `web` and `api`) and developer cannot use it as a named middleware out of the box.
 
 In middleware groups, you can also find `RedirectIfNotAdmin` middleware, what is special middleware for only SIMPLO CMS. How this 
 class name indicates, `RedirectIfNotAdmin` middleware check if user is administrator and if his account is already enabled. This middleware is 
 part of `api` middleware group only, but you can find it also between route middlewares. It means that developers can define this middleware 
-on some routes in application and ensure only permit access for administrators.
+on some custom routes in application and ensure only permit access for administrators.
 
 Next middleware, what is also defined in middleware group, is `ApiEndPoint`. It is middleware, what helps to developers with 
 making correct api routes and set for these api routes `application/json` header. This middleware is also part of 

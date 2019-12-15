@@ -3,8 +3,10 @@ id: configuration
 title: Configuration
 ---
 
-After creating new theme (the best way for creating new theme is just copy Example theme), probably you will want to check your configuration files. 
-Everything about configuration is located in `config` directory and in first time there are two configuration files - `admin.php` and 
+## Introduction
+
+After creating new theme (the best way for creating new theme is just copy default Example theme), probably you will want to check your configuration files. 
+Everything about configuration is located in `config` directory and in first time, there are two configuration files - `admin.php` and 
 `universal_modules.php`.
 
 > **!!!! TODO: add information about these files above !!!!**
@@ -14,9 +16,9 @@ Everything about configuration is located in `config` directory and in first tim
 ### Define Custom Configuration
 
 For extending theme with custom configuration files, you can just create new configuration files in `config` directory and use 
-dot syntax the same like in Laravel for define configuration keys.
+dot syntax the same like in Laravel for define configuration keys and their values.
 
-For example, if you want to add new authorization guard, then create new configuration file `config/auth.php` and insert the following code: 
+For example, if you want to add new authorisation guard, then create new configuration file `config/auth.php` and insert the following code: 
 
 ```php
 <?php
