@@ -13,7 +13,8 @@
     "Theme": [
       "theme/general",
       "theme/configuration",
-      "theme/database"
+      "theme/database",
+      "theme/controllers"
     ],
     "Upgrade Guide": [
       "upgrade-guide/3.0.0-from-2"
