@@ -19,7 +19,7 @@ and you can do everything in your `.env` file, what is located in root directory
 
 > If you know more about **Database** in Laravel, visit official [Laravel documentation](https://laravel.com/docs/5.8/database)
 
-## Database In Theme
+## Migrations
 
 ### Generating Migrations
 
@@ -43,3 +43,49 @@ and you can use command-line interface and run Artisan command below:
 php artisan migrate --path=/themes/Example/database/migrations
 ```
 After running this Artisan command, you can check your database and you will see new table there. Everything is fine!
+
+## Seeds
+
+> **!!!! WARNING !!!! TODO: Database Seeders in theme does not work now at all!
+> Text below will be changed**
+
+### Make Seeders
+
+If you want to write new [database seeder](https://laravel.com/docs/5.8/seeding), unfortunately you need to create seeder and save it **manually** now. The best place for depository 
+of custom seeders in theme is certainly make new directory named `seeds` in `database` of your theme. After that, you can create new seeder file 
+here and copy the following source code:
+```php
+<?php
+
+namespace Theme;
+
+use Illuminate\Database\Seeder;
+
+class YourThemeSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        // TODO: It is place for your source code
+    }
+}
+```
+
+### Running Seeders
+
+Then, you insert your source code to the `run()` method instead of TODO comment, which you want this seeder runs. Before than you 
+try to run this seeder, you have to need to regenerate Composer's autoloader. For this action, use:
+```text 
+composer dump-autoload
+```
+
+If you do everything well, 
+you can use this Artisan command below for running your seeder:
+```text
+php artisan db:seed --class=Theme\YourThemeSeeder
+```
+After what you run this Artisan command, method `run()` will be executed with your source code.
