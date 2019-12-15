@@ -15,7 +15,8 @@
       "theme/configuration",
       "theme/database",
       "theme/controllers",
-      "theme/models"
+      "theme/models",
+      "theme/routing"
     ],
     "Upgrade Guide": [
       "upgrade-guide/3.0.0-from-2"
