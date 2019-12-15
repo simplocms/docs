@@ -34,4 +34,4 @@ class YourModel extends Model
 table.
 
 > It is not necessary to keep directory of models like in the example above. You are completely free to make your custom directory for all models of your theme, 
-> where you want.
+where you want.

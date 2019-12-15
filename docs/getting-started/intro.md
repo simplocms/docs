@@ -19,4 +19,4 @@ and meet with this framework before your way into SIMPLO CMS.
 
 ## License
 
-> TODO
+> **!!!! TODO !!!!**

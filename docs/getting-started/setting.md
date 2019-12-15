@@ -20,5 +20,5 @@ How it was mensioned in the introduction, you can also set some options using ad
 on default page - `your-page.cz/admin`.
 
 > **After first installation of SIMPLO CMS**, the default admin credentials are following: <br><br>
-> Username: **root** <br>
-> Password: **RootUser1**
+Username: **root** <br>
+Password: **RootUser1**

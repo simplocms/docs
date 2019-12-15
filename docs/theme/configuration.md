@@ -7,7 +7,7 @@ After creating new theme (the best way for creating new theme is just copy Examp
 Everything about configuration is located in `config` directory and in first time there are two configuration files - `admin.php` and 
 `universal_modules.php`.
 
-> TODO: add information about these files above !!!
+> **!!!! TODO: add information about these files above !!!!**
 
 ## Custom Configuration
 

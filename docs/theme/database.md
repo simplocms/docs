@@ -46,8 +46,7 @@ After running this Artisan command, you can check your database and you will see
 
 ## Seeds
 
-> **!!!! WARNING !!!! TODO: Database Seeders in theme does not work now at all!
-> Text below will be changed**
+> **!!!! TODO: Database Seeders in theme does not work now at all! Text below will be changed !!!!**
 
 ### Make Seeders
 
