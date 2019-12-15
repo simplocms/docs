@@ -13,6 +13,8 @@ simply insert new records or make some updates of records in specific database t
 
 ## How Does It Work In Theme?
 
+> **!!!! TODO: It would be great to make some Artisan command for generate model simpler. !!!!**
+
 If you met with Laravel Eloquent ORM and now you know how can you define models in Laravel, you don't need to know something more! Just you will 
 move to src directory in theme's root and make new models folder here. Then in models directory, you can just create new model file and 
 insert code below:
