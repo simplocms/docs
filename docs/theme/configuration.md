@@ -3,7 +3,7 @@ id: configuration
 title: Configuration
 ---
 
-After creating new theme (the best way for creating new theme is just copy Example theme), you can check your configuration files. 
+After creating new theme (the best way for creating new theme is just copy Example theme), probably you will want to check your configuration files. 
 Everything about configuration is located in `config` directory and in first time there are two configuration files - `admin.php` and 
 `universal_modules.php`.
 
@@ -81,7 +81,7 @@ final class ThemeServiceProvider extends AbstractThemeServiceProvider
 
 For **register new configuration file**, you need to call `registerSystemConfigFrom()` method on `App\Services\ThemeService\ThemeService` object. 
 This object is obtained with calling `getThemeService()` method in `ThemeServiceProvider`. The `registerSystemConfigFrom()` method accepts only 
-one parameter `$key` as string data type and this is key, what you defined in your new configuration file (in our example, the key is `auth`).
+one parameter `$key` as a string data type and this is key, what you defined in your new configuration file (in our example, the key is `auth`).
 
 ### How To Use Custom Configuration
 
