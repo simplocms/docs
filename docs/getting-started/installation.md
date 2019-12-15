@@ -26,13 +26,13 @@ For development there are few more recommended requirements that will make your 
 * SQLite3 extension
 * GD extension
 
-> More detailed information for Laravel can be found in official documentation: https://laravel.com/docs/5.8
+> More detailed information for Laravel can be found in official [Laravel documentation](https://laravel.com/docs/5.8)
 
 ## Installation
 
 **If you want to setup Docker container for development, you need to install `docker-compose` and follow guide in `.docker/README.md`.**
 
-> *This installation guide is written for "LAMP" stack environment.*
+> This installation guide is written for "LAMP" stack environment.
 
 If you are using project's docker image, connect to the `web` container and proceed with installation in the container:
 
@@ -58,7 +58,7 @@ $ composer install
 $ npm i
 ```
 
-> TIP for windows users: Run installation with `--no-bin-links` argument.
+> **TIP for Windows users**: Run installation with `--no-bin-links` argument.
 
 ## Configuration
 

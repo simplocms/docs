@@ -23,29 +23,29 @@ For example, if you want to add new authorization guard, then create new configu
 
 return [
     
-    'auth.guards.fuser' => [
+    'auth.guards.your_new_user' => [
         'driver' => 'session',
-        'provider' => 'fusers',
+        'provider' => 'your_new_users',
     ],
 
-    'auth.providers.fusers' => [
+    'auth.providers.your_new_users' => [
         'driver' => 'eloquent',
-        'model' => \Theme\Models\FUser::class,
+        'model' => \Theme\Models\YourNewUser::class,
     ],
 
-    'auth.passwords.fusers' => [
-        'provider' => 'fusers',
-        'table' => 'fuser_password_resets',
+    'auth.passwords.your_new_users' => [
+        'provider' => 'your_new_users',
+        'table' => 'your_new_user_password_resets',
         'expire' => 60,
     ],
 
 ];
 ```
 
-> Of course, you are completely free to define your configuration source code and you don't need to keep the source code in this example.
+> Of course, you are **completely free to define** your configuration source code and you don't need to keep the source code in this example.
 
 **WARNING!** If you want to use custom configuration files, it is necessary to register them using `Theme\Providers\ThemeServiceProvider`, which 
-is located in `src/Providers` path. In default `ThemeServiceProvider`, you can see the following source code below:
+is located in `src/Providers` path. By default `ThemeServiceProvider`, you can see the following source code below:
 
 ```php
 <?php declare(strict_types = 1);
@@ -85,6 +85,6 @@ one parameter `$key` as a string data type and this is key, what you defined in 
 
 ### How To Use Custom Configuration
 
-After what you create and register custom configuration, then you can easily use all of them in your theme everywhere. For use it, just call somewhere `config()` 
+After what you create and register custom configuration, then you can easily use all of them in your theme everywhere. For use them, just call somewhere `config()` 
 helper function with specific key, for example `config('your.key')`. **Remember**, that you **don't need to prefix** your custom configuration key with 
 something special, it is completely the same like in default Laravel.

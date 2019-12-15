@@ -6,15 +6,15 @@ title: Database
 ## Introduction
 
 Laravel offers excellent interacting with a variety of databases using either **query builder**, powerful **Eloquent ORM** or just with 
-raw **SQL commands**. In default, Laravel supports four the most uses databases and you are completely free to choose one of them below:
+raw **SQL commands**. By default, Laravel supports four the most uses databases and you are completely free to choose one of them from this list:
 - SQLite
 - SQLite Server
 - PostgreSQL
 - MySQL
 
 For choose one of them, you can use `config/database.php` configuration file in root directory. In this database configuration file, 
-you will find everything, what you need to set for success connection to your database and something more. In default, Laravel providers 
-environment configuration here too and because of this feature, you don't need to change configuration directly in `config/database.php` file 
+you will find everything, what you need to set for success connection to your database and something more. Laravel providers 
+[environment configuration](https://laravel.com/docs/5.8/configuration#environment-configuration) here too and because of this feature, you don't need to change configuration directly in `config/database.php` file 
 and you can do everything in your `.env` file, what is located in root directory.
 
 > If you know more about **Database** in Laravel, visit official [Laravel documentation](https://laravel.com/docs/5.8/database)
@@ -30,7 +30,7 @@ like in Laravel. This directory will just store all generated database migration
 If you want to generate new [database migration](https://laravel.com/docs/5.8/migrations), you can use the following 
 [Artisan command](https://laravel.com/docs/5.8/artisan):
 ```text
-php artisan make:migration create_discussion_table --path=/themes/Example/database/migrations
+php artisan make:migration create_your_database_table --path=/themes/Example/database/migrations
 ```
 After running Artisan command above, new database migration file will create and place in `database/migrations` directory of your theme.
 
