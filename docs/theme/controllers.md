@@ -19,4 +19,4 @@ methods, which helpful during theme's development such as the `themeView` method
 theme view simply.
 
 It should be noted that there are already several controllers in theme controllers directory - `ArticlesController`, `PagesController` and 
-`SearchController`. These controllers provide you a good way for modify some default logic or view for base pages.
+`SearchController`. These controllers provide you a good way for modify some default logic or view for base pages in SIMPLO CMS.
