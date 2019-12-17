@@ -83,6 +83,40 @@ resources/views
     └── breadcrumbs.blade.php
 ```
 
-> **!!!! TODO: Write descriptions of these view files above !!!!**
+### Admin 
+
+#### `_settings_form.blade.php`
+
+TODO
+
+### Articles 
+
+#### `detail.blade.php`
+
+### Homepage 
+
+#### `index.blade.php`
+
+### Layouts 
+
+#### `main.blade.php`
+
+### Menus 
+
+#### `primary.blade.php`
+
+### Modules 
+
+#### `articles_list/list.blade.php`
+
+### Pages 
+
+#### `articles.blade.php`
+#### `page.blade.php`
+#### `search.blade.php`
+
+### Vendor 
+
+#### `breadcrumbs.blade.php`
 
 > **!!!! TODO: Write more information about global properties in views, how to set meta tags and another things !!!!**
