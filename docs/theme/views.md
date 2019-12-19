@@ -87,7 +87,17 @@ resources/views
 
 #### `_settings_form.blade.php`
 
-TODO
+This is view, what is returned in `createView` method of `Theme\Components\SettingsFormFactory` class. This component implements
+`App\Services\ThemeService\Contracts\ThemeSettingsFormFactoryInterface` interface, which is binded by application in `App\Services\ThemeService\Patterns\AbstractThemeServiceProvider`
+after calling method `registerSettingsFormFactory`. In theme, the `registerSettingsFormFactory` method is called in `Theme\Providers\ThemeServiceProvider`, which just extends
+`App\Services\ThemeService\Patterns\AbstractThemeServiceProvider` and it means that this provider can call this specific method for registering `Theme\Components\SettingsFormFactory` for
+your theme.
+
+> If you want to know how works Service Provider and how you can make your binding, check official [Laravel Documentation](https://laravel.com/docs/5.8/container). 
+
+How you know, `Theme\Components\SettingsFormFactory` provides `createView` method and using this method, application renders the `_settings_form.blade.php` view into "General Setting". It means that developer 
+can implements more setting options directly for theme, which will extend default SIMPLO CMS setting options. If you want to check these setting intended for theme, then you can go to 
+"Administration Panel > Setting > General (first tab)".
 
 ### Articles 
 
