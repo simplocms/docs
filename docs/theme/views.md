@@ -111,9 +111,29 @@ can implements more setting options directly for theme, which will extend defaul
 
 #### `main.blade.php`
 
+This is main layout view, who is extended in all views of theme. By default, the source code contains basic html document structure and main
+view properties: 
+- `$_FW_DATA` - class `\App\Services\FrontWeb\FrontWebService`
+- `$_FW_SERVICE` - class `\App\Services\FrontWeb\FrontWebData`
+
+These properties are attached into this layout main view using composer `Theme\Http\ViewComposers\MainLayoutComposer`, who is registered in 
+`Theme\Providers\ThemeServiceProvider`, and offers a lot of useful methods for your work with:
+- language translations
+- assets
+- create menus
+- breadcrumbs
+- title
+- meta tags - robots, description, twitter, open graph
+- canonical url
+- structured data (ex. rich snippets)
+
+> For more information about View Composers, visit official [Laravel Documentation](https://laravel.com/docs/5.8/views#view-composers).
+
 ### Menus 
 
 #### `primary.blade.php`
+This view is returned in `Theme\Components\View\PrimaryMenu` component and if you can notice in main layout view, the component is imported here too.
+The `primary.blade.php` view serves for importing primary menu, who you can set easily through **Administration Panel**.
 
 ### Modules 
 
