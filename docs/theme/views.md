@@ -142,11 +142,15 @@ The `primary.blade.php` view serves for importing primary menu, who you can set 
 ### Pages 
 
 #### `articles.blade.php`
-This view is returned in method `getArticlesPageView` of `Theme\Http\Controllers\PagesController`. This controller method shows page of articles and
+This view is returned in method `getArticlesPageView` of `Theme\Http\Controllers\PagesController`. This controller's method shows page of articles and
 if you want, you can modify `getArticlesPageView` logic how you need for your theme and its specific purposes.
 
 #### `page.blade.php`
+This view is default view file for returning in base `show` method in `Theme\Http\Controllers\PagesController`. TODO ...
+
 #### `search.blade.php`
+This view is returned in method `index` of `Theme\Http\Controllers\SearchController` and this method contains logic for searching on theme's website. Everything here, you can
+modify how you want, it's completely free to make custom searching logic specific for theme's purpose.
 
 ### Vendor 
 
