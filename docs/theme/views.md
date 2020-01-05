@@ -106,6 +106,8 @@ can implements more setting options directly for theme, which will extend defaul
 ### Homepage 
 
 #### `index.blade.php`
+This view is returned in `show` method of `Theme\Http\Controllers\PagesController`, when current `$page` is homepage.
+The source code, what is located inside this view file, can be modified how developer needs for his theme.
 
 ### Layouts 
 
@@ -138,6 +140,7 @@ The `primary.blade.php` view serves for importing primary menu, who you can set 
 ### Modules 
 
 #### `articles_list/list.blade.php`
+TODO TODO TODO
 
 ### Pages 
 
@@ -157,5 +160,3 @@ modify how you want, it's completely free to make custom searching logic specifi
 #### `breadcrumbs.blade.php`
 This is view file, which renders breadcrumb menu items in all another views, where it will be imported using `theme::vendor.breadcrumbs` key. By default, 
 breadcrumb view is imported into the `pages.articles`, `pages.page`, `pages.search` and `articles.detail` and it's completely free to modify how developers need.
-
-> **!!!! TODO: Write more information about global properties in views, how to set meta tags and another things !!!!**

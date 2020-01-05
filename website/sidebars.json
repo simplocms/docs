@@ -17,7 +17,8 @@
       "theme/controllers",
       "theme/models",
       "theme/routing",
-      "theme/views"
+      "theme/views",
+      "theme/localization"
     ],
     "Upgrade Guide": [
       "upgrade-guide/3.0.0-from-2"
