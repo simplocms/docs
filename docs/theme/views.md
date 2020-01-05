@@ -142,11 +142,16 @@ The `primary.blade.php` view serves for importing primary menu, who you can set 
 ### Pages 
 
 #### `articles.blade.php`
+This view is returned in method `getArticlesPageView` of `Theme\Http\Controllers\PagesController`. This controller method shows page of articles and
+if you want, you can modify `getArticlesPageView` logic how you need for your theme and its specific purposes.
+
 #### `page.blade.php`
 #### `search.blade.php`
 
 ### Vendor 
 
 #### `breadcrumbs.blade.php`
+This is view file, which renders breadcrumb menu items in all another views, where it will be imported using `theme::vendor.breadcrumbs` key. By default, 
+breadcrumb view is imported into the `pages.articles`, `pages.page`, `pages.search` and `articles.detail` and it's completely free to modify how developers need.
 
 > **!!!! TODO: Write more information about global properties in views, how to set meta tags and another things !!!!**
