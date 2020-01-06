@@ -154,3 +154,56 @@ use App\Helpers\Functions;
 // {"general.language_name":"\u010ce\u0161tina","auth.failed":"P\u0159ihla\u0161ovac\u00ed \u00fadaje neodpov\u00eddaj\u00ed.","passwords.reset":"Va\u0161e heslo bylo resetov\u00e1no!"}
 echo json_encode(Functions::combineTrans(['general.language_name', 'auth.failed', 'passwords.reset']));
 ```
+
+**`Functions::combineTransToJson(array $keys): array`**
+
+The `combineTransToJson` method returns array of keys and translation strings in JSON format. The `$keys` parameter is mandatory and specifies translation keys, from which
+you want to get final translation strings.
+
+Return example: 
+```php
+use App\Helpers\Functions;
+
+// {"general.language_name":"\u010ce\u0161tina","auth.failed":"P\u0159ihla\u0161ovac\u00ed \u00fadaje neodpov\u00eddaj\u00ed.","passwords.reset":"Va\u0161e heslo bylo resetov\u00e1no!"}
+echo Functions::combineTransToJson(['general.language_name', 'auth.failed', 'passwords.reset']);
+```
+
+**`Functions::arrayDistinctMerge(array &$array1, array &$array2): array`**
+
+The `arrayDistinctMerge` method returns merge array of two input arrays. When here will be duplicated between these arrays about
+key, a value in first array is replaced with a value from second array. The `$array1` and `$array2` parameters are mandatory and both of them accepts array value. 
+
+Return example: 
+```php
+use App\Helpers\Functions;
+
+$array1 = ["animal" => ["dog" => "Akita Inu"], 3];
+$array2 = [6, "animal" => ["dog" => "Greyhound", "snake" => "Cobra"]];
+
+print_r(Functions::arrayDistinctMerge($array1, $array2));
+```
+```text
+Array
+(
+    [animal] => Array
+        (
+            [dog] => Greyhound
+            [snake] => Cobra
+        )
+
+    [0] => 6
+)
+```
+
+**`Functions::normalizeSearchText(string $text): string`**
+
+The `normalizeSearchText` method returns text for searching comparison. The input search text is trimmed, stripped about tags,
+removed diacritics and getting lowercase.
+
+Return example: 
+```php
+use App\Helpers\Functions;
+
+// we need to search something
+echo Functions::normalizeSearchText('We need to search <strong>something</strong>  ');
+```
