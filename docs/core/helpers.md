@@ -33,7 +33,13 @@ Then you can specify another two optional parameters:
 - `$print` - it's format for printing, you can choose from following: `EmailObfuscator::PRINT_METHOD_JS`, `EmailObfuscator::PRINT_METHOD_CSS` 
 or `EmailObfuscator::PRINT_METHOD_ENCODE`
 
-Return example: TODO
+Return example: 
+```php
+use App\Helpers\EmailObfuscator;
+
+// <a href="mailto:" onclick="event.preventDefault();window.location.href='mailto:' + 'te'+'st'+'y@'+'em'+'ai'+'l.'+'cz';"><script>document.write('te'+'st'+'y@'+'em'+'ai'+'l.'+'cz')</script></a>
+echo EmailObfuscator::makeLink('testy@email.cz');
+```
 
 **`EmailObfuscator::safeJsPrint(string $email[, int $chunkSize = 2]): string`**
 
@@ -41,7 +47,13 @@ The `safeJsPrint` method returns safety email address in Javascript source code.
 Then you can specify another one optional parameter: 
 - `$chunkSize` - it's integer parameter, which defines, how many letters will be in one chunk
 
-Return example: TODO
+Return example: 
+```php
+use App\Helpers\EmailObfuscator;
+
+// <script>document.write('te'+'st'+'y@'+'em'+'ai'+'l.'+'cz')</script>
+echo EmailObfuscator::safeJsPrint('testy@email.cz');
+```
 
 **`EmailObfuscator::safeCssPrint(string $email[, string $tag = 'span']): string`**
 
@@ -49,13 +61,25 @@ The `safeCssPrint` method returns safety email address in reserved text with CSS
 Then you can specify another one optional parameter: 
 - `$tag` - it's string parameter, which defines returned HTML element
 
-Return example: TODO
+Return example: 
+```php
+use App\Helpers\EmailObfuscator;
+
+// <span style='unicode-bidi:bidi-override;direction:rtl;'>zc.liame@ytset</span>
+echo EmailObfuscator::safeCssPrint('testy@email.cz');
+```
 
 **`EmailObfuscator::encode(string $email): string`**
 
 The `encode` method returns safety email address in encoded output by randomly HTML tags. The `$email` parameter is mandatory and accepts your raw email address.
 
-Return example: TODO
+Return example: 
+```php
+use App\Helpers\EmailObfuscator;
+
+// &#116;es&#116;y@&#101;&#109;&#97;&#105;&#108;&#46;c&#122;
+echo EmailObfuscator::encode('testy@email.cz');
+```
 
 **`EmailObfuscator::safeComboPrint(string $email[, string $tag = 'span', int $chunkSize = 2]): string`**
 
@@ -64,7 +88,13 @@ Then you can specify another two optional parameters:
 - `$tag` - it's string parameter, which defines returned HTML elements
 - `$chunkSize` - it's integer parameter, which defines, how many letters will be in one chunk
 
-Return example: TODO
+Return example: 
+```php
+use App\Helpers\EmailObfuscator;
+
+// <span style='unicode-bidi:bidi-override;direction:rtl;'><script>document.write('zc'+'.l'+'ia'+'me'+'@y'+'ts'+'et')</script></span>
+echo EmailObfuscator::safeComboPrint('testy@email.cz');
+```
 
 **`EmailObfuscator::replace(string $email[, $at = '&#064;', $dot = '&#046;']): string`**
 
@@ -73,7 +103,13 @@ Then you can specify another two optional parameters:
 - `$at` - it's string parameter, which replaces `@`
 - `$dot` - it's string parameter, which replaces `.`
 
-Return example: TODO
+Return example: 
+```php
+use App\Helpers\EmailObfuscator;
+
+// testy&#064;email&#046;cz
+echo EmailObfuscator::replace('testy@email.cz');
+```
 
 **`EmailObfuscator::toJsExpression(string $email[, string $quote = "'", int $chunkSize = 2]): string`**
 
@@ -82,4 +118,10 @@ Then you can specify another two optional parameters:
 - `$quote` - it's string parameter, which defines quotes around one chunk (important for string data type)
 - `$chunkSize` - it's integer parameter, which defines, how many letters will be in one chunk
 
-Return example: TODO
+Return example: 
+```php
+use App\Helpers\EmailObfuscator;
+
+// 'te'+'st'+'y@'+'em'+'ai'+'l.'+'cz'
+echo EmailObfuscator::toJsExpression('testy@email.cz');
+```
