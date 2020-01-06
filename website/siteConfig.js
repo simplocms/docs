@@ -21,8 +21,8 @@ const users = [
 ];
 
 const siteConfig = {
-  title: 'Simplo CMS Documentation', // Title for your website.
-  tagline: 'Documentation for Simplo CMS by SIMPLO s.r.o.',
+  title: 'Simplo CMS', // Title for your website.
+  tagline: 'Documentation',
   url: 'https://www.simplo.cz', // Your website URL
   baseUrl: '/', // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
@@ -38,10 +38,7 @@ const siteConfig = {
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
-    {doc: 'getting-started/intro', label: 'Documentation'},
-    // {doc: 'doc4', label: 'API'},
-    // {page: 'help', label: 'Help'},
-    // {blog: true, label: 'Blog'},
+    {doc: 'getting-started/intro', label: 'Documentation'}
   ],
 
   // If you have users set above, you add it here:
