@@ -125,3 +125,32 @@ use App\Helpers\EmailObfuscator;
 // 'te'+'st'+'y@'+'em'+'ai'+'l.'+'cz'
 echo EmailObfuscator::toJsExpression('testy@email.cz');
 ```
+
+### Global Functions
+
+**`Functions::createDateFromFormat($format, $date = null)`**
+
+The `createDateFromFormat` method returns new `DateTime` object or null, when datetime cannot be created. The `$format` parameter is mandatory
+and specifies, from which date format will be created new `DateTime` object. Then you can specify another one optional parameter: 
+- `$date` - it's parameter, which can be either datetime object (`DateTime` or `Carbon`) or string datetime
+
+Return example: 
+```php
+use App\Helpers\Functions;
+
+// O:8:"DateTime":3:{s:4:"date";s:26:"2019-12-31 23:59:59.000000";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Prague";}
+echo serialize(Functions::createDateFromFormat('Y-m-d H:i:s', '2019-12-31 23:59:59'));
+```
+
+**`Functions::combineTrans(array $keys): array`**
+
+The `combineTrans` method returns array of keys and translation strings. The `$keys` parameter is mandatory and specifies translation keys, from which
+you want to get final translation strings.
+
+Return example: 
+```php
+use App\Helpers\Functions;
+
+// {"general.language_name":"\u010ce\u0161tina","auth.failed":"P\u0159ihla\u0161ovac\u00ed \u00fadaje neodpov\u00eddaj\u00ed.","passwords.reset":"Va\u0161e heslo bylo resetov\u00e1no!"}
+echo json_encode(Functions::combineTrans(['general.language_name', 'auth.failed', 'passwords.reset']));
+```
