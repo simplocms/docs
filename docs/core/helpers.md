@@ -491,7 +491,25 @@ The `GAHelper` constructor accepts two mandatory parameters:
 
 **`GAHelper::getData($from, $to, $metrics[, array $options = []])`**
 
-The `getData` method returns `Google_Service_Analytics_GaData` object with given data or null, when during getting data process will throw
-exception.
+The `getData` method returns `Google_Service_Analytics_GaData` object with fetch data or null, when during fetching data process will throw
+exception. There are three mandatory parameters:
+- `$from` - from which datetime you want to fetch Google Analytics data
+- `$to` - to which datetime you want to fetch Google Analytics data
+- `$metrics` - a comma-separated list of Google Analytics metrics, ex: 'ga:sessions,ga:pageviews'
+
+You can also use optional `$options` parameter for setting another Google Analytics possible options, ex: 'ga:browser,ga:city'.
+
+> TODO - write some example
+
+**`GAHelper::hasErrors()`**
+
+The `hasErrors` method returns `true` value, when during fetching process it happened some problem.
+
+> TODO - write some example
+
+**`GAHelper::getErrors()`**
+
+The `getErrors` method returns `Collection` with errors, what happened during fetching process. If the `Collection` is empty, then
+everything was successful.
 
 > TODO - write some example
