@@ -128,6 +128,9 @@ echo EmailObfuscator::toJsExpression('testy@email.cz');
 
 ### Global Functions
 
+In some cases, you can need to do something, what PHP functions cannot do. For these purposes, SIMPLO CMS contains a few static methods
+for global issues.
+
 **`Functions::createDateFromFormat($format[, $date = null])`**
 
 The `createDateFromFormat` method returns new `DateTime` object or null, when datetime cannot be created. The `$format` parameter is mandatory
@@ -473,3 +476,22 @@ Illuminate\Support\Collection Object
 
 )
 ```
+
+### Google Analytics
+
+Google Analytics is one of the most favourite and used global analytic tools for websites. SIMPLO CMS offers for developers `GAHelper`
+class with helpful methods in working with Google Analytics data. The `GAHelper` class has only instance methods and every object of this class represents
+one connection to the account of Google Analytics using access token.
+
+**`GAHelper::__construct(array $token, $profileId)`**
+
+The `GAHelper` constructor accepts two mandatory parameters:
+- `$token` - array value with access token to the Google Analytics account
+- `$profileId` - value with profile id of the Google Analytics account
+
+**`GAHelper::getData($from, $to, $metrics[, array $options = []])`**
+
+The `getData` method returns `Google_Service_Analytics_GaData` object with given data or null, when during getting data process will throw
+exception.
+
+> TODO - write some example
