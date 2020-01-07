@@ -513,3 +513,20 @@ The `getErrors` method returns `Collection` with errors, what happened during fe
 everything was successful.
 
 > TODO - write some example
+
+### URL
+
+SIMPO CMS also offers for developers helper in working with url addresses - `UrlHelper` class.
+
+**`UrlHelper::normalizeUri(string $uri): string`**
+
+The `normalizeUri` method returns only url address without query string or ending `/` character. The `$uri` parameter is mandatory and
+represents given url address for normalizing process. Normalized url address is good for matching with another normalized url addresses.
+
+Return example: 
+```php
+use App\Helpers\UrlHelper;
+
+// https://www.simplocms.com
+echo UrlHelper::normalizeUri('https://www.simplocms.com?id=5');
+```
