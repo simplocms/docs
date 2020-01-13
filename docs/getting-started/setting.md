@@ -29,8 +29,11 @@ Password: **RootUser1**
 
 > **TODO** We need to solve localization of administration in SIMPLO CMS !!!
 
-After when you logged in to the Administration Panel, then you can see Dashboard and main menu on the left side. For check actual
-settings, you can visit "Settings > General". In the first "General settings" tab, you can set website name, operator, logo, 
+### Settings
+
+#### General
+
+For check actual settings, you can visit "Settings > General". In the first "General settings" tab, you can set website name, operator, logo, 
 icon, background of the icon and also change your active template.
 
 If you will change your actual active template, then in "Template" section there will appear additional settings belonging to 
@@ -41,12 +44,51 @@ this active template. For Example template, you can see additional settings in t
 For Example template, it's one additional setting called "Page with articles" serving for setting specific view for rendering 
 articles.
 
+#### SEO
+
 The second tab is "SEO" and offers settings for default title and description. In SEO title, you can use variables `%itle%` and
 `%site_name%`. When you use them here, on website `%title%` will be replaced with actual title page, what user visits. Variable
 `%site_name%` will be replaced in every time with website name, what is the same for the whole web.
+
+#### OpenGraph & Twitter
 
 The third tab, which you can notice, is "OpenGraph & Twitter". How the name of this tab reveals, here it's possible to set something 
 for OpenGraph and Twitter. In the first input, it's place for setting user name to your Twitter account and you have to adduce including
 `@`. In the second input, it's convenient place for setting og:title, og:description and og:image. Of course, it's also possible to use
 `%title%` and `%site_name%` variables for og:title like in SEO title.
 
+#### Security Headers
+
+The next tab is "Security Headers" and it's place for settings headers - X-Frame-Options, X-Xss-Protection, Refferer-Policy, 
+X-Content-Type-Options or HTTP Strict Transport Security. Everything what you set, you can also check on 
+[securityheaders.com](https://securityheaders.com/).
+
+#### Searching
+
+The "Searching" tab serves for a few setting options related with searching on your website. It's possible to set url slug, where
+visitors can find search page, or allow following features:
+- search on website
+- search in all pages
+- search in all articles
+- search in all categories
+- search in all photogalleries
+
+#### Mail
+
+The last tab is "Mail" and provides settings about e-mail. It's possible to find here settings about sender email, 
+sender name and also the method for sending emails on your website. Set the method for sending emails, developers can choose
+either SENDMAIL or SMTP. 
+
+The SENDMAIL method uses PHP sendmail() function and sends emails using local server's configuration
+with a few limits. 
+
+For sending emails using SMTP, you can choose SMTP choice. When you chose the SMTP method, it will shows 
+additional settings for set SMTP address, SMTP port, SMTP crypt protocol and also check button for turn on / off SMTP
+authorization. If you will turn on this authorization, then you will see inputs for filling in SMTP username and password.
+If you set everything how you need, then you can test correct setting in section "Send Test Email" on the same setting page.
+Just only fill in email, where will be send test email, and click on "Send Test Email" button. After this action, please check
+this email, if you receive test email from your website. If you didn't receive this test email, then probably your email
+settings are incorrect and you have to fix.
+
+> **IMPORTANT!** If you will try to set email directly in Laravel (for example using [Environment Configuration](https://laravel.com/docs/5.8/configuration#environment-configuration)),
+it will not works properly. In SIMPLO CMS, it's possible to set email **only** through **Administration Panel**.
