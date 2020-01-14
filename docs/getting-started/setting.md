@@ -107,3 +107,30 @@ page, you will see inputs for following settings, what you need to set:
 - language code (ex. en)
 - language domain (en.your-page.com)
 - activate check button
+
+In the second column box, there is additional setting about languages, when you use more than only one of them. In this case,
+it's convenient place for setting of identification way for language in URL address. You can choose following identification by:
+
+- the folder structure (ex. your-page.com/en)
+- the sub-domain (ex. en.your-page.com)
+- the different domain (ex. your-english-page.com / your-german-page.com)
+
+> When you choose language's identification by the folder structure, it's possible to hide the language's folder name from URL address
+for your **default language**. It means, that if your default language is English, you can have clean URL address only like your-page.com.
+
+### Article Types
+
+On this setting page, it's ideal way to add new types for articles.
+
+![Article Types](../assets/images/administration-article-types.png "Article Types")
+
+For adding new article type, you have possibility to fill in following information about your new article type:
+
+- name 
+- URL slug
+- description
+- allow using tags
+- allow using GridEditor - TODO: add internal link to Grid Editor
+- show article category in URL and breadcrumb navigation of the articles
+
+> Including the settings above, you are free to set also SEO and OpenGraph for your new article type.
