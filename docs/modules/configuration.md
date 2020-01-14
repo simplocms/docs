@@ -40,6 +40,19 @@ command `module:publish-migration`.
 It's the most powerful option, where you can customize the module's directory structure. Here is place for definition of custom 
 directories for asset sources, config files, database migrations, events, listeners, models, views, lang and etc.
 
-### Scan
+### Scan Path
 
 The package will be scanned specific path, what it's defined here. It's useful for the package, which is hosted in packagist website.
+
+### Composer File Template
+
+It's place for configuration generated composer.json file. You can set vendor name or also an author.
+
+### Caching
+
+The settings for cache feature. You can enabled cache feature, set the cache key or lifetime for the module.
+
+### Register Custom Namespace
+
+Define here, what laravel-modules will be registered as an custom namespaces. If one is set to false, then the package won't 
+run its registration process.
