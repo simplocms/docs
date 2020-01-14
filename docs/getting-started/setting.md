@@ -17,7 +17,7 @@ comfortable, effective and easy.
 ## Administration Panel
 
 How it was mensioned in the introduction, you can also set some options using administration panel, which you can visit 
-on default page - `your-page.cz/admin`.
+on default page - `your-page.com/admin`.
 
 > **After first installation of SIMPLO CMS**, the default admin credentials are following: <br><br>
 Username: **root** <br>
@@ -29,7 +29,7 @@ Password: **RootUser1**
 
 > **TODO** We need to solve localization of administration in SIMPLO CMS !!!
 
-### Settings
+### Main Settings
 
 #### General
 
@@ -92,3 +92,18 @@ settings are incorrect and you have to fix.
 
 > **IMPORTANT!** If you will try to set email directly in Laravel (for example using [Environment Configuration](https://laravel.com/docs/5.8/configuration#environment-configuration)),
 it will not works properly. In SIMPLO CMS, it's possible to set email **only** through **Administration Panel**.
+
+### Language Settings
+
+In Administration Panel, you can also set simply languages. By default, SIMPLO CMS offers three languages - Czech, English and German.
+
+![Language Settings](../assets/images/administration-language-settings.png "Language Settings")
+
+But if this default language's list is not convenient in your mind, you are free to add a new language using "Add language" button. On this
+page, you will see inputs for following settings, what you need to set:
+
+- language name (ex. English)
+- country code (ex. eng)
+- language code (ex. en)
+- language domain (en.your-page.com)
+- activate check button
