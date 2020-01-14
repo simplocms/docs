@@ -19,11 +19,44 @@ new migrations, it will be stored into this directory.
 
 ### Generating Migrations
 
-For generating new migrations in the module, it's possible to use the following [Artisan Console](https://laravel.com/docs/5.8/artisan) command:
+For generating new migrations in the module, it's possible to use the following [Artisan Console](../core/artisan-console.md) command:
 
 ```text
 php artisan module:make-migration create_blog_posts_table Blog
 ```
 
 How you can notice to this command above, it's just the same principle like in Laravel for generating migrations, nothing more. Only this command has
-a little bit different syntax with more parameters.
+a little bit different syntax with more required parameters.
+
+### Running Migrations
+
+After what you generated database migration and modify everything, how you need, then you will probably want to run these migrations.
+If yes, then you can use the following Artisan Console command:
+
+```text
+php artisan module:migrate Blog
+```
+
+> **IMPORTANT!** If you don't specify the module's name, then it will be run all migrations from all available modules.
+
+## Seeds
+
+The default path for seeders, it's `Database/Seeders` in module's root directory. All future seeders will be stored in this place.
+
+### Make Seeders
+
+Generate the seeder for the specific module, you can use the following Artisan Console command:
+
+```text
+php artisan module:make-seed seed_fake_blog_posts Blog
+```
+
+### Running Seeders
+
+After what you generate a seeder and write your source code inside this seeder, run everything using this Artisan Console command below:
+
+```text
+php artisan module:seed Blog
+```
+
+> **IMPORTANT!** If you don't mention the module's name, then such a command runs all seeders in all available modules.
