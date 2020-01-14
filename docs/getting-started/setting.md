@@ -160,10 +160,10 @@ applications.
 
 ### Modules
 
-It's setting page, where you can manipulate in SIMPLO CMS Modules. The modules are a very effective way, how SIMPLO CMS
+It's setting page, where you can manipulate with SIMPLO CMS Modules. The modules are a very effective way, how SIMPLO CMS
 can be extended about some new great features.
 
-![Redirection](../assets/images/administration-redirect.png "Redirection")
+![Modules](../assets/images/administration-modules.png "Modules")
 
 How you can notice in the screenshot above, SIMPLO CMS serves a few useful modules after its installing.
 
