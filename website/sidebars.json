@@ -12,6 +12,9 @@
       "core/artisan-console",
       "core/helpers"
     ],
+    "Modules": [
+      "modules/general"
+    ],
     "Theme": [
       "theme/general",
       "theme/configuration",

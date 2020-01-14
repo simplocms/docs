@@ -134,3 +134,38 @@ For adding new article type, you have possibility to fill in following informati
 - show article category in URL and breadcrumb navigation of the articles
 
 > Including the settings above, you are free to set also SEO and OpenGraph for your new article type.
+
+### Redirection
+
+It's setting page, where you can add new redirect URL addresses.
+
+![Redirection](../assets/images/administration-redirect.png "Redirection")
+ 
+If you want to add only one URL address, click on "Add new redirection" button. After this step, you will see the form for 
+creating one redirection with following settings:
+
+- source URL address
+- target URL address
+- status code (ex. 301 - Moved Permanently)
+
+For multiple creating redirection, you can click on "Multiple creating" button, where it's possible to create simply
+multiple URL addresses for redirection using "Add row" link in one step. On Multiple Creating Redirection page except of 
+multiple creating, you have also the opportunity for importing redirects with CVS import. The CSV file for this import must have
+format the same like in the screenshot below:
+
+![Redirection Import](../assets/images/administration-redirect-import.png "Redirection Import")
+
+All of your redirects you can also export to the CSV file. It's simple way when you need to copy or move your redirects between
+applications.
+
+### Modules
+
+It's setting page, where you can manipulate in SIMPLO CMS Modules. The modules are a very effective way, how SIMPLO CMS
+can be extended about some new great features.
+
+![Redirection](../assets/images/administration-redirect.png "Redirection")
+
+How you can notice in the screenshot above, SIMPLO CMS serves a few useful modules after its installing.
+
+> If you know more about **Modules**, how you can use them, install new modules or how it's possible to create new module, please
+visit [Modules](modules/general.md).
