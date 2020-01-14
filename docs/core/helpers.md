@@ -530,3 +530,20 @@ use App\Helpers\UrlHelper;
 // https://www.simplocms.com
 echo UrlHelper::normalizeUri('https://www.simplocms.com?id=5');
 ```
+
+### Modules
+
+SIMPLO CMS offers for convenient work-flow to creating new features [Modules](modules/general.md) package. Because of modules, SIMPLO CMS
+has one helpful global function.
+
+**`module_path($name)`**
+
+The `module_path` function returns a direct path into the module, which will be defined as the `$name` parameter. It's only this parameter,
+which the `module_path` function requires.
+
+Return example: 
+```php
+
+// /Applications/MAMP/htdocs/simplo-cms/modules/Blog
+echo module_path('Blog');
+```
