@@ -13,7 +13,8 @@
       "core/helpers"
     ],
     "Modules": [
-      "modules/general"
+      "modules/general",
+      "modules/creating"
     ],
     "Theme": [
       "theme/general",
