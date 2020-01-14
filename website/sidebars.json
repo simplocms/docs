@@ -16,7 +16,8 @@
       "modules/general",
       "modules/configuration",
       "modules/creating",
-      "modules/database"
+      "modules/database",
+      "modules/helpers"
     ],
     "Theme": [
       "theme/general",
