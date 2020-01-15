@@ -223,3 +223,35 @@ Return example:
 ```php
 !!! TODO !!!
 ```
+
+**`Module::findRequirements($name)`**
+
+The `findRequirements` method returns all required modules of the given module in `$name` mandatory parameter. If the given
+module doesn't exist, then the application throws `Nwidart\Modules\Exceptions\ModuleNotFoundException` exception. The required
+modules are defined in `module.json` file under the `requires` key.
+
+Return example: 
+```php
+use Nwidart\Modules\Facades\Module;
+
+dd(Module::findRequirements('Blog'));
+```
+```text
+[]
+```
+
+**`Module::findRequirements($name)`**
+
+The `findRequirements` method returns all required modules of the given module in `$name` mandatory parameter. If the given
+module doesn't exist, then the application throws `Nwidart\Modules\Exceptions\ModuleNotFoundException` exception. The required
+modules are defined in `module.json` file under the `requires` key.
+
+Return example: 
+```php
+use Nwidart\Modules\Facades\Module;
+
+dd(Module::findRequirements('Blog'));
+```
+```text
+[]
+```
