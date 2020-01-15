@@ -240,18 +240,20 @@ dd(Module::findRequirements('Blog'));
 []
 ```
 
-**`Module::findRequirements($name)`**
+**`Module::macro($name, $macro)`**
 
-The `findRequirements` method returns all required modules of the given module in `$name` mandatory parameter. If the given
-module doesn't exist, then the application throws `Nwidart\Modules\Exceptions\ModuleNotFoundException` exception. The required
-modules are defined in `module.json` file under the `requires` key.
+The `macro` method belongs to the `Illuminate\Support\Traits\Macroable` trait and because of this module's package uses the trait, you can
+use macros during working with modules. The working with macros in modules is the same like in Laravel. Just call the `macro` method
+and pass two mandatory parameters, where the `$name` is the macro's name and the `$macro` is callable function, which will be called.
 
 Return example: 
 ```php
 use Nwidart\Modules\Facades\Module;
 
-dd(Module::findRequirements('Blog'));
-```
-```text
-[]
+Module::macro('customMacro', function () {
+    echo 'Hello SIMPLO CMS!';
+});
+
+// Hello SIMPLO CMS!
+Module::customMacro();
 ```
