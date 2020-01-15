@@ -10,7 +10,7 @@ And just about them you can find out more on the next rows.
 
 ## Available Helpers
 
-**`module_path($name)`**
+**`module_path($name): string`**
 
 The `module_path` function returns a direct path into the module, which will be defined as the `$name` parameter. It's only this parameter,
 which the `module_path` function requires.
@@ -21,7 +21,7 @@ Return example:
 echo module_path('Blog');
 ```
 
-**`Module::all()`**
+**`Module::all(): array`**
 
 The `all` method returns all available modules.
 
@@ -31,6 +31,159 @@ use Nwidart\Modules\Facades\Module;
 
 // {"ArticlesList":{},"Blog":{},"Image":{},"Link":{},"Photogallery":{},"Text":{},"View":{}}
 echo json_encode(Module::all());
+```
+
+> TODO - update example
+
+**`Module::getOrdered(): array`**
+
+The `getOrdered` method returns ordered modules by the `order` key in `module.json`.
+
+Return example: 
+```php
+use Nwidart\Modules\Facades\Module;
+
+// {"ArticlesList":{},"Blog":{},"Image":{},"Link":{},"Photogallery":{},"Text":{},"View":{}}
+echo json_encode(Module::getOrdered());
+```
+
+> TODO - update example
+
+**`Module::find($name)`**
+
+The `find` method returns the specific module. If the specific module exists, then it's returned `App\Models\Module\Module` instance, otherwise null
+value is returned. This method accepts only one `$name` parameter with the specific module's name.
+
+Return example: 
+```php
+use Nwidart\Modules\Facades\Module;
+
+dd(Module::find('Blog'));
+```
+```text
+Module {#2107 ▼
+  #app: Application {#8 ▶}
+  #name: "Blog"
+  #path: "/Applications/MAMP/htdocs/simplo-cms/modules/Blog"
+  #moduleJson: []
+  #defer: false
+}
+```
+
+> TODO - update example
+
+**`Module::findOrFail($name)`**
+
+The `findOrFail` method returns the specific module. If the specific module exists, then it's returned `App\Models\Module\Module` instance, otherwise
+the application throws `Nwidart\Modules\Exeptions\ModuleNotFoundException` exception. This method accepts only one `$name` parameter
+with the specific module's name.
+
+Return example: 
+```php
+use Nwidart\Modules\Facades\Module;
+
+dd(Module::findOrFail('Blog'));
+```
+```text
+Module {#2107 ▼
+  #app: Application {#8 ▶}
+  #name: "Blog"
+  #path: "/Applications/MAMP/htdocs/simplo-cms/modules/Blog"
+  #moduleJson: []
+  #defer: false
+}
+```
+
+> TODO - update example
+
+**`Module::toCollection(): Collection`**
+
+The `toCollection` method returns all available modules as `Nwidart\Modules\Collection` instance, which extends base Laravel `Collection`.
+
+Return example: 
+```php
+use Nwidart\Modules\Facades\Module;
+
+dd(Module::toCollection());
+```
+```text
+Collection {#2099 ▼
+  #items: array:7 [▼
+    "ArticlesList" => Module {#2104 ▶}
+    "Blog" => Module {#2108 ▶}
+    "Image" => Module {#2112 ▶}
+    "Link" => Module {#2116 ▶}
+    "Photogallery" => Module {#2120 ▶}
+    "Text" => Module {#2124 ▶}
+    "View" => Module {#2128 ▶}
+  ]
+}
+```
+
+> TODO - update example
+
+**`Module::getByStatus($status): array`**
+
+The `getByStatus` method returns all modules by the given `$status` mandatory parameter. The status `1` returns active modules and the status `0` returns inactive modules.
+
+Return example: 
+```php
+use Nwidart\Modules\Facades\Module;
+
+dd(Module::getByStatus(1));
+```
+```text
+array:7 [▼
+  "ArticlesList" => Module {#2103 ▶}
+  "Blog" => Module {#2107 ▶}
+  "Image" => Module {#2111 ▶}
+  "Link" => Module {#2115 ▶}
+  "Photogallery" => Module {#2119 ▶}
+  "Text" => Module {#2123 ▶}
+  "View" => Module {#2127 ▶}
+]
+```
+
+> TODO - update example
+
+**`Module::allEnabled(): array`**
+
+The `allEnabled` method returns enabled modules. It means, that the `active` key of the modules has value `1`. It's also possible to use the `getByStatus`
+method for the same result.
+
+Return example: 
+```php
+use Nwidart\Modules\Facades\Module;
+
+dd(Module::allEnabled());
+```
+```text
+array:7 [▼
+  "ArticlesList" => Module {#2103 ▶}
+  "Blog" => Module {#2107 ▶}
+  "Image" => Module {#2111 ▶}
+  "Link" => Module {#2115 ▶}
+  "Photogallery" => Module {#2119 ▶}
+  "Text" => Module {#2123 ▶}
+  "View" => Module {#2127 ▶}
+]
+```
+
+> TODO - update example
+
+**`Module::allDisabled(): array`**
+
+The `allDisabled` method returns disabled modules. It means, that the `active` key of the modules has value `0`. It's also possible to use the `getByStatus`
+method for the same result.
+
+Return example: 
+```php
+use Nwidart\Modules\Facades\Module;
+
+dd(Module::allDisabled());
+```
+```text
+[]
 ```
 
 > TODO - update example
