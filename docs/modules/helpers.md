@@ -13,7 +13,7 @@ And just about them you can find out more on the next rows.
 **`module_path($name): string`**
 
 The `module_path` function returns a direct path into the module, which will be defined as the `$name` parameter. It's only this parameter,
-which the `module_path` function requires.
+which the `module_path` function requires. You can also use `getModulePath` static method on the `Nwidart\Modules\Facades\Module` facade.
 
 Return example: 
 ```php
@@ -187,3 +187,39 @@ dd(Module::allDisabled());
 ```
 
 > TODO - update example
+
+**`Module::config($key[, $default = null])`**
+
+The `config` method returns a config value from this module package. The `$key` parameter is mandatory and requires
+config key. The method also accepts one optional parameter:
+- `$default` - it's value, which will be used in case, when the given package's config key doesn't exist
+
+Return example: 
+```php
+use Nwidart\Modules\Facades\Module;
+
+// Simplo.cz
+echo Module::config('composer.author.name');
+```
+
+**`Module::assetPath($name): string`**
+
+The `assetPath` method returns the asset path for the given module in a mandatory `$name` parameter.
+
+Return example: 
+```php
+use Nwidart\Modules\Facades\Module;
+
+// /Applications/MAMP/htdocs/simplo-cms/public/modules/Blog
+echo Module::assetPath('Blog');
+```
+
+**`Module::asset($asset): string`**
+
+The `asset` method returns URL address to the given module's asset. The `$asset` parameter is mandatory and requires
+the following format: `module-name:asset`. If the format is invalid, then the application throws `Nwidart\Modules\Exceptions\InvalidAssetPath` exception.
+
+Return example: 
+```php
+!!! TODO !!!
+```
