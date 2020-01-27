@@ -257,3 +257,8 @@ Module::macro('customMacro', function () {
 // Hello SIMPLO CMS!
 Module::customMacro();
 ```
+
+## Find More Helpers
+
+If you want to get more helpers, which you can use during your development with modules, then try to visit official 
+[nwidart/laravel-modules](https://nwidart.com/laravel-modules/v3/introduction) package.
