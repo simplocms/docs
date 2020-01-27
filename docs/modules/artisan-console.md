@@ -129,3 +129,7 @@ php artisan module:make-model model-name module-name
 It's not everything! The module package offers more Artisan Console commands than we described above on this page. You can
 also use commands for generate middleware, email, provider, resource, event, listener, job and more. For getting more
 information, please visit [Official Package Documentation](https://nwidart.com/laravel-modules/v3/advanced-tools/artisan-commands).
+
+## How To Create Custom Command For Module
+
+> TODO

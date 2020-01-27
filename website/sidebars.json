@@ -19,7 +19,9 @@
       "modules/database",
       "modules/helpers",
       "modules/compiling-assets",
-      "modules/artisan-console"
+      "modules/artisan-console",
+      "modules/resources",
+      "modules/events"
     ],
     "Theme": [
       "theme/general",
