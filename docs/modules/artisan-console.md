@@ -132,4 +132,23 @@ information, please visit [Official Package Documentation](https://nwidart.com/l
 
 ## How To Create Custom Command For Module
 
-> TODO
+If you have interest to create your custom command, use the following command:
+```text  
+php artisan module:make-command command-name module-name
+```
+
+For example, when you run this command above for module Blog, class CommandName will appear as `Modules/Blog/Console/CommandName` in
+module's directory.
+
+After when you generate your custom command, then you have to register it. For this purpose, it's possible to use method `commands`
+inside the module's provider class:
+
+```php
+<?php
+
+$this->commands([
+    \Modules\Blog\Console\CreatePostCommand::class,
+]);
+```
+
+When you generate and register a new custom command, it's available already for `php artisan` in the console.
