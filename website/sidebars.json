@@ -17,7 +17,9 @@
       "modules/configuration",
       "modules/creating",
       "modules/database",
-      "modules/helpers"
+      "modules/helpers",
+      "modules/compiling-assets",
+      "modules/artisan-console"
     ],
     "Theme": [
       "theme/general",
