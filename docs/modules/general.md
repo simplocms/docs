@@ -76,3 +76,15 @@ manually
 
 It's up to you which way is convenient for you. We recommend you to just make a copy of some existing default 
 module in **SIMPLO CMS**, because with **using Artisan Command** you need to set module's Service Provider and it's more complicated.
+
+## Namespacing
+
+When you create a new module, then the module provider registers new namespaces also corresponding with the module's name.
+For `Blog` example, it's created the namespace and the key named `module-blog`. This namespace is required, when developers want to call
+some the module's resources.
+
+For **lang** resources just call for example `trans('module-blog::name.key');`.
+
+For **view** resources just call for example `view('module-blog::view');`.
+
+For **config** resources just call for example `config('module-blog.name.key');`.

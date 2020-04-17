@@ -15,7 +15,6 @@
     "Modules": [
       "modules/general",
       "modules/configuration",
-      "modules/creating",
       "modules/database",
       "modules/helpers",
       "modules/compiling-assets",

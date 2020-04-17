@@ -5,54 +5,30 @@ title: Configuration
 
 ## Configuration
 
-When you check the main config directory in SIMPLO CMS, here is already `modules.php` configuration file. The file providers
-some configuration options and you are free to modify them, how it will be convenient for you.
+Each module has custom configuration file named `config.php` located in `Config` of module's directory and you can set 
+here a few useful configuration options.
 
 ## Available Options
 
-### Namespace
+#### Name
 
-Default namespace for all modules.
+The `name` key is just only name of the module.
 
-### Stubs
+#### Icon
 
-Default stubs, which will be generated for modules. You can use them for specify custom output for files.
+This configuration key offers you to choose some icon for your module, which will appear mainly in menu of **SIMPLO CMS** Administration.
 
-### Paths
+#### For Grid Editor
 
-It's place for settings default paths of generated modules. You can set the following options:
+The `for-grideditor` key is a boolean value and it serves for type identification of this module. Good attitude during developing
+with modules is that we will have complex module without possibility to add it to the Grid Editor or just only module designed for
+Grid Editor.
 
-#### Modules
+#### Admin
 
-The path for storing all generated modules.
+The `admin` key consists more configuration values and below, we will describe all of them.
 
-#### Assets
+**Menu**
 
-The path, where will appear all compiled assets.
-
-#### Migration
-
-The path, where will be published all  modules' migrations after running [Artisan Console](core/artisan-console.md) 
-command `module:publish-migration`.
-
-#### Generator
-
-It's the most powerful option, where you can customize the module's directory structure. Here is place for definition of custom 
-directories for asset sources, config files, database migrations, events, listeners, models, views, lang and etc.
-
-### Scan Path
-
-The package will be scanned specific path, what it's defined here. It's useful for the package, which is hosted in packagist website.
-
-### Composer File Template
-
-It's place for configuration generated composer.json file. You can set vendor name or also an author.
-
-### Caching
-
-The settings for cache feature. You can enabled cache feature, set the cache key or lifetime for the module.
-
-### Register Custom Namespace
-
-Define here, what laravel-modules will be registered as an custom namespaces. If one is set to false, then the package won't 
-run its registration process.
+The `menu` key is one of the most important configuration value, if you develops complex module with CRUD operations. This key is
+array type value and it can consists one or more arrays what creates a (sub)menu.
