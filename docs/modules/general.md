@@ -50,3 +50,29 @@ modules
     ├── module.json
     └── start.php
 ```
+
+It is also possible to copy some existing module and make changes how you need. Below, you can see advantages and disadvantages:
+
+#### Using Artisan Command
+
+**Advantages**
+
+- All files are generated for the specific module, so they have the correct namespaces
+
+**Disadvantages**
+
+- After gererating, module's Service Provider is not set properly for using with **SIMPLO CMS** and you have to set everything
+manually
+
+#### Just Make A Copy
+
+**Advantages**
+
+- Module's Service Provider is set for using with **SIMPLO CMS**, it's only need to change module's namespace key
+
+**Disadvantages**
+
+- It's necessary to rename all namespaces in all files
+
+It's up to you which way is convenient for you. We recommend you to just make a copy of some existing default 
+module in **SIMPLO CMS**, because with **using Artisan Command** you need to set module's Service Provider and it's more complicated.
