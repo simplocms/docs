@@ -1,8 +1,6 @@
 ---
-id: theme-handling-exceptions
-title: Theme exception handling
+id: handling-exceptions
+title: Exception Handling
 ---
 
-# Theme exception handling
-
-*Nothing here yet.*
+TODO
