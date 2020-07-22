@@ -38,6 +38,33 @@ system runs all database migrations from all modules.
 php artisan module:migrate module-name
 ```
 
+**`module:migrate-rollback`**
+
+The `module:migrate-rollback` command rollbacks module's migrations. If it's not specified module name, then 
+system rollbacks all modules.
+
+```text
+php artisan module:migrate-rollback module-name
+```
+
+**`module:migrate-refresh`**
+
+The `module:migrate-refresh` command refreshes module's migrations. If it's not specified module name, then 
+system refreshes all modules.
+
+```text
+php artisan module:migrate-refresh module-name
+```
+
+**`module:migrate-reset`**
+
+The `module:migrate-reset` command resets module's migrations. If it's not specified module name, then 
+system resets all modules.
+
+```text
+php artisan module:migrate-reset module-name
+```
+
 **`module:seed`**
 
 The `module:seed` command seeds all available database seeds. If it's not specified module name, then system runs all
@@ -45,33 +72,6 @@ database seeds from all modules.
 
 ```text
 php artisan module:seed module-name
-```
-
-**`module:publish-migration`**
-
-The `module:publish-migration` command publish migrations of the given module. If it's not specified module name, then
-it will publish migrations of all modules.
-
-```text
-php artisan module:publish-migration module-name
-```
-
-**`module:publish-config`**
-
-The `module:publish-config` command publish config  files of the given module. If it's not specified module name, then
-it will publish config files of all modules.
-
-```text
-php artisan module:publish-config module-name
-```
-
-**`module:publish-translation`**
-
-The `module:publish-translation` command publish translations of the given module. If it's not specified module name, then
-it will publish translations of all modules.
-
-```text
-php artisan module:publish-translation module-name
 ```
 
 **`module:update`**

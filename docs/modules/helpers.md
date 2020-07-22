@@ -33,8 +33,6 @@ use Nwidart\Modules\Facades\Module;
 echo json_encode(Module::all());
 ```
 
-> TODO - update example
-
 **`Module::getOrdered(): array`**
 
 The `getOrdered` method returns ordered modules by the `order` key in `module.json`.
@@ -46,8 +44,6 @@ use Nwidart\Modules\Facades\Module;
 // {"ArticlesList":{},"Blog":{},"Image":{},"Link":{},"Photogallery":{},"Text":{},"View":{}}
 echo json_encode(Module::getOrdered());
 ```
-
-> TODO - update example
 
 **`Module::find($name)`**
 
@@ -70,8 +66,6 @@ Module {#2107 ▼
 }
 ```
 
-> TODO - update example
-
 **`Module::findOrFail($name)`**
 
 The `findOrFail` method returns the specific module. If the specific module exists, then it's returned `App\Models\Module\Module` instance, otherwise
@@ -93,8 +87,6 @@ Module {#2107 ▼
   #defer: false
 }
 ```
-
-> TODO - update example
 
 **`Module::toCollection(): Collection`**
 
@@ -120,8 +112,6 @@ Collection {#2099 ▼
 }
 ```
 
-> TODO - update example
-
 **`Module::getByStatus($status): array`**
 
 The `getByStatus` method returns all modules by the given `$status` mandatory parameter. The status `1` returns active modules and the status `0` returns inactive modules.
@@ -143,8 +133,6 @@ array:7 [▼
   "View" => Module {#2127 ▶}
 ]
 ```
-
-> TODO - update example
 
 **`Module::allEnabled(): array`**
 
@@ -169,8 +157,6 @@ array:7 [▼
 ]
 ```
 
-> TODO - update example
-
 **`Module::allDisabled(): array`**
 
 The `allDisabled` method returns disabled modules. It means, that the `active` key of the modules has value `0`. It's also possible to use the `getByStatus`
@@ -185,8 +171,6 @@ dd(Module::allDisabled());
 ```text
 []
 ```
-
-> TODO - update example
 
 **`Module::config($key[, $default = null])`**
 
@@ -221,7 +205,10 @@ the following format: `module-name:asset`. If the format is invalid, then the ap
 
 Return example: 
 ```php
-!!! TODO !!!
+use Nwidart\Modules\Facades\Module;
+
+// //localhost/modules/view/configuration.js
+echo Module::asset('view:configuration.js');
 ```
 
 **`Module::findRequirements($name)`**

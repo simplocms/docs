@@ -23,7 +23,12 @@ is css class of Font Awesome library and it is not neccesary to state `fa-` pref
 
 The `for-grideditor` key is a boolean value and it serves for type identification of this module. Good attitude during developing
 with modules is that we will have complex module without possibility to add it to the Grid Editor or just only module designed for
-Grid Editor.
+Grid Editor. A default value is true, so it means when you don't specific this config key, your module will be possible to use only in Grid Editor.
+
+The `grideditor_title` key is a string value, where the developer can define title directly in string or just use translation key. The system will check first
+if the defined value is a translation key and if it isn't, this value will be printed without some changes.
+
+> **NOTICE:** If you will decide to use translation key from your module, you must specify also a namespace! For example: `module-articleslist::admin.grideditor_title`
 
 #### Admin
 
@@ -42,10 +47,10 @@ Font Awesome icon, you must define a complete css class - for example `fa fa-com
 If you want to config your custom menu with submenu, you can use the same steps like for the simple menu. Just only for the `admin.menu` key in configuration file,
 you will define more items here. The best result for an admin submenu is when you will not use `icon` optional parameter for these subitems and just only define a group icon,
 which will generate for the main item of this submenu in first level of the admin menu. For definition of this group icon, you need to use `admin.menu_group_icon` config key and,
-the same like in menu items, you need to define a complete css class for Font Awesome icon.
+the same like in menu items, you need to define a complete css class for Font Awesome icon. For this group icon, a default value is `fa fa-trello`.
 
 **Permissions**
 
 The another important option is `permissions` key. It is an array type value and you can define here a group type for permission as an `admin.permissions.group` key. For this option, you
 can use pre-defined value, which you can find in **permissions.php** config file. For the complex module with editable items, the best option is just `1`, because then the system will use 
-a basic logical entrusting. It means the following areas - show, create, edit, delete, all.
+a basic logical entrusting. It means with the following areas - show, create, edit, delete, all.

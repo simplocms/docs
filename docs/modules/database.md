@@ -6,9 +6,8 @@ title: Database
 ## Introduction
 
 By default, [Modules](modules/general.md) package offers the same concept for database like Laravel. The default paths
-about [Migrations](https://laravel.com/docs/5.8/migrations) and [Seeders](https://laravel.com/docs/5.8/seeding), you can set
-for new generated modules in [Configuration](../getting-started/configuration) file named `config/modules.php` - exactly 
-under the `paths.generator` key.
+about [Migrations](https://laravel.com/docs/5.8/migrations) and [Seeders](https://laravel.com/docs/5.8/seeding) are just
+`Database/Migrations` and `Database/Seeders` folders.
 
 > For more information, please visit official [Laravel Documentation](https://laravel.com/docs/5.8/database).
 
@@ -31,7 +30,7 @@ a little bit different syntax with more required parameters.
 ### Running Migrations
 
 After what you generated database migration and modify everything, how you need, then you will probably want to run these migrations.
-If yes, then you can use the following Artisan Console command:
+For running it, then you can use the following Artisan Console command:
 
 ```text
 php artisan module:migrate Blog
