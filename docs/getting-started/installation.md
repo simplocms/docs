@@ -4,7 +4,7 @@ title: Installation
 sidebar_label: Installation
 ---
 
-Latest version of laravel used: **5.8**
+The latest version of Laravel used: **5.8**
 
 ## Server Requirements
 
@@ -26,13 +26,13 @@ For development there are few more recommended requirements that will make your 
 * SQLite3 extension
 * GD extension
 
-> More detailed information for Laravel can be found in official [Laravel documentation](https://laravel.com/docs/5.8)
+> More detailed information about installation for Laravel can be found in official [Laravel documentation](https://laravel.com/docs/5.8/installation)
 
 ## Installation
 
-**If you want to setup Docker container for development, you need to install `docker-compose` and follow guide in `.docker/README.md`.**
+If you want to setup Docker container for development, you need to install `docker-compose` and follow a guide in `.docker/README.md`.
 
-> This installation guide is written for "LAMP" stack environment.
+> This installation guide is writing for "LAMP" stack environment.
 
 If you are using project's docker image, connect to the `web` container and proceed with installation in the container:
 
@@ -51,7 +51,7 @@ $ composer install
 
 ### Node.js
 
-> If you do not have Node.js on your machine, [download](https://nodejs.org/en/) and install it. Currently recommended version is 8.*. Node.js is already present in Docker container.
+> If you do not have Node.js on your machine, [download](https://nodejs.org/en/) and install it. A currently recommended version is 8.*. Node.js is already present in Docker container.
 
 ```bash
 # Install npm dependencies
@@ -64,7 +64,7 @@ $ npm i
 
 ### File Permissions
 
-You have to make sure, that Apache user has write permissions to directories `bootstrap` and `storage`.
+You have to make sure, that Apache user has writing permissions to directories `bootstrap` and `storage`.
 
 ```bash
 # Change owner to www-data group (apache)
@@ -82,7 +82,7 @@ $ copy .env.example .env
 $ php artisan key:generate
 ```
 
-> If you are using Docker container, all important configuration is set within the container.
+> If you are using Docker container, all important configuration is setting within the container.
 
 ## Setup
 
@@ -97,7 +97,7 @@ $ php artisan migrate --seed
 
 #### Development
 
-In development you want to compile assets to be debuggable and readable.
+In development, you want to compile assets to be debuggable and readable.
 
 ```bash
 # Keep watching changes in source code and recompile on every change:
@@ -117,8 +117,10 @@ $ npm run prod
 
 ### Template Installation
 
+When you have a theme for SIMPLO CMS and you want to use it, follow the instructions below:
+
 1) You have to copy a theme into directory `themes`.
-2) If template contains `modules` directory, go to the template's directory and run command `composer dump-autoload`.
+2) If the template contains `modules` directory, go to the template's directory and run the command `composer dump-autoload`.
 3) Sign in into CMS administration and go to Settings > Template (Nastavení > Šablona).
 4) Click on “Change” (Změnit) and then activate your template.
 
