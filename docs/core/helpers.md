@@ -18,9 +18,9 @@ custom helper functions. About them, you can find out more below.
 ### Obfuscate Email
 
 You know certainly situation, when you need to show contact email address for all visitors of your website, but you are afraid
-because of security issue. Robots can scan your website, get and save this email address and then send spam posts to this email.
-If you want to avoid these potential problems, it's necessary to show email address with safety way and don't show email address
-in raw format.
+because of a security issue. Robots can scan your website, get and save this email address and then send spam posts to this email.
+If you want to avoid these potential security policies, it's necessary to show email address with safety way and don't show email address
+in a raw format.
 
 For these purpose, SIMPLO CMS offers `App\Helpers\EmailObfuscator` helper class with a few helper methods for different display
 format of email addresses.
@@ -29,44 +29,44 @@ format of email addresses.
 
 The `makeLink` method returns safety email address link. The `$email` parameter is mandatory and accepts your raw email address.
 Then you can specify another two optional parameters: 
-- `$attributes` - it's array parameter and accepts all HTML attributes, which will be joined to the returned link
-- `$print` - it's format for printing, you can choose from following: `EmailObfuscator::PRINT_METHOD_JS`, `EmailObfuscator::PRINT_METHOD_CSS` 
+- `$attributes` - it's an array parameter and accepts all HTML attributes, which will be joined to the returned link
+- `$print` - it's a format for printing, you can choose from following: `EmailObfuscator::PRINT_METHOD_JS`, `EmailObfuscator::PRINT_METHOD_CSS` 
 or `EmailObfuscator::PRINT_METHOD_ENCODE`
 
 Return example: 
 ```php
 use App\Helpers\EmailObfuscator;
 
-// <a href="mailto:" onclick="event.preventDefault();window.location.href='mailto:' + 'te'+'st'+'y@'+'em'+'ai'+'l.'+'cz';"><script>document.write('te'+'st'+'y@'+'em'+'ai'+'l.'+'cz')</script></a>
-echo EmailObfuscator::makeLink('testy@email.cz');
+// <a href="mailto:" onclick="event.preventDefault();window.location.href='mailto:' + 'em'+'ai'+'l@'+'si'+'mp'+'lo'+'.c'+'z';">
+echo EmailObfuscator::makeLink('email@simplo.cz');
 ```
 
 **`EmailObfuscator::safeJsPrint(string $email[, int $chunkSize = 2]): string`**
 
 The `safeJsPrint` method returns safety email address in Javascript source code. The `$email` parameter is mandatory and accepts your raw email address.
 Then you can specify another one optional parameter: 
-- `$chunkSize` - it's integer parameter, which defines, how many letters will be in one chunk
+- `$chunkSize` - it's an integer parameter, which defines, how many letters will be in one chunk
 
 Return example: 
 ```php
 use App\Helpers\EmailObfuscator;
 
-// <script>document.write('te'+'st'+'y@'+'em'+'ai'+'l.'+'cz')</script>
-echo EmailObfuscator::safeJsPrint('testy@email.cz');
+// <script>document.write('em'+'ai'+'l@'+'si'+'mp'+'lo'+'.c'+'z')</script>
+echo EmailObfuscator::safeJsPrint('email@simplo.cz');
 ```
 
 **`EmailObfuscator::safeCssPrint(string $email[, string $tag = 'span']): string`**
 
 The `safeCssPrint` method returns safety email address in reserved text with CSS rules. The `$email` parameter is mandatory and accepts your raw email address.
 Then you can specify another one optional parameter: 
-- `$tag` - it's string parameter, which defines returned HTML element
+- `$tag` - it's a string parameter, which defines returned HTML element
 
 Return example: 
 ```php
 use App\Helpers\EmailObfuscator;
 
-// <span style='unicode-bidi:bidi-override;direction:rtl;'>zc.liame@ytset</span>
-echo EmailObfuscator::safeCssPrint('testy@email.cz');
+// <span style='unicode-bidi:bidi-override;direction:rtl;'>zc.olpmis@liame</span>
+echo EmailObfuscator::safeCssPrint('email@simplo.cz');
 ```
 
 **`EmailObfuscator::encode(string $email): string`**
@@ -77,53 +77,53 @@ Return example:
 ```php
 use App\Helpers\EmailObfuscator;
 
-// &#116;es&#116;y@&#101;&#109;&#97;&#105;&#108;&#46;c&#122;
-echo EmailObfuscator::encode('testy@email.cz');
+// e&#109;a&#105;&#108;@&#115;&#105;m&#112;l&#111;&#46;cz
+echo EmailObfuscator::encode('email@simplo.cz');
 ```
 
 **`EmailObfuscator::safeComboPrint(string $email[, string $tag = 'span', int $chunkSize = 2]): string`**
 
-The `safeComboPrint` method returns safety email address using combines JSS and CSS reserved text printing. The `$email` parameter is mandatory and accepts your raw email address.
+The `safeComboPrint` method returns safety email address using combines JS and CSS reserved text printing. The `$email` parameter is mandatory and accepts your raw email address.
 Then you can specify another two optional parameters: 
-- `$tag` - it's string parameter, which defines returned HTML elements
-- `$chunkSize` - it's integer parameter, which defines, how many letters will be in one chunk
+- `$tag` - it's a string parameter, which defines returned HTML elements
+- `$chunkSize` - it's an integer parameter, which defines, how many letters will be in one chunk
 
 Return example: 
 ```php
 use App\Helpers\EmailObfuscator;
 
-// <span style='unicode-bidi:bidi-override;direction:rtl;'><script>document.write('zc'+'.l'+'ia'+'me'+'@y'+'ts'+'et')</script></span>
-echo EmailObfuscator::safeComboPrint('testy@email.cz');
+// <span style='unicode-bidi:bidi-override;direction:rtl;'><script>document.write('zc'+'.o'+'lp'+'mi'+'s@'+'li'+'am'+'e')</script></span>
+echo EmailObfuscator::safeComboPrint('email@simplo.cz');
 ```
 
 **`EmailObfuscator::replace(string $email[, $at = '&#064;', $dot = '&#046;']): string`**
 
 The `replace` method returns safety email address using replacing characters `@` and `.`. The `$email` parameter is mandatory and accepts your raw email address.
 Then you can specify another two optional parameters: 
-- `$at` - it's string parameter, which replaces `@`
-- `$dot` - it's string parameter, which replaces `.`
+- `$at` - it's a string parameter, which replaces `@`
+- `$dot` - it's a string parameter, which replaces `.`
 
 Return example: 
 ```php
 use App\Helpers\EmailObfuscator;
 
-// testy&#064;email&#046;cz
-echo EmailObfuscator::replace('testy@email.cz');
+// email&#064;simplo&#046;cz
+echo EmailObfuscator::replace('email@simplo.cz');
 ```
 
 **`EmailObfuscator::toJsExpression(string $email[, string $quote = "'", int $chunkSize = 2]): string`**
 
 The `toJsExpression` method returns safety email address using splitting letters into chunks. The `$email` parameter is mandatory and accepts your raw email address.
 Then you can specify another two optional parameters: 
-- `$quote` - it's string parameter, which defines quotes around one chunk (important for string data type)
-- `$chunkSize` - it's integer parameter, which defines, how many letters will be in one chunk
+- `$quote` - it's a string parameter, which defines quotes around one chunk (important for string data type)
+- `$chunkSize` - it's an integer parameter, which defines, how many letters will be in one chunk
 
 Return example: 
 ```php
 use App\Helpers\EmailObfuscator;
 
-// 'te'+'st'+'y@'+'em'+'ai'+'l.'+'cz'
-echo EmailObfuscator::toJsExpression('testy@email.cz');
+// 'em'+'ai'+'l@'+'si'+'mp'+'lo'+'.c'+'z'
+echo EmailObfuscator::toJsExpression('email@simplo.cz');
 ```
 
 ### Global Functions
@@ -133,9 +133,9 @@ for global issues.
 
 **`Functions::createDateFromFormat($format[, $date = null])`**
 
-The `createDateFromFormat` method returns new `DateTime` object or null, when datetime cannot be created. The `$format` parameter is mandatory
+The `createDateFromFormat` method returns a new `DateTime` object or null, when datetime cannot be created. The `$format` parameter is mandatory
 and specifies, from which date format will be created new `DateTime` object. Then you can specify another one optional parameter: 
-- `$date` - it's parameter, which can be either datetime object (`DateTime` or `Carbon`) or string datetime
+- `$date` - it's a parameter, which can be either datetime object (`DateTime` or `Carbon`) or string datetime
 
 Return example: 
 ```php
@@ -174,17 +174,16 @@ Array
 
 **`Functions::combineTransToJson(array $keys): array`**
 
-The `combineTransToJson` method returns array of keys and translation strings in JSON format. The `$keys` parameter is mandatory and specifies translation keys, from which
-you want to get final translation strings.
+The `combineTransToJson` method returns array of keys and translation strings in JSON format. This format is useful for Javascript libraries, ex. in Vue.js. 
+The `$keys` parameter is mandatory and specifies translation keys, from which you want to get final translation strings.
 
 Return example: 
 ```php
 use App\Helpers\Functions;
 
-// {"general.language_name":"\u010ce\u0161tina","auth.failed":"P\u0159ihla\u0161ovac\u00ed \u00fadaje neodpov\u00eddaj\u00ed.","passwords.reset":"Va\u0161e heslo bylo resetov\u00e1no!"}
+// {"general.language_name":"English","auth.failed":"These credentials do not match our records.","passwords.reset":"Your password has been reset!"}
 echo Functions::combineTransToJson(['general.language_name', 'auth.failed', 'passwords.reset']);
 ```
-> TODO -> change to English
 
 **`Functions::arrayDistinctMerge(array &$array1, array &$array2): array`**
 
@@ -215,7 +214,7 @@ Array
 
 **`Functions::normalizeSearchText(string $text): string`**
 
-The `normalizeSearchText` method returns text for searching comparison. The input search text is trimmed, stripped about tags,
+The `normalizeSearchText` method returns text for a searching comparison. The input search text is trimmed, stripped about tags,
 removed diacritics and getting lowercase.
 
 Return example: 
@@ -248,7 +247,7 @@ possible values are following:
 - `-1` - the second value is greater than the first
 
 The `$first` and `$second` are mandatory parameters and accept `Carbon` datetime objects. Then, here is also one optional parameter:
-- `$nullIsInf` - if value is `false` and `$first` is null, then the method returns `-1`, otherwise if `$second` is null, then the method
+- `$nullIsInf` - if the value is `false` and `$first` is null, then the method returns `-1`, otherwise if `$second` is null, then the method
 returns `1`
 
 Return example: 
@@ -266,8 +265,8 @@ echo Functions::compareDates($first, $second);
 **`Functions::sanitizeHtmlClass(string $class[, string $fallback = '']): string`**
 
 The `sanitizeHtmlClass` method removes special characters from HTML class name and returns just sanitize HTML class name. 
-The `$class` is mandatory parameter and accepts name of HTML class, which will be sanitized. Then, you can use one optional parameter:
-- `$fallback` - it's fallback HTLM class name and it will be used, when sanitized HTML class name will be empty
+The `$class` is a mandatory parameter and accepts a name of HTML class, which will be sanitized. Then, you can use one optional parameter:
+- `$fallback` - it's a fallback HTLM class name, which it will be used, when a sanitized HTML class name will be empty
 
 Return example: 
 ```php
@@ -279,10 +278,10 @@ echo Functions::sanitizeHtmlClass('HTML Class Name');
 
 **`Functions::associativeArrayToSequentialArray(array $input[, string $keyName = 'id', string $labelName = 'label', string $childrenName = null]): array`**
 
-The `associativeArrayToSequentialArray` method transforms associative array to sequential array. The `$input` parameter is mandatory and accepts input array for transformation. 
+The `associativeArrayToSequentialArray` method transforms an associative array to sequential array. The `$input` parameter is mandatory and accepts input array for transformation. 
 Then, the method accepts another three optional parameters:
-- `$keyName` - it's the name of key for each item
-- `$labelName` - it's the name of label for each item
+- `$keyName` - it's a name of the key for each item
+- `$labelName` - it's a name of the label for each item
 - `$childrenName` - when an item inside the associative array will be array, then for named these items will be used this optional parameter
 
 Return example: 
@@ -352,7 +351,7 @@ Array
 
 **`Functions::joinPaths(string ...$paths): string`**
 
-The `joinPaths` method returns joined given paths with system separator. The `$paths` parameter is mandatory and accepts the unlimited paths for joining.
+The `joinPaths` method returns joined given paths with a system separator. The `$paths` parameter is mandatory and accepts the unlimited paths for joining.
 
 Return example: 
 ```php
@@ -364,8 +363,8 @@ echo Functions::joinPaths('public/upload', 'media/articles');
 
 **`Functions::getClassName($classOrInstance): string`**
 
-The `getClassName` method returns the short name of the given class or the given object. The `$classOrInstance` is mandatory parameter and accepts either class name or
-object.
+The `getClassName` method returns the short name of the given class or the given object. The `$classOrInstance` is a mandatory parameter and accepts either a class name or
+an object.
 
 Return example: 
 ```php
@@ -437,7 +436,7 @@ Array
 
 **`Functions::valuesToAssocArray(...$values): array`**
 
-The `valuesToAssocArray` method encapsulated values into associative array. The `$values` parameter is mandatory and accepts either array or scalar values.
+The `valuesToAssocArray` method encapsulated values into an associative array. The `$values` parameter is mandatory and accepts either array or scalar values.
 
 Return example: 
 ```php
@@ -477,51 +476,14 @@ Illuminate\Support\Collection Object
 )
 ```
 
-### Google Analytics
-
-Google Analytics is one of the most favourite and used global analytic tools for websites. SIMPLO CMS offers for developers `GAHelper`
-class with helpful methods in working with Google Analytics data. The `GAHelper` class has only instance methods and every object of this class represents
-one connection to the account of Google Analytics using access token.
-
-**`GAHelper::__construct(array $token, $profileId)`**
-
-The `GAHelper` constructor accepts two mandatory parameters:
-- `$token` - array value with access token to the Google Analytics account
-- `$profileId` - value with profile id of the Google Analytics account
-
-**`GAHelper::getData($from, $to, $metrics[, array $options = []])`**
-
-The `getData` method returns `Google_Service_Analytics_GaData` object with fetch data or null, when during fetching data process will throw
-exception. There are three mandatory parameters:
-- `$from` - from which datetime you want to fetch Google Analytics data
-- `$to` - to which datetime you want to fetch Google Analytics data
-- `$metrics` - a comma-separated list of Google Analytics metrics, ex: 'ga:sessions,ga:pageviews'
-
-You can also use optional `$options` parameter for setting another Google Analytics possible options, ex: 'ga:browser,ga:city'.
-
-> TODO - write some example
-
-**`GAHelper::hasErrors()`**
-
-The `hasErrors` method returns `true` value, when during fetching process it happened some problem.
-
-> TODO - write some example
-
-**`GAHelper::getErrors()`**
-
-The `getErrors` method returns `Collection` with errors, what happened during fetching process. If the `Collection` is empty, then
-everything was successful.
-
-> TODO - write some example
-
 ### URL
 
 SIMPO CMS also offers for developers helper in working with url addresses - `UrlHelper` class.
 
 **`UrlHelper::normalizeUri(string $uri): string`**
 
-The `normalizeUri` method returns only url address without query string or ending `/` character. The `$uri` parameter is mandatory and
-represents given url address for normalizing process. Normalized url address is good for matching with another normalized url addresses.
+The `normalizeUri` method returns only an url address without query string or ending `/` character. The `$uri` parameter is mandatory and
+represents a given url address for a normalizing process. A normalized url address is good for matching with another normalized url addresses.
 
 Return example: 
 ```php
@@ -530,3 +492,34 @@ use App\Helpers\UrlHelper;
 // https://www.simplocms.com
 echo UrlHelper::normalizeUri('https://www.simplocms.com?id=5');
 ```
+
+### Google Analytics
+
+Google Analytics is one of the most favourite and used global analytic tools for websites. SIMPLO CMS offers for developers a `GAHelper`
+class with helpful methods in working with Google Analytics data. The `GAHelper` class has only methods and every object of this class represents
+one connection to the account of Google Analytics using access token.
+
+**`GAHelper::__construct(array $token, $profileId)`**
+
+The `GAHelper` constructor accepts two mandatory parameters:
+- `$token` - an array value with an access token to the Google Analytics account
+- `$profileId` - a value with a profile id of the Google Analytics account
+
+**`GAHelper::getData($from, $to, $metrics[, array $options = []])`**
+
+The `getData` method returns `Google_Service_Analytics_GaData` object with fetch data or null, when during fetching data process will throw
+exception. There are three mandatory parameters:
+- `$from` - from which a datetime you want to fetch Google Analytics data
+- `$to` - to which a datetime you want to fetch Google Analytics data
+- `$metrics` - a comma-separated list of Google Analytics metrics, ex: 'ga:sessions,ga:pageviews'
+
+You can also use optional `$options` parameter for setting another Google Analytics possible options, ex: 'ga:browser,ga:city'.
+
+**`GAHelper::hasErrors()`**
+
+The `hasErrors` method returns `true` value, when during fetching process it happened some problem.
+
+**`GAHelper::getErrors()`**
+
+The `getErrors` method returns `Collection` with errors, what happened during fetching process. If the `Collection` is empty, then
+everything was successful.

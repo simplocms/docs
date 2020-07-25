@@ -15,7 +15,7 @@ what for example verifies authentication of users or check if incoming CSRF toke
 
 SIMPLO CMS contains custom middlewares, which are applied out of the box.
 
-In `app/Http/Kernel.php` file, where developers can define middleware, you can see these SIMPLO CMS middlewares too. Including them, you can 
+In `app/Http/Kernel.php` file, where developers can define a middleware, you can see these SIMPLO CMS middlewares too. Including them, you can 
 also notice that here are more middleware groups than default of Laravel, what occur here because of SIMPLO CMS.
 
 ### Middleware Groups
@@ -67,21 +67,20 @@ You can see the whole definition of them in the `app/Http/Kernel.php` file:
 ```
 
 In SIMPLO CMS, we have four middleware groups, what developers can use - `web`, `front_web`, `resources` and `api`. A part of 
-these middleware groups are some default middlewares of Laravel, but also some middlewares are specified for SIMPLO CMS and we will decribe 
-them in the next paragraphs.
+these middleware groups are some middlewares specified only for SIMPLO CMS. These middlewares will be described in the next paragraphs.
 
 ### Middleware
 
 First SIMPLO CMS middleware is `UserLocale`. This middleware is responsible for setting locale for user, but it works only 
 when user is authenticated, because user cannot set his default locale when he is not authenticated. This middleware is 
-only in middleware groups (specifically in `web` and `api`) and developer cannot use it as a named middleware out of the box.
+only in middleware groups (in `web` and `api`) and developer cannot use it as a named middleware out of the box.
 
-In middleware groups, you can also find `RedirectIfNotAdmin` middleware, what is special middleware for only SIMPLO CMS. How this 
+In middleware groups, you can also find `RedirectIfNotAdmin` middleware, what is a special middleware for only SIMPLO CMS. How the 
 class name indicates, `RedirectIfNotAdmin` middleware check if user is administrator and if his account is already enabled. This middleware is 
 part of `api` middleware group only, but you can find it also between route middlewares. It means that developers can define this middleware 
 on some custom routes in application and ensure only permit access for administrators.
 
-Next middleware, what is also defined in middleware group, is `ApiEndPoint`. It is middleware, what helps to developers with 
+Next middleware, what is also defined in middleware group, is `ApiEndPoint`. It is a middleware, what helps to developers with 
 making correct api routes and set for these api routes `application/json` header. This middleware is also part of 
 `api` middleware group.
 
@@ -91,5 +90,5 @@ default Laravel. First middleware is `FrontWeb`, what is base in `front_web` gro
 - check custom redirects
 - URL language verification
 
-In `front_web` middleware group except of `FrontWeb`, you can find `InjectFrontWebTools` middleware. It is very simple middleware, 
+In `front_web` middleware group except of `FrontWeb`, you can find `InjectFrontWebTools` middleware. It is a very simple middleware, 
 which adds only CMS Toolbar and do nothing special more.

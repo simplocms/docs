@@ -40,14 +40,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a4413e82-a47e-49c1-b40b-bf3bdc6b5de0" name="Default Changelist" comment="feat: update Modules / Events">
-      <change afterPath="$PROJECT_DIR$/docs/theme/directory-structure.md" afterDir="false" />
+    <list default="true" id="a4413e82-a47e-49c1-b40b-bf3bdc6b5de0" name="Default Changelist" comment="feat: update Configuration, Directory Structure, Installation, Setting in Getting Started; update Directory Structure in Theme;">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/getting-started/configuration.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/getting-started/configuration.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/core/artisan-console.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/core/artisan-console.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/core/helpers.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/core/helpers.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/core/middleware.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/core/middleware.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/getting-started/directory-structure.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/getting-started/directory-structure.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/getting-started/installation.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/getting-started/installation.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/getting-started/setting.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/getting-started/setting.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/theme/middleware.md" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,31 +54,6 @@
   </component>
   <component name="ComposerSettings">
     <execution />
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>main</find>
-      <find>SimploCMS</find>
-      <find>Simplo s.r.o.</find>
-      <find>Example</find>
-      <find>enviro</find>
-      <find>)`</find>
-      <find>&gt;</find>
-      <find>docs1</find>
-      <find>doc1</find>
-      <find>.md</find>
-      <find>Artisan Console</find>
-      <find>BlogServiceProvider</find>
-      <find>methods</find>
-      <find>creating</find>
-    </findStrings>
-    <replaceStrings>
-      <replace />
-    </replaceStrings>
-    <dirStrings>
-      <dir>$PROJECT_DIR$</dir>
-      <dir>$PROJECT_DIR$/docs</dir>
-    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -156,14 +129,7 @@
       <workItem from="1587147173065" duration="3953000" />
       <workItem from="1595406956042" duration="16345000" />
       <workItem from="1595493355669" duration="16000" />
-      <workItem from="1595584796289" duration="5338000" />
-    </task>
-    <task id="LOCAL-00032" summary="feat: update Theme / Views -&gt; TODOs">
-      <created>1576621456772</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1576621456772</updated>
+      <workItem from="1595584796289" duration="10796000" />
     </task>
     <task id="LOCAL-00033" summary="feat: update Theme \ Views;">
       <created>1576758624847</created>
@@ -501,7 +467,14 @@
       <option name="project" value="LOCAL" />
       <updated>1595586153787</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL-00081" summary="feat: update Configuration, Directory Structure, Installation, Setting in Getting Started; update Directory Structure in Theme;">
+      <created>1595629303749</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1595629303749</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -520,7 +493,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: update Core / Artisan Console" />
     <MESSAGE value="feat: update Core / Helpers -&gt; add return example" />
     <MESSAGE value="feat: update Core / Helpers" />
     <MESSAGE value="feat: update Core / Helpers -&gt; Functions helper" />
@@ -545,13 +517,14 @@
     <MESSAGE value="feat: update Modules / Configuration" />
     <MESSAGE value="feat: update Modules / Configuration, Artisan Console, Compilling Assets, Database, Helpers, Resources" />
     <MESSAGE value="feat: update Modules / Events" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: update Modules / Events" />
+    <MESSAGE value="feat: update Configuration, Directory Structure, Installation, Setting in Getting Started; update Directory Structure in Theme;" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: update Configuration, Directory Structure, Installation, Setting in Getting Started; update Directory Structure in Theme;" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1595586162540">
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1595629311769">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1595586162540" />
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1595629311769" />
     <state x="443" y="245" key="git4idea.merge.GitPullDialog" timestamp="1595407009071">
       <screen x="0" y="0" width="1440" height="900" />
     </state>

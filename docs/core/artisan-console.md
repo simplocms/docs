@@ -12,7 +12,7 @@ php artisan list
 ```
 
 Every command in Artisan Console offers also help information, what you can use for getting list of all available options for
-specific command and also more detailed descriptions. For showing this detailed information use `help`:
+specific command and more detailed descriptions. For showing this detailed information use `help`:
 ```text
 php artisan help list
 ```
@@ -22,12 +22,26 @@ php artisan help list
 ## Available Artisan Console Commands In SIMPLO CMS
 
 Including Artisan Console commands in Laravel, SIMPLO CMS offers also custom commands for specifying purposes and developers can use
-them. For example, SIMPLO CMS offers custom command for global clear cache and it's run after using this command below:
+them. 
+
+**`clearcache`**
+
+SIMPLO CMS offers custom command for global clear cache. If you want to run it, try to call the command below:
+
 ```text
 php artisan clearcache
 ```
-
+ 
 Instead of running `cache:clear`, `route:clear` and `view:clear` separately, you can just run `clearcache`, which already includes calling these
-Artisan Console commands mentioned in this sentence. 
+Artisan Console commands. 
+
+**`fix:paths`**
+
+During working with a theme, it can appear a problem with a public link of your active theme sometimes. If you will notice, that it's your case, you don't need to solve
+it by yourself. You can just call the following command below and everything will be fine:
+
+```text
+php artisan fix:paths
+```
 
 For getting more SIMPLO CMS Artisan Console commands, just run `list` command.

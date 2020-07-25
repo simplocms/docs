@@ -51,5 +51,5 @@ The `themes` directory is one of the most important in SIMPLO CMS, because here 
 for your project, you will do inside this directory.
 
 > **IMPORTANT!** If you do not want to have any problems with future updates of SIMPLO CMS, then you must develop everything strictly inside your
-> project's directory located in `theme` directory! If you will miss something important in SIMPLO CMS and it is not possible to extend using modules
-> in your project (or any other way here), it will be convenient when you will let to know us.
+> project's directory located in `themes` directory! If you will miss something important in SIMPLO CMS and it is not possible to extend using modules
+> in your project (or any other way here), it will be convenient when you will **let to know us**.
