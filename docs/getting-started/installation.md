@@ -26,7 +26,7 @@ For development there are few more recommended requirements that will make your 
 * SQLite3 extension
 * GD extension
 
-> More detailed information about installation for Laravel can be found in official [Laravel documentation](https://laravel.com/docs/5.8/installation)
+> More detailed information about installation for Laravel can be found in an official [Laravel documentation](https://laravel.com/docs/5.8/installation)
 
 ## Installation
 

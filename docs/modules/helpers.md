@@ -6,7 +6,7 @@ title: Helpers
 ## Introduction
 
 SIMPLO CMS offers including [Core Helpers](../core/helpers.md) also some helpers for [Modules](../modules/general.md).
-And just about them you can find out more on the next rows.
+About them you can find out more on the following rows.
 
 ## Available Helpers
 
@@ -17,7 +17,7 @@ which the `module_path` function requires. You can also use `getModulePath` stat
 
 Return example: 
 ```php
-// /Applications/MAMP/htdocs/simplo-cms/modules/Blog
+// /Applications/MAMP/htdocs/simplo-cms/themes/your-project-theme/modules/Blog
 echo module_path('Blog');
 ```
 
@@ -47,7 +47,7 @@ echo json_encode(Module::getOrdered());
 
 **`Module::find($name)`**
 
-The `find` method returns the specific module. If the specific module exists, then it's returned `App\Models\Module\Module` instance, otherwise null
+The `find` method returns the specific module. If the specific module exists, then it's returned `App\Models\Module\Module` instance, otherwise a null
 value is returned. This method accepts only one `$name` parameter with the specific module's name.
 
 Return example: 
@@ -60,7 +60,7 @@ dd(Module::find('Blog'));
 Module {#2107 ▼
   #app: Application {#8 ▶}
   #name: "Blog"
-  #path: "/Applications/MAMP/htdocs/simplo-cms/modules/Blog"
+  #path: "/Applications/MAMP/htdocs/simplo-cms/themes/your-project-theme/modules/Blog"
   #moduleJson: []
   #defer: false
 }
@@ -69,7 +69,7 @@ Module {#2107 ▼
 **`Module::findOrFail($name)`**
 
 The `findOrFail` method returns the specific module. If the specific module exists, then it's returned `App\Models\Module\Module` instance, otherwise
-the application throws `Nwidart\Modules\Exeptions\ModuleNotFoundException` exception. This method accepts only one `$name` parameter
+the application throws the `Nwidart\Modules\Exeptions\ModuleNotFoundException` exception. This method accepts only one `$name` parameter
 with the specific module's name.
 
 Return example: 
@@ -82,7 +82,7 @@ dd(Module::findOrFail('Blog'));
 Module {#2107 ▼
   #app: Application {#8 ▶}
   #name: "Blog"
-  #path: "/Applications/MAMP/htdocs/simplo-cms/modules/Blog"
+  #path: "/Applications/MAMP/htdocs/simplo-cms/themes/your-project-theme/modules/Blog"
   #moduleJson: []
   #defer: false
 }
@@ -136,8 +136,7 @@ array:7 [▼
 
 **`Module::allEnabled(): array`**
 
-The `allEnabled` method returns enabled modules. It means, that the `active` key of the modules has value `1`. It's also possible to use the `getByStatus`
-method for the same result.
+The `allEnabled` method returns enabled modules. It means, that the `active` key of the modules has value `1`. It's also possible to use the `getByStatus` method for the same result.
 
 Return example: 
 ```php
@@ -159,8 +158,7 @@ array:7 [▼
 
 **`Module::allDisabled(): array`**
 
-The `allDisabled` method returns disabled modules. It means, that the `active` key of the modules has value `0`. It's also possible to use the `getByStatus`
-method for the same result.
+The `allDisabled` method returns disabled modules. It means, that the `active` key of the modules has value `0`. It's also possible to use the `getByStatus` method for the same result.
 
 Return example: 
 ```php
@@ -174,9 +172,9 @@ dd(Module::allDisabled());
 
 **`Module::config($key[, $default = null])`**
 
-The `config` method returns a config value from this module package. The `$key` parameter is mandatory and requires
+The `config` method returns a config value from the module package. The `$key` parameter is mandatory and requires
 config key. The method also accepts one optional parameter:
-- `$default` - it's value, which will be used in case, when the given package's config key doesn't exist
+- `$default` - it's a value, which will be used in case, when the given package's config key doesn't exist
 
 Return example: 
 ```php
@@ -200,20 +198,22 @@ echo Module::assetPath('Blog');
 
 **`Module::asset($asset): string`**
 
-The `asset` method returns URL address to the given module's asset. The `$asset` parameter is mandatory and requires
+The `asset` method returns a URL address to the given module's asset. The `$asset` parameter is mandatory and requires
 the following format: `module-name:asset`. If the format is invalid, then the application throws `Nwidart\Modules\Exceptions\InvalidAssetPath` exception.
 
 Return example: 
 ```php
 use Nwidart\Modules\Facades\Module;
 
-// //localhost/modules/view/configuration.js
-echo Module::asset('view:configuration.js');
+// //localhost/modules/Blog/configuration.js
+echo Module::asset('Blog:configuration.js');
 ```
+
+> The module's name in this case **must be without** a `module-` prefix, because it is just only a path in a `public/modules` folder.
 
 **`Module::findRequirements($name)`**
 
-The `findRequirements` method returns all required modules of the given module in `$name` mandatory parameter. If the given
+The `findRequirements` method returns all required modules of the given module in the `$name` mandatory parameter. If the given
 module doesn't exist, then the application throws `Nwidart\Modules\Exceptions\ModuleNotFoundException` exception. The required
 modules are defined in `module.json` file under the `requires` key.
 
@@ -230,7 +230,7 @@ dd(Module::findRequirements('Blog'));
 **`Module::macro($name, $macro)`**
 
 The `macro` method belongs to the `Illuminate\Support\Traits\Macroable` trait and because of this module's package uses the trait, you can
-use macros during working with modules. The working with macros in modules is the same like in Laravel. Just call the `macro` method
+use macros during working with modules. The working with macros in the modules is the same like in Laravel. Just call the `macro` method
 and pass two mandatory parameters, where the `$name` is the macro's name and the `$macro` is callable function, which will be called.
 
 Return example: 
@@ -247,5 +247,5 @@ Module::customMacro();
 
 ## Find More Helpers
 
-If you want to get more helpers, which you can use during your development with modules, then try to visit official 
+If you want to get more helpers, which you can use during your development with the modules, then try to visit an official 
 [nwidart/laravel-modules](https://nwidart.com/laravel-modules/v3/introduction) package.

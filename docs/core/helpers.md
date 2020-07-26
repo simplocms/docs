@@ -8,7 +8,7 @@ title: Helpers
 Laravel offers a lot of helper functions, which you can use everywhere you want. These functions can help with specific
 problems and can solve some requirements.
 
-> If you want to know more about Helpers and get all available Laravel's Helpers, go to official [Laravel Documentation](https://laravel.com/docs/5.8/helpers)
+> If you want to know more about Helpers and get all available Laravel's Helpers, go to an official [Laravel Documentation](https://laravel.com/docs/5.8/helpers)
 
 ## Is In SIMPLO CMS More Helpers?
 

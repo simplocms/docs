@@ -8,7 +8,7 @@ title: Controllers
 Controllers offer you to handle all of your requests in one class as methods instead of Closure in route files. It is correct way 
 for clean and robust code. By default, Laravel stores controllers in `app/Http/Controllers` path. 
 
-> For more details, go to read official [Laravel documentation](https://laravel.com/docs/5.8/controllers)
+> For more details, go to read an official [Laravel documentation](https://laravel.com/docs/5.8/controllers)
 
 ## How To Define Controllers In Theme
 
@@ -20,7 +20,7 @@ theme view simply.
 
 After that you created successfully your new controller, then it is necessary to reload Composer's autoloader with command below:
 ```text 
-composer dump-autoload
+$ composer dump-autoload
 ```
 
 It should be noted that there are already several controllers in theme controllers directory - `ArticlesController`, `PagesController` and 

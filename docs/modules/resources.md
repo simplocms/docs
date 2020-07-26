@@ -5,13 +5,11 @@ title: Resources
 
 ## Introduction
 
-Resources are loading automatically using the module's service provider. When you create a module using `module:make` Artisan Console
-command, all code for this purpose will be generated in the module's service provider. Better way for making a new module, you can just
-copy already some existed module and modify everything how you need.
+Resources are loading automatically using the module's service provider.
 
 ## Configuration
 
-For example, a main registered configuration, which is located at module's service provider, has the following source code in a `registerConfig` method: 
+For example, a main registered configuration, which is located in a module's service provider, has the following source code in a `registerConfig` method: 
 
 ```php
 <?php
@@ -35,7 +33,7 @@ For example, a main registered configuration, which is located at module's servi
 ```
 
 This code does nothing special - just only merge config from the main module's configuration with the others.
-If you need to change something here for something more specific, you are free to do it. But anyway, this source code will be convenient for
+If you need to change something here for something more specific, you are free to do it. Anyway, this source code will be convenient for
 the majority of the modules, what you will create for your application.
 
 ## Views
@@ -91,8 +89,8 @@ service provider.
 
 ## More Information
 
-How you could notice in the examples above, everywhere is used the instance `$namespace` property. For sure, it is important to modify if
-you created your new module using copying from an already existed module. The namespace has to start with the `module-` prefix for the correct identification of the module
+How you could notice in the examples above, everywhere is used the instance `$namespace` property. For sure, it is important to modify for your new module created by 
+using copying from an already existed module. The namespace has to start with the `module-` prefix for the correct identification of the module
 through the system.
 
 If you need to get more information about this topic, please visit [Official Package Documentation](https://nwidart.com/laravel-modules/v3/advanced-tools/module-resources)

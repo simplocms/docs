@@ -9,7 +9,7 @@ sidebar_label: Directory Structure
 SIMPLO CMS is basing on **[Laravel PHP Framework](https://laravel.com/docs/5.8)**. It means that the default directory structure of **SIMPLO CMS** is the same 
 as in Laravel.
 
-> If you want to know more details about **Directory Structure**, you can visit official [Laravel documentation](https://laravel.com/docs/5.8/structure)
+> If you want to know more details about **Directory Structure**, you can visit an official [Laravel documentation](https://laravel.com/docs/5.8/structure)
 
 ## SIMPLO CMS Directory Structure
 

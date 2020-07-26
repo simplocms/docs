@@ -14,7 +14,7 @@ Author of this system is [SIMPLO s.r.o](https://www.simplo.cz), who is responsib
 During development, SIMPLO s.r.o. developers use their many years of experience and you can be sure that SIMPLO CMS is really 
 quality system with clean and understandable source code with full author's support.
 
-If you want to start to use SIMPLO CMS, we **highly recommend you first visit official [Laravel documentation](https://laravel.com/docs/5.8)** 
+If you want to start to use SIMPLO CMS, we **highly recommend you first visit an official [Laravel documentation](https://laravel.com/docs/5.8)** 
 and meet with this framework before your way into SIMPLO CMS.
 
 ## License

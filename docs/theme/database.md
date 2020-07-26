@@ -17,7 +17,7 @@ you will find everything, what you need to set for success connection to your da
 [environment configuration](https://laravel.com/docs/5.8/configuration#environment-configuration) here too and because of this feature, you don't need to change configuration directly in `config/database.php` file 
 and you can do everything in your `.env` file, what is located in root directory.
 
-> If you know more about **Database** in Laravel, visit official [Laravel documentation](https://laravel.com/docs/5.8/database)
+> If you know more about **Database** in Laravel, visit an official [Laravel documentation](https://laravel.com/docs/5.8/database)
 
 ## Migrations
 
@@ -30,7 +30,7 @@ like in Laravel. This directory will just store all generated database migration
 If you want to generate new [database migration](https://laravel.com/docs/5.8/migrations), you can use the following 
 [Artisan command](https://laravel.com/docs/5.8/artisan):
 ```text
-php artisan make:migration create_your_database_table --path=/themes/Example/database/migrations
+$ php artisan make:migration create_your_database_table --path=/themes/Example/database/migrations
 ```
 After running Artisan command above, new database migration file will create and place in `database/migrations` directory of your theme.
 
@@ -40,7 +40,7 @@ When you open your migration file in `database/migrations` path of your theme, y
 same like in Laravel and you aren't restricted. After making all changes, you will probably want to run this theme's migration. It is very simple 
 and you can use command-line interface and run Artisan command below:
 ```text
-php artisan migrate --path=/themes/Example/database/migrations
+$ php artisan migrate --path=/themes/Example/database/migrations
 ```
 After running this Artisan command, you can check your database and you will see new table there. Everything is fine!
 
@@ -79,12 +79,12 @@ class YourThemeSeeder extends Seeder
 Then, you insert your source code to the `run` method instead of TODO comment, which you want this seeder runs. Before than you 
 try to run this seeder, you have to need to regenerate Composer's autoloader. For this action, use:
 ```text 
-composer dump-autoload
+$ composer dump-autoload
 ```
 
 If you do everything well, 
 you can use this Artisan command below for running your seeder:
 ```text
-php artisan db:seed --class=Theme\YourThemeSeeder
+$ php artisan db:seed --class=Theme\YourThemeSeeder
 ```
 After what you run this Artisan command, method `run` will be executed with your source code.

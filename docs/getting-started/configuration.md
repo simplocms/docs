@@ -16,7 +16,7 @@ keep everything directly in project.
 
 > If you are using Docker container, all important configuration is setting within the container.
 
-> If you want to know more about **Configuration**, visit official [Laravel documentation](https://laravel.com/docs/5.8/configuration)
+> If you want to know more about **Configuration**, visit an official [Laravel documentation](https://laravel.com/docs/5.8/configuration)
 
 ## Laravel Variables
 

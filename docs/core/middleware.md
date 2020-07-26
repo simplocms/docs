@@ -9,7 +9,7 @@ sidebar_label: Middleware
 Middleware offers a mechanism for developers, which filtering coming HTTP requests. Laravel includes already some middleware, 
 what for example verifies authentication of users or check if incoming CSRF token is valid.
 
-> For more information about **Middleware**, please visit official [Laravel documentation](https://laravel.com/docs/5.8/middleware)
+> For more information about **Middleware**, please visit an official [Laravel documentation](https://laravel.com/docs/5.8/middleware)
 
 ## Middleware In SIMPLO CMS
 

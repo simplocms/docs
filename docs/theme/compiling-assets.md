@@ -9,7 +9,7 @@ Laravel provides a simple fluent API, what developers can use for specification 
 Javascript pre-processors. Of course, if you don't want to use Webpack, you can choose another tool for developing your application or
 just use nothing, it's your decision.
 
-> For more information about Compiling Assets (Mix), please visit official [Laravel Documentation](https://laravel.com/docs/5.8/mix)
+> For more information about Compiling Assets (Mix), please visit an official [Laravel Documentation](https://laravel.com/docs/5.8/mix)
 
 ## Compiling Assets With Theme
 

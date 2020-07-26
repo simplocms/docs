@@ -9,7 +9,7 @@ Laravel includes amazing Eloquent ORM, what is simple ActiveRecord implementatio
 tables. For using this principle of communication with your database, you have to make **Model**. Then, you can use this model and 
 simply insert new records or make some updates of records in specific database table, which is connected with your model.
 
-> For more details, go to read official [Laravel documentation](https://laravel.com/docs/5.8/eloquent)
+> For more details, go to read an official [Laravel documentation](https://laravel.com/docs/5.8/eloquent)
 
 ## How Does It Work In Theme
 
@@ -38,5 +38,5 @@ where you want.
 
 When you make new model, then you need to reload Composer's autoloader:
 ```text 
-composer dump-autoload
+$ composer dump-autoload
 ```
