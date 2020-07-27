@@ -40,29 +40,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a4413e82-a47e-49c1-b40b-bf3bdc6b5de0" name="Default Changelist" comment="feat: update Getting Started / Directory Structure; Core / Helpers, Middleware, Artisan Console">
+    <list default="true" id="a4413e82-a47e-49c1-b40b-bf3bdc6b5de0" name="Default Changelist" comment="feat: Update Core / Artisan Console, Modules / Artisan Console, Modules / Compilling Assets, Theme / Compilling Assets, etc.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/core/artisan-console.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/core/artisan-console.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/core/helpers.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/core/helpers.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/core/middleware.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/core/middleware.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/getting-started/configuration.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/getting-started/configuration.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/getting-started/directory-structure.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/getting-started/directory-structure.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/getting-started/installation.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/getting-started/installation.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/getting-started/intro.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/getting-started/intro.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/modules/artisan-console.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/modules/artisan-console.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/modules/compiling-assets.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/modules/compiling-assets.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/modules/configuration.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/modules/configuration.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/modules/database.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/modules/database.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/modules/events.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/modules/events.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/modules/general.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/modules/general.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/modules/helpers.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/modules/helpers.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/modules/resources.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/modules/resources.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/theme/compiling-assets.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/theme/compiling-assets.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/theme/controllers.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/theme/controllers.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/theme/database.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/theme/database.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/theme/localization.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/theme/localization.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/theme/models.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/theme/models.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/theme/views.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/theme/views.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/theme/configuration.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/theme/configuration.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/theme/general.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/theme/general.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,21 +128,9 @@
       <workItem from="1587147173065" duration="3953000" />
       <workItem from="1595406956042" duration="16345000" />
       <workItem from="1595493355669" duration="16000" />
-      <workItem from="1595584796289" duration="17669000" />
-    </task>
-    <task id="LOCAL-00034" summary="feat: update Theme / Views">
-      <created>1577736088468</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1577736088468</updated>
-    </task>
-    <task id="LOCAL-00035" summary="feat: update Theme / Views">
-      <created>1578236489260</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1578236489260</updated>
+      <workItem from="1595584796289" duration="17850000" />
+      <workItem from="1595835773839" duration="44000" />
+      <workItem from="1595857652819" duration="5894000" />
     </task>
     <task id="LOCAL-00036" summary="feat: update Theme / Views">
       <created>1578236817542</created>
@@ -492,7 +461,21 @@
       <option name="project" value="LOCAL" />
       <updated>1595687622863</updated>
     </task>
-    <option name="localTasksCounter" value="83" />
+    <task id="LOCAL-00083" summary="feat: Update Core / Artisan Console, Modules / Artisan Console, Modules / Compilling Assets, Theme / Compilling Assets, etc.">
+      <created>1595765261603</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1595765261603</updated>
+    </task>
+    <task id="LOCAL-00084" summary="feat: Update Core / Artisan Console, Modules / Artisan Console, Modules / Compilling Assets, Theme / Compilling Assets, etc.">
+      <created>1595765266061</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1595765266062</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -511,7 +494,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: update Core / Helpers" />
     <MESSAGE value="feat: update Core / Helpers -&gt; Functions helper" />
     <MESSAGE value="feat: update Core / Helpers -&gt; Google Analytics helper" />
     <MESSAGE value="feat: update Core / Helpers - UrlHelper" />
@@ -536,13 +518,14 @@
     <MESSAGE value="feat: update Modules / Events" />
     <MESSAGE value="feat: update Configuration, Directory Structure, Installation, Setting in Getting Started; update Directory Structure in Theme;" />
     <MESSAGE value="feat: update Getting Started / Directory Structure; Core / Helpers, Middleware, Artisan Console" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: update Getting Started / Directory Structure; Core / Helpers, Middleware, Artisan Console" />
+    <MESSAGE value="feat: Update Core / Artisan Console, Modules / Artisan Console, Modules / Compilling Assets, Theme / Compilling Assets, etc." />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Update Core / Artisan Console, Modules / Artisan Console, Modules / Compilling Assets, Theme / Compilling Assets, etc." />
   </component>
   <component name="WindowStateProjectService">
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1595687631038">
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1595765458857">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1595687631038" />
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1595765458857" />
     <state x="427" y="205" width="586" height="490" key="find.popup" timestamp="1595764058259">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
