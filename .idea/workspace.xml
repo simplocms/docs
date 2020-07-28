@@ -41,9 +41,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a4413e82-a47e-49c1-b40b-bf3bdc6b5de0" name="Default Changelist" comment="feat: Update Core / Artisan Console, Modules / Artisan Console, Modules / Compilling Assets, Theme / Compilling Assets, etc.">
+      <change afterPath="$PROJECT_DIR$/docs/theme/middleware.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/theme/configuration.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/theme/configuration.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/theme/general.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/theme/general.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/theme/controllers.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/theme/controllers.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/theme/database.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/theme/database.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/theme/routing.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/theme/routing.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,15 +87,15 @@
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/docs/basic" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/docs/theme" />
       <recent name="$PROJECT_DIR$/docs/modules" />
       <recent name="$PROJECT_DIR$/docs/core" />
       <recent name="$PROJECT_DIR$/docs" />
       <recent name="$PROJECT_DIR$/docs/getting-started" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/docs/basic" />
     </key>
   </component>
   <component name="SvnConfiguration">
@@ -130,14 +132,8 @@
       <workItem from="1595493355669" duration="16000" />
       <workItem from="1595584796289" duration="17850000" />
       <workItem from="1595835773839" duration="44000" />
-      <workItem from="1595857652819" duration="5894000" />
-    </task>
-    <task id="LOCAL-00036" summary="feat: update Theme / Views">
-      <created>1578236817542</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1578236817542</updated>
+      <workItem from="1595857652819" duration="5931000" />
+      <workItem from="1595933155847" duration="7271000" />
     </task>
     <task id="LOCAL-00037" summary="feat: add Theme / Localization">
       <created>1578242993670</created>
@@ -475,7 +471,14 @@
       <option name="project" value="LOCAL" />
       <updated>1595765266062</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="update Theme / General, Theme / Configuration">
+      <created>1595863986360</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1595863986360</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -494,7 +497,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: update Core / Helpers -&gt; Functions helper" />
     <MESSAGE value="feat: update Core / Helpers -&gt; Google Analytics helper" />
     <MESSAGE value="feat: update Core / Helpers - UrlHelper" />
     <MESSAGE value="feat: Core / Helpers - finished" />
@@ -519,13 +521,14 @@
     <MESSAGE value="feat: update Configuration, Directory Structure, Installation, Setting in Getting Started; update Directory Structure in Theme;" />
     <MESSAGE value="feat: update Getting Started / Directory Structure; Core / Helpers, Middleware, Artisan Console" />
     <MESSAGE value="feat: Update Core / Artisan Console, Modules / Artisan Console, Modules / Compilling Assets, Theme / Compilling Assets, etc." />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: Update Core / Artisan Console, Modules / Artisan Console, Modules / Compilling Assets, Theme / Compilling Assets, etc." />
+    <MESSAGE value="update Theme / General, Theme / Configuration" />
+    <option name="LAST_COMMIT_MESSAGE" value="update Theme / General, Theme / Configuration" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1595765458857">
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1595863991631">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1595765458857" />
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1595863991631" />
     <state x="427" y="205" width="586" height="490" key="find.popup" timestamp="1595764058259">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -534,5 +537,9 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="443" y="245" key="git4idea.merge.GitPullDialog/0.0.1440.900@0.0.1440.900" timestamp="1595407009071" />
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1595957055307">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1595957055307" />
   </component>
 </project>
