@@ -21,6 +21,7 @@
       "modules/general",
       "modules/configuration",
       "modules/database",
+      "modules/models",
       "modules/helpers",
       "modules/compiling-assets",
       "modules/artisan-console",
@@ -36,7 +37,6 @@
       "theme/middleware",
       "theme/controllers",
       "theme/views",
-      "theme/models",
       "theme/localization",
       "theme/handling-exceptions",
       "theme/compiling-assets"

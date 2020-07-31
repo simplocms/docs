@@ -158,5 +158,5 @@ modify how you want, it's completely free to make custom searching logic specifi
 ### Vendor 
 
 #### `breadcrumbs.blade.php`
-This is view file, which renders breadcrumb menu items in all another views, where it will be imported using `theme::vendor.breadcrumbs` key. By default, 
+This is view file, which renders breadcrumb menu in all theme's views, where it will be imported the `theme::vendor.breadcrumbs` view. By default, 
 breadcrumb view is imported into the `pages.articles`, `pages.page`, `pages.search` and `articles.detail` and it's completely free to modify how developers need.
