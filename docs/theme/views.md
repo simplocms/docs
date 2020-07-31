@@ -86,17 +86,10 @@ resources/views
 ### Admin 
 
 #### `_settings_form.blade.php`
+The `Theme\Components\SettingsFormFactory` provides `createView` method and using this method, an application renders the `_settings_form.blade.php` view into Administration "[Settings > General](../getting-started/setting#general)". 
+It means that developer can implement more setting options specially for a theme, which will extend default SIMPLO CMS setting options.
 
-This is view, what is returned in `createView` method of `Theme\Components\SettingsFormFactory` class. This component implements
-`App\Services\ThemeService\Contracts\ThemeSettingsFormFactoryInterface` interface, which is binded by application in `App\Services\ThemeService\Patterns\AbstractThemeServiceProvider`
-after calling method `registerSettingsFormFactory`. In a theme, the `registerSettingsFormFactory` method is called in `Theme\Providers\ThemeServiceProvider`, which just extends
-`App\Services\ThemeService\Patterns\AbstractThemeServiceProvider` and it means that this provider can call this specific method for registering `Theme\Components\SettingsFormFactory` for
-your theme.
-
-> If you want to know how works Service Provider and how you can make your binding, check an official [Laravel Documentation](https://laravel.com/docs/5.8/container). 
-
-The `Theme\Components\SettingsFormFactory` provides `createView` method and using this method, application renders the `_settings_form.blade.php` view into Administration "[Settings > General](../getting-started/setting#general)". It means that developer 
-can implement more setting options specially for a theme, which will extend default SIMPLO CMS setting options.
+> For more information about how you can add your custom setting options, visit the [Theme / Settings](../theme/setting.md) page.
 
 ### Articles 
 
@@ -143,20 +136,24 @@ The `primary.blade.php` view serves for importing primary menu, which is possibl
 ### Modules 
 
 #### `articles_list/list.blade.php`
-TODO TODO TODO
+This view will be rendered when you will add the "Articles list (TODO: link)" module to the **Grid Editor** and will select "list" option for "View".
+
+> For more information about **Grid Editor**, please visit [this page](../core/grid-editor.md).
 
 ### Pages 
 
 #### `articles.blade.php`
-This view is returned in method `getArticlesPageView` of `Theme\Http\Controllers\PagesController`. This controller's method shows page of articles and
-if you want, you can modify `getArticlesPageView` logic how you need for your theme and its specific purposes.
+This view is returned in method `show` of `Theme\Http\Controllers\PagesController`. When visitors of your web visit some classic page, this method is called.
+If a user visits a page, which is set as **Page with articles** through [Administration Panel > Settings > General](../getting-started/setting.md#general), then this `articles.blade.php` 
+view is rendered instead of default `page.blade.php` view for classic pages.
 
 #### `page.blade.php`
-This view is default view file for returning in base `show` method in `Theme\Http\Controllers\PagesController`. TODO ...
+This view is a default view for returning in `show` method of `Theme\Http\Controllers\PagesController`, when a user visits some classic page. If this page does not have any custom view,
+it's not set as Page with articles or it's not set as Homepage, then the `page.blade.php` view is just rendered everytime.
 
 #### `search.blade.php`
-This view is returned in method `index` of `Theme\Http\Controllers\SearchController` and this method contains logic for searching on theme's website. Everything here, you can
-modify how you want, it's completely free to make custom searching logic specific for theme's purpose.
+This view is returned in method `index` of `Theme\Http\Controllers\SearchController`. The method contains main logic for searching on a theme's website. Everything here, you can
+modify how you want, it's completely free to make custom searching logic specific for a theme's purpose.
 
 ### Vendor 
 

@@ -44,6 +44,8 @@ this active template. For Example template, you can see additional settings in t
 For Example template, it's one additional setting called Page with articles serving for setting specific view for rendering 
 articles.
 
+> If you want to get more information about possibility of custom setting, you can visit [Theme / Setting](../theme/setting.md) page.
+
 #### SEO
 
 The second tab is SEO and offers settings for default title and description. In SEO title, you can use variables `%title%` and

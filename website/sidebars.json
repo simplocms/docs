@@ -10,7 +10,8 @@
     "Core": [
       "core/middleware",
       "core/artisan-console",
-      "core/helpers"
+      "core/helpers",
+      "core/grid-editor"
     ],
     "Services": [
       "services/general",
@@ -29,6 +30,7 @@
     "Theme": [
       "theme/general",
       "theme/configuration",
+      "theme/setting",
       "theme/database",
       "theme/routing",
       "theme/middleware",

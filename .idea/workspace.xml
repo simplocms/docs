@@ -41,10 +41,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a4413e82-a47e-49c1-b40b-bf3bdc6b5de0" name="Default Changelist" comment="feat: Update Core / Artisan Console, Modules / Artisan Console, Modules / Compilling Assets, Theme / Compilling Assets, etc.">
-      <change afterPath="$PROJECT_DIR$/docs/services/front-web.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/services/general.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/core/grid-editor.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/theme/controllers.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/theme/controllers.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/getting-started/setting.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/getting-started/setting.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/theme/settings-form.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/theme/setting.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/theme/views.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/theme/views.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/sidebars.json" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.json" afterDir="false" />
     </list>
@@ -81,7 +81,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/docs/services" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/docs/core" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
@@ -89,10 +89,10 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/docs/core" />
       <recent name="$PROJECT_DIR$/docs/services" />
       <recent name="$PROJECT_DIR$/docs/theme" />
       <recent name="$PROJECT_DIR$/docs/modules" />
-      <recent name="$PROJECT_DIR$/docs/core" />
       <recent name="$PROJECT_DIR$/docs" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -136,14 +136,7 @@
       <workItem from="1595857652819" duration="5931000" />
       <workItem from="1595933155847" duration="7452000" />
       <workItem from="1596010522892" duration="22000" />
-      <workItem from="1596149397241" duration="3403000" />
-    </task>
-    <task id="LOCAL-00038" summary="feat: update Theme / Localization">
-      <created>1578300449499</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1578300449499</updated>
+      <workItem from="1596149397241" duration="8041000" />
     </task>
     <task id="LOCAL-00039" summary="feat: add Core / Artisan Console, Core / Helpers, Theme / Compiling Assets, Theme / Middleware, update Theme / Handling Exceptions, sidebars and siteConfig">
       <created>1578301952446</created>
@@ -481,7 +474,14 @@
       <option name="project" value="LOCAL" />
       <updated>1595960602967</updated>
     </task>
-    <option name="localTasksCounter" value="87" />
+    <task id="LOCAL-00087" summary="feat: update Theme / Controllers, Theme / Views, add Services / General, Services / Front Web">
+      <created>1596154023070</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1596154023071</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -500,7 +500,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: update Core / Helpers - UrlHelper" />
     <MESSAGE value="feat: Core / Helpers - finished" />
     <MESSAGE value="feat: update Theme / Compiling Assets" />
     <MESSAGE value="feat: update Getting Started / Setting" />
@@ -525,13 +524,14 @@
     <MESSAGE value="feat: Update Core / Artisan Console, Modules / Artisan Console, Modules / Compilling Assets, Theme / Compilling Assets, etc." />
     <MESSAGE value="update Theme / General, Theme / Configuration" />
     <MESSAGE value="update Theme / Controllers, update Theme / Database, update Theme / Routing, add Theme / Middleware" />
-    <option name="LAST_COMMIT_MESSAGE" value="update Theme / Controllers, update Theme / Database, update Theme / Routing, add Theme / Middleware" />
+    <MESSAGE value="feat: update Theme / Controllers, Theme / Views, add Services / General, Services / Front Web" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: update Theme / Controllers, Theme / Views, add Services / General, Services / Front Web" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1595960752123">
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1596154029365">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1595960752123" />
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1596154029365" />
     <state x="427" y="205" width="586" height="490" key="find.popup" timestamp="1595764058259">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
