@@ -12,6 +12,10 @@
       "core/artisan-console",
       "core/helpers"
     ],
+    "Services": [
+      "services/general",
+      "services/front-web"
+    ],
     "Modules": [
       "modules/general",
       "modules/configuration",

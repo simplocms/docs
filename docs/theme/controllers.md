@@ -94,7 +94,7 @@ class ThemeFrontWebBaseController extends FrontWebBaseController
 
 Then, you can call only `$this->setTitle('Your Title!');` in your controller's method.
 
-> How you can notice, the new theme controller **must extend** `App\Http\Controllers\FrontWeb\FrontWebBaseController`.
+> How you can notice, the new theme controller **must extend** from `App\Http\Controllers\FrontWeb\FrontWebBaseController`.
 
 ### Breadcrumbs
 
@@ -139,7 +139,9 @@ use App\Structures\DataTypes\Breadcrumb;
 
 ```
 
-> TODO - Change this section to FrontWebService probably (or make a new different page with the source codes above?)
+> When you will check a source code of the settings above (title, breadcrumbs), you can notice that the system uses for everything 
+> the `App\Services\FrontWeb` class. It's an important service, which provides a lot of options for a few settings of page's metatags, etc.
+> If you want to get more information, please visit [Front Web Service](../services/front-web.md). 
 
 After what you created successfully your new controller, then it is necessary to refresh base Composer's autoloader with the command below:
 ```text 
@@ -147,4 +149,4 @@ $ composer dump-autoload
 ```
 
 It should be noted that there are already several controllers in theme controllers directory - `ArticlesController`, `PagesController` and 
-`SearchController`. These controllers provide you a good way for modify some default logic or view of default pages in SIMPLO CMS theme.
+`SearchController`. These controllers provide you a good way for modify some main logic or view for default pages in SIMPLO CMS theme.
