@@ -42,10 +42,9 @@
   <component name="ChangeListManager">
     <list default="true" id="a4413e82-a47e-49c1-b40b-bf3bdc6b5de0" name="Default Changelist" comment="feat: Update Core / Artisan Console, Modules / Artisan Console, Modules / Compilling Assets, Theme / Compilling Assets, etc.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/theme/localization.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/theme/localization.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/theme/models.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/modules/models.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/theme/setting.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/theme/setting.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/theme/views.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/theme/views.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/core/grid-editor.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/core/grid-editor.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/theme/compiling-assets.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/theme/compiling-assets.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/theme/handling-exceptions.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/theme/localization.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/sidebars.json" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -137,14 +136,7 @@
       <workItem from="1595857652819" duration="5931000" />
       <workItem from="1595933155847" duration="7452000" />
       <workItem from="1596010522892" duration="22000" />
-      <workItem from="1596149397241" duration="15457000" />
-    </task>
-    <task id="LOCAL-00040" summary="feat: update Theme / Compiling Assets">
-      <created>1578305454370</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1578305454370</updated>
+      <workItem from="1596149397241" duration="22600000" />
     </task>
     <task id="LOCAL-00041" summary="feat: update Theme / Compiling Assets">
       <created>1578318321332</created>
@@ -482,7 +474,14 @@
       <option name="project" value="LOCAL" />
       <updated>1596209498576</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL-00089" summary="feat: update Theme / Localization, moved Theme / Models to Modules / Models, update Theme / Setting, update Theme / Views, update sidebars.json (menu)">
+      <created>1596228942727</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1596228942727</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -501,7 +500,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: update Theme / Compiling Assets" />
     <MESSAGE value="feat: update Getting Started / Setting" />
     <MESSAGE value="feat: update Getting Started / Settings, add Modules / General" />
     <MESSAGE value="feat: update Getting Started / Settings" />
@@ -526,13 +524,14 @@
     <MESSAGE value="update Theme / Controllers, update Theme / Database, update Theme / Routing, add Theme / Middleware" />
     <MESSAGE value="feat: update Theme / Controllers, Theme / Views, add Services / General, Services / Front Web" />
     <MESSAGE value="feat: add Core / Grid Editor, update Getting Started / Setting, renamed Theme / Settings-Form to Theme / Setting, update Theme / Views, update sidebars.json (menu)" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: add Core / Grid Editor, update Getting Started / Setting, renamed Theme / Settings-Form to Theme / Setting, update Theme / Views, update sidebars.json (menu)" />
+    <MESSAGE value="feat: update Theme / Localization, moved Theme / Models to Modules / Models, update Theme / Setting, update Theme / Views, update sidebars.json (menu)" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: update Theme / Localization, moved Theme / Models to Modules / Models, update Theme / Setting, update Theme / Views, update sidebars.json (menu)" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1596209505961">
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1596228950350">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1596209505961" />
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1596228950350" />
     <state x="427" y="205" width="586" height="490" key="find.popup" timestamp="1596228111663">
       <screen x="0" y="0" width="1440" height="900" />
     </state>

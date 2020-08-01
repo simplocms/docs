@@ -11,15 +11,40 @@ just use nothing, it's your decision.
 
 > For more information about Compiling Assets (Mix), please visit an official [Laravel Documentation](https://laravel.com/docs/5.8/mix)
 
-## Compiling Assets With Theme
+## Installation And Definition
 
-In SIMPLO CMS theme, the working with Laravel Mix is still the same how you know it from pure Laravel. By default, in `webpack.mix.json` file,
-which is located in root's directory of theme, there is a source code already for definition main assets and setting. If your theme requires more, you can
-change or increase this source code how you need.
+In SIMPLO CMS theme, working with Laravel Mix is still the same how you know it from Laravel. By default, in `webpack.mix.json` file,
+which is located in root's directory of a theme, there is a source code already for compilation assets and for importing a few libraries, plugins and their settings. 
+If your theme requires more, you can change this source code how you need.
+
+For compiling assets using Webpack, first you need to **install Laravel Mix** in your theme's root directory. The default Example theme already consists of a `package.json` file with a few 
+libraries, which are important for running SIMPLO CMS theme. If you created your theme with copying this default theme, then all things are prepared. 
+For running of the installation process, you need to run the following command in command-line:
+
+```text
+$ npm install
+```
+
+After the installation process, in a theme's root directory will be appeared the `node_modules` directory. When everything is fine, you can 
+run the compiling process using Webpack. Just run one of the following command using command-line:
+
+```text
+// For run Mix in develop environment
+$ npm run dev
+
+// For run Mix in production environment (with minify output)
+$ npm run prod
+```
+
+For watching assets for the future changes, then run the following command:
+
+```text
+$ npm run watch
+```
 
 When you want to use [Versioning](https://laravel.com/docs/5.8/mix#versioning-and-cache-busting) in your theme, you can do 
-everything how you know from pure Laravel too. But when you need to get url for actual version file of some asset, then use instead of `mix` helper function
-`themeMix` method of `App\Services\FrontWeb\FrontWebService`, which runs everything for correct returning theme's version file of the specific asset. For getting url
+everything, how you know from Laravel as well. If you need to get url for actual version file of some asset, then use instead of `mix` Laravel helper function
+`themeMix` method of `App\Services\FrontWeb\FrontWebService`, which runs everything for correct returning the theme's version file of the specific asset. For getting url
 path to assets without versioning feature, then use `themeAsset` method of `App\Services\FrontWeb\FrontWebService`.
 
 For example:
@@ -77,3 +102,8 @@ For example:
 </body>
 </html>
 ```
+
+How you can notice in `<head>` element, there is included `css/main.css` file by `themeMix` method. This method mainly set `theme` as
+a manifest directory during getting the asset with `Mix` instance. Then you do not need to do it manually. 
+If you are interesting where this directory is located, check a public directory in root's SIMPLO CMS. You can find a symlink to your theme's `resources/dist` 
+directory there.
