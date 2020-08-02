@@ -26,7 +26,8 @@
       "modules/compiling-assets",
       "modules/artisan-console",
       "modules/resources",
-      "modules/events"
+      "modules/events",
+      "modules/for-grid-editor"
     ],
     "Theme": [
       "theme/general",
