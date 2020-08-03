@@ -41,16 +41,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a4413e82-a47e-49c1-b40b-bf3bdc6b5de0" name="Default Changelist" comment="feat: Update Core / Artisan Console, Modules / Artisan Console, Modules / Compilling Assets, Theme / Compilling Assets, etc.">
-      <change afterPath="$PROJECT_DIR$/docs/modules/complete-guide.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/modules/controllers.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/modules/configuration.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/modules/configuration.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/modules/database.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/modules/database.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/modules/for-grid-editor.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/modules/for-grid-editor.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/modules/models.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/modules/models.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/modules/routing.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/modules/routing.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/theme/routing.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/theme/routing.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/sidebars.json" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/modules/complete-guide.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/modules/complete-guide.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,14 +130,7 @@
       <workItem from="1595933155847" duration="7452000" />
       <workItem from="1596010522892" duration="22000" />
       <workItem from="1596149397241" duration="28501000" />
-      <workItem from="1596431076483" duration="9662000" />
-    </task>
-    <task id="LOCAL-00044" summary="feat: update Core / Helpers">
-      <created>1578326373607</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1578326373607</updated>
+      <workItem from="1596431076483" duration="13711000" />
     </task>
     <task id="LOCAL-00045" summary="feat: update Core / Helpers -&gt; add return example">
       <created>1578332880097</created>
@@ -483,7 +468,14 @@
       <option name="project" value="LOCAL" />
       <updated>1596377712482</updated>
     </task>
-    <option name="localTasksCounter" value="93" />
+    <task id="LOCAL-00093" summary="feat: update sidebars.json (menu); update Theme / Routing, update Modules / Routing, update Modules / Models, update Modules / For Grid Editor, update Modules / Database, update Modules / Controllers, update Modules / Configuration, update Modules / Complete Guide">
+      <created>1596458668963</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1596458668964</updated>
+    </task>
+    <option name="localTasksCounter" value="94" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -502,7 +494,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: update Getting Started / Settings" />
     <MESSAGE value="feat: update Modules / Creating" />
     <MESSAGE value="feat: update Modules / Database, Core / Helpers" />
     <MESSAGE value="feat: update Modules / Database" />
@@ -527,13 +518,14 @@
     <MESSAGE value="feat: update Theme / Localization, moved Theme / Models to Modules / Models, update Theme / Setting, update Theme / Views, update sidebars.json (menu)" />
     <MESSAGE value="feat: update Theme / Compilling Assets, writed Code / Grid Editor, update Theme / Localization, update sidebars.json (menu); add a few assets (administration images)" />
     <MESSAGE value="feat: update sidebars.json - menu (add Modules / For Grid Editor); rename Integrating Into Grid Editor to For Grid Editor in Modules; update Core / Grid Editor; update Modules / General; update Modules / For Grid Editor; Modules / Configuration; add asset - administration-grid-editor-modules.png" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: update sidebars.json - menu (add Modules / For Grid Editor); rename Integrating Into Grid Editor to For Grid Editor in Modules; update Core / Grid Editor; update Modules / General; update Modules / For Grid Editor; Modules / Configuration; add asset - administration-grid-editor-modules.png" />
+    <MESSAGE value="feat: update sidebars.json (menu); update Theme / Routing, update Modules / Routing, update Modules / Models, update Modules / For Grid Editor, update Modules / Database, update Modules / Controllers, update Modules / Configuration, update Modules / Complete Guide" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: update sidebars.json (menu); update Theme / Routing, update Modules / Routing, update Modules / Models, update Modules / For Grid Editor, update Modules / Database, update Modules / Controllers, update Modules / Configuration, update Modules / Complete Guide" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1596377718807">
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1596458675517">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1596377718807" />
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1596458675517" />
     <state x="427" y="205" width="586" height="490" key="find.popup" timestamp="1596228111663">
       <screen x="0" y="0" width="1440" height="900" />
     </state>

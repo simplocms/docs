@@ -10,7 +10,7 @@ If you are interesting about these things and how you can make them, you are on 
 
 ## Complete Guide - Make A New Entity
 
-For this complete guide, we will make together one complex module. What about **Frequently Ask Questions**? Are you ready?
+For this complete guide, we will make together one complex module. What about **Blog Posts**? Are you ready?
 Let's do this!
 
 ### First Steps
@@ -39,13 +39,13 @@ return [
 ];
 ```
 
-For our module `FrequentlyAskQuestion`, we can have for example the following starting configuration:
+For our module `BlogPost`, we can have for example the following starting configuration:
 
 ```php
 <?php
 
 return [
-    'name' => 'FrequentlyAskQuestion',
+    'name' => 'BlogPost',
     'icon' => 'comments',
 
     'for-grideditor' => false,  // we make the module for extending because of a new entity, no designed for Grid Editor
@@ -156,8 +156,8 @@ class ServiceProvider extends BaseProvider implements DeferrableProvider
 }
 ```
 
-In this source code of `Providers/ServiceProvider.php`, change a namespace to `Modules\FrequentlyAskQuestion\Providers`. Then, you need to change `module-articleslist` to
-`module-frequentlyaskquestion`. Everything else is fine. You do not need to change anything more if it's not necessary for your module.
+In this source code of `Providers/ServiceProvider.php`, change a namespace to `Modules\BlogPost\Providers`. Then, you need to change `module-articleslist` to
+`module-blogpost`. Everything else is fine. You do not need to change anything more if it's not necessary for your module.
 
 > You can have the namespace of your module how you want of course, but it's necessary to write it everywhere with `module-` prefix. SIMPLO CMS can recognize your module well and 
 > the system will work with the module properly.
@@ -182,8 +182,8 @@ similar like the source code below:
 
 ```json
 {
-    "name": "admin-module/faq",
-    "description": "Module for managing frequently asked questions",
+    "name": "admin-module/blogpost",
+    "description": "Module for managing blog posts",
     "version": "1.0.0",
     "authors": [
         {
@@ -193,7 +193,7 @@ similar like the source code below:
     ],
     "autoload": {
         "psr-4": {
-            "Modules\\FrequentlyAskQuestion\\": ""
+            "Modules\\BlogPost\\": ""
         }
     }
 }
@@ -206,14 +206,14 @@ The next file for updating is `module.json`. There are a lot of important option
 
 ```json
 {
-    "name": "FrequentlyAskQuestion",
-    "alias": "frequentlyaskquestion",
-    "description": "Module for managing FAQ",
+    "name": "BlogPost",
+    "alias": "blogpost",
+    "description": "Module for managing blog posts",
     "keywords": [],
     "active": 1,
     "order": 0,
     "providers": [
-        "Modules\\FrequentlyAskQuestion\\Providers\\ServiceProvider"
+        "Modules\\BlogPost\\Providers\\ServiceProvider"
     ],
     "aliases": {},
     "files": [
@@ -268,6 +268,164 @@ Now just for a summary, here is the actual directory structure for our starting 
 └── webpack.mix.js
 ```
 
-If you have **the same directory structure** for our example module **Frequently Ask Question**, CONGRATULATIONS! Then you can continue
+If you have **the same directory structure** for our example module **Blog Post**, CONGRATULATIONS! Then you can continue
 in the next steps about our module's developing with us!
 
+> If you want, **you can use this starting position also for another modules**.
+
+### Description Before Developing
+
+In this paragraph, we will talk about our goals with our example module - `BlogPost`.
+
+This module will extend SIMPLO CMS system about a new entity - blog post. For our example, we need to use the most features 
+what SIMPLO CMS offers. This is a right way how you can learn and get more information about SIMPLO CMS. 
+
+Because of reason, what we mentioned in the previous paragraph, and because of reason of a clarity as well, we will want to keep 
+our blog posts in categories. Then, we want to have a multilanguage feature for them. It means that for each language, we 
+can have different categories. The developers may request SEO optimization, so it means that we also need to store some SEO
+fields - title, description, index, follow, etc. With SEO, we will store Open Graph. For this complete guide, it will be better
+when we will be able to choose some icon for the blog categories.
+
+And what about blog posts? Let's make some description.
+
+For blog posts, we also require the multilanguage system. How we mentioned above, each blog post will be belonged to a category. Administrators will
+be able to publish and unpublish these blog posts, fill in SEO fields, Open Graph, upload photos and select one thumbnail image.
+
+I think we described everything what we need to know before this developing. And now we can write a first code!
+
+### Database Migrations
+
+First, we need to make some database migrations. Without storing a data, it's impossible to make this module. For creating a module's migration,
+we can use the following Artisan Console command:
+
+```text
+$ php artisan module:make-migration create_blog_categories_table BlogPost
+```
+
+After call this command above, open this migration inside `Database/Migrations` directory. Then define a new database migration like the following:
+
+```php
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateBlogCategoriesTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('blog_categories', function (Blueprint $table) {
+            $table->increments('id');
+
+            $table->unsignedInteger('language_id');
+            $table->foreign('language_id', 'blg_cat_lang_foreign')->references('id')->on('languages')
+                ->onUpdate('cascade')->onDelete('cascade');
+
+            $table->string('name');
+            $table->string('url')->index();
+
+            $table->unsignedTinyInteger('state')
+                ->default(\App\Structures\Enums\PublishingStateEnum::PUBLISHED)
+                ->index();
+
+            $table->media('icon_id');
+
+            $table->string('seo_title')->nullable()->default(null);
+            $table->text('seo_description')->nullable()->default(null);
+            $table->boolean('seo_index')->default(true);
+            $table->boolean('seo_follow')->default(true);
+            $table->boolean('seo_sitemap')->default(true);
+
+            $table->text('open_graph')->nullable();
+
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('blog_categories');
+    }
+}
+```
+
+This is a database migration for creating `blog_categories` table. Now we need to create a database migration for `blog_posts` table.
+
+```php
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateBlogPostsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('blog_posts', function (Blueprint $table) {
+            $table->increments('id');
+
+            $table->unsignedInteger('language_id');
+            $table->foreign('language_id', 'blg_posts_lang_foreign')->references('id')->on('languages')
+                ->onUpdate('cascade')->onDelete('cascade');
+
+            $table->unsignedInteger('blog_category_id');
+            $table->foreign('blog_category_id', 'blg_posts_cat_foreign')->references('id')->on('blog_categories')
+                ->onUpdate('cascade')->onDelete('cascade');
+
+            $table->string('title');
+            $table->string('url')->index();
+
+            $table->text('perex');
+            $table->mediumText('text')->nullable();
+
+            $table->unsignedTinyInteger('state')
+                ->default(\App\Structures\Enums\PublishingStateEnum::PUBLISHED)
+                ->index();
+
+            $table->media('image_id');
+
+            $table->string('seo_title')->nullable()->default(null);
+            $table->text('seo_description')->nullable()->default(null);
+            $table->boolean('seo_index')->default(true);
+            $table->boolean('seo_follow')->default(true);
+            $table->boolean('seo_sitemap')->default(true);
+
+            $table->text('open_graph')->nullable();
+
+            $table->dateTime('publish_at');
+            $table->dateTime('unpublish_at')->nullable()->default(null);
+
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('blog_posts');
+    }
+}
+```
+
+We need one more database migration - for blog post photos. Let's create it now.
