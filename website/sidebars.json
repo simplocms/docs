@@ -22,11 +22,14 @@
       "modules/configuration",
       "modules/database",
       "modules/models",
+      "modules/routing",
+      "modules/controllers",
       "modules/helpers",
       "modules/compiling-assets",
       "modules/artisan-console",
       "modules/resources",
       "modules/events",
+      "modules/complete-guide",
       "modules/for-grid-editor"
     ],
     "Theme": [

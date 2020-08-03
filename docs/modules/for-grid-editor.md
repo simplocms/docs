@@ -1,6 +1,6 @@
 ---
 id: for-grid-editor
-title: Module: For Grid Editor
+title: For Grid Editor
 ---
 
 ## Introduction

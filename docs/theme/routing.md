@@ -34,7 +34,7 @@ By default, this `routes.php` file contains the code below:
 //
 //});
 ```
-A good approach is, when you will not remove this default source code, because this is a convenient route group for definition of 
+A good attitude is, when you will not remove this default source code, because this is a convenient route group for definition of 
 your routes. The route group already implements the middleware `web` with the namespace `Theme\Http\Controllers`. All theme's controllers 
 are located under this namespace.
 
