@@ -42,6 +42,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a4413e82-a47e-49c1-b40b-bf3bdc6b5de0" name="Default Changelist" comment="feat: Update Modules / Complete Guide">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/getting-started/setting.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/getting-started/setting.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/modules/complete-guide.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/modules/complete-guide.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -133,14 +134,7 @@
       <workItem from="1596431076483" duration="16039000" />
       <workItem from="1597031224101" duration="4104000" />
       <workItem from="1597060096941" duration="1000" />
-      <workItem from="1597226206345" duration="11123000" />
-    </task>
-    <task id="LOCAL-00048" summary="feat: update Core / Helpers -&gt; Functions helper">
-      <created>1578410002888</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1578410002888</updated>
+      <workItem from="1597226206345" duration="20218000" />
     </task>
     <task id="LOCAL-00049" summary="feat: update Core / Helpers -&gt; Google Analytics helper">
       <created>1578411353459</created>
@@ -478,7 +472,14 @@
       <option name="project" value="LOCAL" />
       <updated>1597244757965</updated>
     </task>
-    <option name="localTasksCounter" value="97" />
+    <task id="LOCAL-00097" summary="feat: update Modules/Complete Guide">
+      <created>1597256526122</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1597256526122</updated>
+    </task>
+    <option name="localTasksCounter" value="98" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -497,7 +498,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: update Core / Helpers, add Modules / Helpers" />
     <MESSAGE value="feat: update Modules / Helpers" />
     <MESSAGE value="feat: add Modules / Compiling Assets, Modules / Artisan Console" />
     <MESSAGE value="feat: update Modules / Artisan Console,add Modules / Events, Modules / Resources" />
@@ -522,7 +522,8 @@
     <MESSAGE value="feat: Update Modules / Complete Guide" />
     <MESSAGE value="feat: update Modules / Complete Guide" />
     <MESSAGE value="feat: update Modules/Complete Guide, create Modules/Localization - add to menu" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: update Modules/Complete Guide, create Modules/Localization - add to menu" />
+    <MESSAGE value="feat: update Modules/Complete Guide" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: update Modules/Complete Guide" />
   </component>
   <component name="WindowStateProjectService">
     <state x="144" y="79" key="DiffContextDialog" timestamp="1597048555745">
@@ -541,9 +542,9 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="443" y="245" key="git4idea.merge.GitPullDialog/0.0.1440.900@0.0.1440.900" timestamp="1595407009071" />
-    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1595957055307">
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1597261704173">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1595957055307" />
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1597261704173" />
   </component>
 </project>

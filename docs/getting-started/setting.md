@@ -163,7 +163,7 @@ applications.
 ### Modules
 
 It's setting page, where you can manipulate with SIMPLO CMS modules. The modules are a very effective way, how SIMPLO CMS
-can be extended about some new great features. Modules are also the main part of your future theme, where you will develop your
+can be extended about some new features. Modules are also the main part of your future theme, where you will develop your
 own website based on SIMPLO CMS.
 
 ![Modules](../assets/images/administration-modules.png "Modules")

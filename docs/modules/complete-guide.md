@@ -1006,6 +1006,28 @@ Now, this is the last step which we will do in `YourEntityController`.
 
 In the `YourEntityController` controller, we finished the work! **It's time to check** if everything is working well.
 
+Log in to the Administration Panel of SIMPLO CMS and go to [Module Setting](../getting-started/setting.md#modules). There will appear
+all available modules what you can install. If you did everything correctly, you will see in this list your new module as well. After
+what you get find it, click on "Install" button.
+
+Installation process does not take a long time and after that, in the admin menu there will appear the module's menu items, how you declared it
+in your module's config file. That's great! 
+
+Now you can click on a menu item of the module and try the following routes:
+
+- `index` - admin/module/your-module
+- `create` - admin/module/your-module/create
+- `store` - admin/module/your-module/store
+- `edit` - admin/module/your-module/edit/{item}
+- `update` - admin/module/your-module/update/{item}
+- `delete` - admin/module/your-module/delete/{item}
+
+When everything is working after this testing, congratulations! You just created your first module with basic routes for SIMPLO CMS. If you want to know
+more what SIMPLO CMS offers, continue in this guide.
+
+> If you **want to create routes** for **a public web**, then use for this purpose directly your **theme working place**. For working with a theme,
+> go to [Theme](../theme/general.md)
+
 ### SEO, Open Graph
 
 If you want to have a new entity with some editable SEO and Open Graph fields, then read this section.
@@ -1013,6 +1035,9 @@ If you want to have a new entity with some editable SEO and Open Graph fields, t
 For the first step, you will need to add columns to your database table. Create a database migration with a part of the following source code:
 
 ```php 
+<?php
+...
+
 $table->string('seo_title')->nullable()->default(null);
 $table->text('seo_description')->nullable()->default(null);
 $table->boolean('seo_index')->default(true);
@@ -1020,11 +1045,437 @@ $table->boolean('seo_follow')->default(true);
 $table->boolean('seo_sitemap')->default(true);
 
 $table->text('open_graph')->nullable();
+
+...
 ```
 
-After that, **open your model** and **make some the following changes**:
+After that, **open your model** and **make the following changes**:
 
 1. Use `App\Traits\OpenGraphTrait` trait inside your model.
-2. If you want, you can add new database columns to `$fillable` array.
+2. Add SEO and Open Graph database columns to `$fillable` array for [Mass Assignment](https://laravel.com/docs/5.8/eloquent#mass-assignment).
 3. It's a good way to add `seo_title` and `seo_description` columns to `$nullIfEmpty` array.
-4. For better casting, add `seo_index`, `seo_follow` and `seo_sitemap` to `$casts` array with `boolean` type value.
+4. For correct casting, add `seo_index`, `seo_follow` and `seo_sitemap` to `$casts` array with `boolean` type value.
+
+After this first steps, let's move to our example `YourEntityController` class and make the following changes:
+
+```php
+<?php
+
+...
+
+    /**
+     * GET: Create
+     *
+     * @return \Illuminate\View\View
+     * @throws \Exception
+     */
+    public function create()
+    {
+        ...
+
+        $item = new YourEntity();
+        $item->forceFill([
+            'seo_index' => true,
+            'seo_follow' => true,
+            'seo_sitemap' => true
+        ]);
+
+        ...
+    }
+
+...
+```
+
+In the `create` method, we added only `forceFill` method calling on `YourEntity` model because of default settings of SEO fields.
+It's not necessary to set them on `true` value. For `YourEntityController`, it's everything.
+
+Now we need to make changes in `YourEntityForm` class. There will just add `'seo_title', 'seo_description', 'seo_index', 'seo_follow', 'seo_sitemap', 'open_graph'`
+columns in `$formAttributes` variable.
+
+For the form, do not forget to update a source code inside the javascript file `entities.form.js`:
+
+```js
+...
+import SeoInputs from '../../../../../../resources/assets/js/vue-components/form/seo-inputs';
+import OpenGraphInputs from '../../../../../../resources/assets/js/vue-components/form/open-graph-inputs';
+
+Vue.component('yourmodule-entity-form', {
+    ...
+
+    components: {
+        'seo-inputs': SeoInputs,
+        'open-graph-inputs': OpenGraphInputs,
+    },
+
+    ...
+});
+```
+
+as well do not forget on blade views:
+
+`admin/entity/form/layout.blade.php`
+```html
+...
+
+<v-tabs class="nav-tabs-custom" no-fade>
+    ...
+
+    {{-- SEO --}}
+    <v-tab title="{{ trans('module-yourmodule::entity/form.tabs.seo') }}"
+           href="#seo"
+    >
+      @include('module-yourmodule::admin.entity.form._tab_seo')
+    </v-tab>
+
+    {{-- OpenGraph --}}
+    <v-tab title="{{ trans('module-yourmodule::entity/form.tabs.og') }}"
+           href="#open-graph"
+    >
+      @include('module-yourmodule::admin.entity.form._tab_og_tags')
+    </v-tab>
+</v-tabs>
+```
+
+for SEO and Open Graph form tabs, you need to create new files below:
+
+`admin/entity/form/_tab_seo.blade.php`
+```html
+<seo-inputs :title-placeholder="form.name"
+            :form="form"
+            :trans="{{ \App\Helpers\Functions::combineTransToJson([
+                'admin/general.seo', 'module-yourmodule::entity/form.seo_tab'
+            ]) }}"
+></seo-inputs>
+```
+
+`admin/entity/form/_tab_og_tags.blade.php`
+```html
+<open-graph-inputs :title-placeholder="form.name"
+                   :form="form"
+                   :trans="{{ json_encode(trans('admin/general.open_graph')) }}"
+></open-graph-inputs>
+```
+
+For the validation of SEO and Open Graph fields, move to `YourEntityRequest` and make the following changes there:
+
+```php
+<?php
+
+...
+
+use App\Traits\Requests\ValidatesOpenGraphTrait;
+use App\Traits\Requests\ValidatesSeoTrait;
+
+class YourEntityRequest extends AbstractFormRequest
+{
+    use ValidatesSeoTrait,
+        ValidatesOpenGraphTrait;
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        ...
+
+        return $this->mergeRules(
+            $rules, $this->getSeoRules(), $this->getOpenGraphRules()
+        );
+    }
+
+    /**
+     * Get the validation messages.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return $this->mergeMessages(
+            'module-yourmodule::entity/form.messages', $this->getSeoMessages(), $this->getOpenGraphMessages()
+        );
+    }
+
+    /**
+     * Return input values.
+     *
+     * @return array
+     */
+    public function getValues(): array
+    {
+        ...
+
+        // SEO index
+        $input['seo_index'] = $this->input('seo_index', false);
+
+        // SEO follow
+        $input['seo_follow'] = $this->input('seo_follow', false);
+
+        // SEO sitemap
+        $input['seo_sitemap'] = $this->input('seo_sitemap', false);
+
+        ...
+    }
+}
+...
+```
+
+It's done! Now you can go to the administration of your module's entity and check if there will be new SEO and Open Graph tabs.
+
+### Multilingual
+
+SIMPLO CMS can have a multilingual content. The multilingual technique offers you to have different entity records for 
+all available languages. In the section, we will show you how you can do that.
+
+First, it's necessary to add the following database column with a foreign key to `languages` table in your module entity's migration:
+
+```php 
+<?php
+...
+
+$table->unsignedInteger('language_id');
+$table->foreign('language_id')->references('id')->on('languages')
+    ->onUpdate('cascade')->onDelete('cascade');
+
+...
+```
+
+Then, add using `App\Traits\HasLanguage` trait inside the `YourEntity` model. It's adding a few usable methods, mainly `language`
+relation to the `App\Models\Web\Language`.
+
+Next step for the multilingual implementation, open the `YourEntityTable` datatable and make the following changes:
+
+```php
+<?php
+...
+
+use App\Models\Web\Language;
+
+...
+
+class YourEntityTable extends AbstractDataTable
+{
+    /** @var \App\Models\Web\Language */
+    private $language;
+
+    ...
+
+    /**
+     * YourEntityTable constructor.
+     *
+     * @param \App\Models\Web\Language $language
+     */
+    public function __construct(Language $language, User $user)
+    {
+        $this->language = $language;
+        $this->user = $user;
+
+        parent::__construct();
+    }
+
+    ...
+
+    /**
+     * Get data query.
+     *
+     * @param \App\Structures\DataTable\FilterOptions $filterOptions
+     * @return \Illuminate\Database\Query\Builder
+     */
+    protected function getDataQuery(FilterOptions $filterOptions)
+    {
+        $query = YourEntity::query()->whereLanguage($this->language);
+
+        ...
+
+        return $query;
+    }
+
+    ...
+}
+```
+
+Mainly there is the `getDataQuery` method, where you need to add a where condition for the specific language loading of the items.
+
+After that, go to `YourEntityController` and according to the changes above, we need to make a few changes there as well:
+
+```php
+<?php
+...
+
+    /**
+     * POST: Store
+     *
+     * @param YourEntityRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store(YourEntityRequest $request)
+    {
+        $item = new YourEntity($request->getValues());
+
+        $item->setLanguage($this->getLanguage());
+        $item->save();
+
+        ...
+    }
+
+...
+```
+
+That's everything for the implementation of the multilingual technique in SIMPLO CMS!
+
+### Model URL
+
+In this part of the complete guide, we will talk about **Model URL**. An entity can have SEO friendly url where users can visit
+an item of some entity on a public web. Including the SEO friendly url, this model url feature makes for example automatically redirects when
+the url was changed (because of change some part of url slug). Let's try to implement this feature for your entity!
+
+How you know as well, the first step is just create a column for a database table.
+
+```php 
+...
+
+$table->string('url');
+
+...
+```
+
+It's nothing much, but it's everything. Just create an url string column for storing a generated url.
+
+After this step, open the `YourEntity` model for doing the following changes:
+
+1. Use `App\Traits\HasUrl` trait in your module. This trait adds few usable methods which manipulate with the url.
+2. Implements `App\Models\Interfaces\UrlInterface` interface. It's important for recognizing by **SIMPLO CMS** if your model
+has an url.
+3. For [Mass Assignment](https://laravel.com/docs/5.8/eloquent#mass-assignment), add an `url` column in `$fillable` property.
+4. This step is optional, but we recommend for doing that. Overwrite the `getUrlPrefix` method and defines your custom url prefix there. By default, it's
+just only an url prefix with language code (if the model is a multilingual) and nothing more. It cannot be enough for all models what you will
+create for the future as well.
+
+Then, open the `YourEntityForm` and add `url` column inside the `$formAttributes` for fully loading it to the form view. With this step,
+it's necessary to change the `admin/entity/form/_tab_details.blade.php` view. There, you can use the following changes:
+
+```html
+{{-- Nazev --}}
+<v-form-group :required="true" :error="form.getError('name')">
+    {!! Form::label('name', trans("module-yourmodule::entity/form.labels.name")) !!}
+    {!! Form::text('name', null, [
+        'class' => 'form-control maxlength',
+        'maxlength' => '191',
+        ':value' => 'form.name',
+        '@change' => 'onNameChanged'
+    ]) !!}
+</v-form-group>
+
+{{-- URL slug --}}
+<v-form-group :required="true" :error="form.getError('url')">
+    {!! Form::label('url', trans("module-yourmodule::entity/form.labels.url")) !!}
+    {!! Form::text('url', null, [
+        'class' => 'form-control maxlength',
+        'maxlength' => '191',
+        ':value' => 'form.url',
+        '@change' => 'onUrlChanged'
+    ]) !!}
+</v-form-group>
+```
+
+For understandable the source code above, let's make the changes in `entities.form.js` as well:
+
+```js
+...
+
+Vue.component('yourmodule-entity-form', {
+    ...
+
+    methods: {
+
+        /**
+         * Fired when name is changed.
+         * @param {Event} $event
+         */
+        onNameChanged($event) {
+            this.form.name = $event.target.value;
+
+            if (this.form.url === null || !this.form.url.length) {
+                this.form.url = this.form.name;
+            }
+        },
+
+        /**
+         * Fired when url is changed.
+         * @param {Event} $event
+         */
+        onUrlChanged($event) {
+            this.form.url = $event.target.value;
+        }
+
+    },
+
+    watch: {
+        'form.url'(newUrl) {
+            this.form.url = Converter.removeDiacritics(newUrl);
+        }
+    }
+
+});
+```
+
+It's understandable already more. For just an explanation, when an administrator will change the `name` input, 
+the `url` input will be filled in by the `name` input and then with `Converter` library, this new `url` input value 
+will be updated by `removeDiacritics` method. An url slug cannot contain any diacritic, so it's important for removing them.
+
+> **You are free to implement** the `url` input **behavior** how you want. You **do not develop that the same**, but **remember** the `url` 
+> slug **cannot contain any diacritics**. It means if administrators of your module entity will be able to fill in this field by themselves,
+> it's **necessary** to make some corrections on a server side.
+
+After the implementing an input `url` field, add a validation rule to the `YourEntityRequest`. Probably it will look the same like the request validation below:
+
+```php
+<?php
+...
+    $rules = [
+        ...
+        'url' => 'required|max:191'
+        ...
+    ];
+...
+```
+
+Do not forget for adding the `url` column in the `getValues` method as well.
+
+Now, there is only a last step for the correct implementation of Model URL. Everything's fine and we are able to fill in the url slug
+with a request validation. But what about a storing this url slug to the database? In the `App\Traits\HasUrl` trait, there is the `registerUrlObserver`
+method and this method registers for the model few events. These events serve for creating, updating and deleting the url slug of the entity
+item. When we want to register this events for our `YourEntity` model, it's necessary to call it somewhere. The perfect place for doing this is
+the `Modules\YourModule\Providers\ServiceProvider` provider.
+
+```php
+<?php
+...
+
+use Modules\YourModule\Models\YourEntity;
+
+...
+
+class ServiceProvider extends BaseProvider implements DeferrableProvider
+{
+    /**
+     * Namespace of module resources and configuration.
+     * @var string
+     */
+    protected $namespace = 'module-yourmodule';
+
+    /**
+     * Boot the application events.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        ...
+
+        YourEntity::registerUrlObserver();
+    }
+```
+
+After that, it's just everything for the completed using the SEO friendly url slugs! 
