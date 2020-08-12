@@ -746,7 +746,7 @@ You can extend this code how you need. Let's make the form view:
                     method="{{ $item->exists ? 'PATCH' : 'POST' }}"
                     id="yourmodule-entity-form"
                     action="{{ $submitUrl }}">
-                @include('module-yourmodule::admin.category.form.layout')
+                @include('module-yourmodule::admin.entity.form.layout')
 
                 <div class="form-group mt15">
                     {!! Form::button($item->exists ? trans('module-yourmodule::entity/form.btn_update') : trans('module-yourmodule::entity/form.btn_create'), [
@@ -754,7 +754,7 @@ You can extend this code how you need. Let's make the form view:
                         'type' => 'submit'
                     ]) !!}
 
-                    <a href="{{ URL::previous() }}" class='btn btn-default'>
+                    <a href="{{ URL::previous() }}" class="btn btn-default">
                         {{ trans('module-yourmodule::entity/form.btn_cancel') }}
                     </a>
                 </div>
@@ -772,7 +772,41 @@ You can extend this code how you need. Let's make the form view:
 @endpush
 ```
 
-With this view, we need to create a few partial views: `layout.blade.php` and `_tabs_detail.blade.php`.
+With this view, we need to create a few partial views: `layout.blade.php` and `_tabs_detail.blade.php` in `admin/entity/form` directory.
+
+`admin/entity/form/layout.blade.php`
+```html
+<?php /** @var \Modules\YourModule\Models\YourEntity $item */ ?>
+
+@include('admin.vendor.form.panel_errors')
+
+<v-tabs class="nav-tabs-custom" no-fade>
+    {{-- General --}}
+    <v-tab title="{{ trans('module-yourmodule::entity/form.tabs.details') }}"
+           href="#general"
+           active>
+        @include('module-yourmodule::admin.entity.form._tab_details')
+    </v-tab>
+</v-tabs>
+```
+
+`admin/entity/form/_tabs_detail.blade.php`
+```html
+{{-- Name --}}
+<v-form-group :required="true" :error="form.getError('name')">
+    {!! Form::label('name', trans("module-yourmodule::entity/form.labels.name")) !!}
+    {!! Form::text('name', null, [
+        'class' => 'form-control maxlength',
+        'maxlength' => '191',
+        'v-model' => 'form.name',
+    ]) !!}
+</v-form-group>
+```
+
+In `admin/entity/form/_tabs_detail.blade.php` file, you can notice that we still use **Vue.js** library. 
+
+> This example above is just **only for this demonstration** and `name` is just only an example column. This column will be stored 
+> in our `YourEntity` model (and a database table).
 
 Now, we can go back to `YourEntityController` and implement there the source code. This code can look like the one below:
 
@@ -803,6 +837,174 @@ use Modules\YourModule\Components\Forms\YourEntityForm;
 
 ...
 ```
+
+**`YourEntityController::store()`**
+
+Before the implementing of the `store` method, we need to create a request with validation rules. Let's make it:
+
+```php
+<?php
+
+namespace Modules\YourModule\Http\Requests\Admin;
+
+use App\Http\Requests\AbstractFormRequest;
+
+class YourEntityRequest extends AbstractFormRequest
+{
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        $rules = [
+            'name' => 'required|max:191'
+        ];
+
+        return $rules;
+    }
+
+    /**
+     * Get the validation messages.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return trans('module-yourmodule::entity/form.messages');
+    }
+
+    /**
+     * Return input values.
+     *
+     * @return array
+     */
+    public function getValues(): array
+    {
+        $input = $this->all([
+            'name'
+        ]);
+
+        return $input;
+    }
+}
+```
+
+It's just everything for our purpose. Now, continue in our `YourEntityController`.
+
+```php
+<?php
+...
+
+use Modules\YourModule\Http\Requests\Admin\YourEntityRequest;
+
+...
+
+    /**
+     * POST: Store
+     *
+     * @param YourEntityRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store(YourEntityRequest $request)
+    {
+        YourEntity::query()->create($request->getValues());
+
+        flash(trans('module-yourmodule::entity/general.notifications.created'), 'success');
+        return $this->redirect(route('module.your_module.entity.index'));
+    }
+
+...
+```
+
+That's all about `store` method. If you need to implement more, you can do it what you want. You do not have any limits!
+
+**`YourEntityController::edit()`**
+
+For the next step, we will implement `edit` method. Because of a fact that we have prepared everything during the previous steps, we can
+implement our code immediately inside the `YourEntityController`.
+
+```php
+<?php
+...
+
+    /**
+     * GET: Edit
+     *
+     * @param YourEntity $item
+     * @return \Illuminate\View\View
+     * @throws \Exception
+     */
+    public function edit(YourEntity $item)
+    {
+        $this->setTitleDescription(
+            trans('module-yourmodule::entity/admin.pages.edit.title'),
+            trans('module-yourmodule::entity/admin.pages.edit.description'));
+
+        $form = new YourEntityForm($item);
+        return $form->getView();
+    }
+
+...
+```
+
+For our `edit` method, that's all. Nothing more for doing here.
+
+**`YourEntityController::update()`**
+
+The `update` method will be almost the same like the `store` method. Just here we will work with an existed item.
+
+```php 
+<?php
+...
+
+    /**
+     * PATCH: Update
+     *
+     * @param YourEntityRequest $request
+     * @param YourEntity $item
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(YourEntityRequest $request, YourEntity $item)
+    {
+        $item->fill($request->getValues());
+        $item->save();
+
+        flash(trans('module-yourmodule::entity/general.notifications.updated'), 'success');
+        return $this->redirect(route('module.your_module.entity.index'));
+    }
+
+...
+```
+
+**`YourEntityController::delete()`**
+
+Now, this is the last step which we will do in `YourEntityController`.
+
+```php 
+<?php
+...
+
+    /**
+     * DELETE: Delete
+     *
+     * @param YourEntity $item
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
+    public function delete(YourEntity $item)
+    {
+        $item->delete();
+
+        flash(trans('module-yourmodule::entity/general.notifications.deleted'), 'success');
+        return $this->refresh();
+    }
+
+...
+```
+
+In the `YourEntityController` controller, we finished the work! **It's time to check** if everything is working well.
 
 ### SEO, Open Graph
 

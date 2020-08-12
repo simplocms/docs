@@ -41,10 +41,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a4413e82-a47e-49c1-b40b-bf3bdc6b5de0" name="Default Changelist" comment="feat: Update Modules / Complete Guide">
-      <change afterPath="$PROJECT_DIR$/docs/modules/localization.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/modules/complete-guide.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/modules/complete-guide.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/sidebars.json" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,14 +133,7 @@
       <workItem from="1596431076483" duration="16039000" />
       <workItem from="1597031224101" duration="4104000" />
       <workItem from="1597060096941" duration="1000" />
-      <workItem from="1597226206345" duration="8980000" />
-    </task>
-    <task id="LOCAL-00047" summary="feat: update Core / Helpers">
-      <created>1578341414608</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1578341414608</updated>
+      <workItem from="1597226206345" duration="11123000" />
     </task>
     <task id="LOCAL-00048" summary="feat: update Core / Helpers -&gt; Functions helper">
       <created>1578410002888</created>
@@ -480,7 +471,14 @@
       <option name="project" value="LOCAL" />
       <updated>1597048541089</updated>
     </task>
-    <option name="localTasksCounter" value="96" />
+    <task id="LOCAL-00096" summary="feat: update Modules/Complete Guide, create Modules/Localization - add to menu">
+      <created>1597244757965</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1597244757965</updated>
+    </task>
+    <option name="localTasksCounter" value="97" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -499,7 +497,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: update Modules / Database" />
     <MESSAGE value="feat: update Core / Helpers, add Modules / Helpers" />
     <MESSAGE value="feat: update Modules / Helpers" />
     <MESSAGE value="feat: add Modules / Compiling Assets, Modules / Artisan Console" />
@@ -524,7 +521,8 @@
     <MESSAGE value="feat: update sidebars.json (menu); update Theme / Routing, update Modules / Routing, update Modules / Models, update Modules / For Grid Editor, update Modules / Database, update Modules / Controllers, update Modules / Configuration, update Modules / Complete Guide" />
     <MESSAGE value="feat: Update Modules / Complete Guide" />
     <MESSAGE value="feat: update Modules / Complete Guide" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: update Modules / Complete Guide" />
+    <MESSAGE value="feat: update Modules/Complete Guide, create Modules/Localization - add to menu" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: update Modules/Complete Guide, create Modules/Localization - add to menu" />
   </component>
   <component name="WindowStateProjectService">
     <state x="144" y="79" key="DiffContextDialog" timestamp="1597048555745">
