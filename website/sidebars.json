@@ -28,6 +28,7 @@
       "modules/compiling-assets",
       "modules/artisan-console",
       "modules/resources",
+      "modules/localization",
       "modules/events",
       "modules/complete-guide",
       "modules/for-grid-editor"

@@ -285,6 +285,525 @@ assets. For these information, you can visit the following pages:
 
 The best idea is when you will read all pages above. Then if you will know everything important, you can continue in this **Complete Guide**.
 
+### Basic Implementation
+
+After what you have read everything above, and you will know how to make a database migration, a model, a controller and another things
+for your model, you are ready to learn how you can implement your module into the administration of **SIMPLO CMS**.
+
+For a database migration and a model, there is nothing necessary for basic implementation in **SIMPLO CMS**. Just define them how you want.
+
+When you made them, let's go on together. First, it's a good attitude for define few routes. Open `Http/routes.php` file inside your module and up to what you will need, it's
+a good way to have something similar like the source code below:
+
+```php
+<?php
+
+Route::group([
+    'middleware' => 'web',
+    'prefix' => 'admin/module/your-module',
+    'namespace' => 'Modules\YourModule\Http\Controllers\Admin',
+    'as' => 'module.your_module.'
+], function () {
+
+    Route::group([
+        'prefix' => 'your-entity',
+        'as' => 'your_entity.'
+    ], function () {
+
+        Route::get('/', [
+            'as' => 'index',
+            'uses' => 'YourEntityController@index',
+        ]);
+    
+        Route::get('create', [
+            'as' => 'create',
+            'uses' => 'YourEntityController@create',
+        ]);
+    
+        Route::post('store', [
+            'as' => 'store',
+            'uses' => 'YourEntityController@store',
+        ]);
+    
+        Route::get('edit/{item}', [
+            'as' => 'edit',
+            'uses' => 'YourEntityController@edit',
+        ]);
+    
+        Route::patch('update/{item}', [
+            'as' => 'update',
+            'uses' => 'YourEntityController@update',
+        ]);
+    
+        Route::delete('delete/{item}', [
+            'as' => 'delete',
+            'uses' => 'YourEntityController@delete',
+        ]);
+
+    });
+
+});
+```
+
+Of course, you can have there more routes if you need them. But the routes above, it's a good attitude for implementing few basic routes
+for an editable entity with show, create, edit, delete areas.
+
+> If you will have **more editable entities in one module**, then **the best way for definition of their routes** is just creating them in **more route groups**. Everything's up to
+> your decision. You are free to make your routes how you want, but **do not forget** on the middleware `web`, the prefix url `admin/module/your-module` and the alias `module.your_module` for
+> better understandable code.
+
+After definition of the routes, create a controller with these methods from routes. It's a good attitude when you will make `Admin` directory in `Http/Controllers` and inside this directory, you will create
+this controller.
+
+```php
+<?php
+
+namespace Modules\YourModule\Http\Controllers\Admin;
+
+use App\Http\Controllers\Admin\AdminController;
+
+class YourEntityController extends AdminController
+{
+    /**
+     * YourModuleController constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->middleware('permission:module_yourmodule-show')
+            ->only(['index']);
+
+        $this->middleware('permission:module_yourmodule-create')
+            ->only(['create', 'store']);
+
+        $this->middleware('permission:module_yourmodule-edit')
+            ->only(['edit', 'update']);
+
+        $this->middleware('permission:module_yourmodule-delete')
+            ->only('delete');
+    }
+
+    /**
+     * GET: Index
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\View\View
+     */
+    public function index(Request $request)
+    {
+        // TODO: we will create the source code later
+    }
+
+    /**
+     * GET: Create
+     *
+     * @return \Illuminate\View\View
+     * @throws \Exception
+     */
+    public function create()
+    {
+        // TODO: we will create the source code later
+    }
+
+    /**
+     * POST: Store
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store()
+    {
+        // TODO: we will create the source code later
+    }
+
+    /**
+     * GET: Edit
+     *
+     * @return \Illuminate\View\View
+     * @throws \Exception
+     */
+    public function edit()
+    {
+        // TODO: we will create the source code later
+    }
+
+    /**
+     * PATCH: Update
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update()
+    {
+        // TODO: we will create the source code later
+    }
+
+    /**
+     * DELETE: Delete
+     *
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
+    public function delete()
+    {
+        // TODO: we will create the source code later
+    }
+}
+```
+
+> **Do not forget** that the controller for extending of the administration in **SIMPLO CMS** must extend from `App\Http\Controllers\Admin\AdminController`.
+
+The source code above, it's a good starting position for our first entity controller in a module. Now, we will write the source code
+inside the methods. For the first step, let's implement `index`.
+
+**`YourEntityController::index()`**
+
+This request handle method shows a table which will consists of items from database. Before implementing a source code here, we need to
+create a datatable component. Go to `Components/DataTables` folder of your module (if it does not exist, make it) and create a new 
+datatable component there - `YourEntityTable`.
+
+```php
+<?php
+
+namespace Modules\YourModule\Components\DataTables;
+
+use App\Components\DataTables\AbstractDataTable;
+use App\Models\User;
+use App\Structures\DataTable\FilterOptions;
+use Illuminate\Support\Collection;
+use Modules\YourModule\Models\YourEntity;
+
+class YourEntityTable extends AbstractDataTable
+{
+    /** @var \App\Models\User */
+    private $user;
+
+    /**
+     * YourEntityTable constructor.
+     */
+    public function __construct(User $user)
+    {
+        $this->user = $user;
+
+        parent::__construct();
+    }
+
+    /**
+     * Initialize datatable.
+     */
+    protected function initialize(): void
+    {
+        $this->createColumn('name', trans('module-yourmodule::your-entity/form.labels.name'))
+            ->makeSortable(); // it means that this column will be able to use for sorting
+
+        $this->setActionsVisibility($this->user->can(['module_yourmodule-edit', 'module_yourmodule-delete']));
+    }
+
+    /**
+     * Get data query.
+     *
+     * @param \App\Structures\DataTable\FilterOptions $filterOptions
+     * @return \Illuminate\Database\Query\Builder
+     */
+    protected function getDataQuery(FilterOptions $filterOptions)
+    {
+        $query = YourEntity::query();
+
+        // check active a column for sorting
+        switch ($filterOptions->getSortingColumn()) {
+            case 'name':
+                // - `sort` method has one optional parameter `$column`, which we do not have to specify if
+                // we want to sort items with the same column name as the name in a database table of the entity
+                $filterOptions->sort();
+                break;
+        }
+
+        // with this method, we can specify columns for searching
+        $filterOptions->searchOnColumns('name');
+        return $query;
+    }
+
+    /**
+     * Fill table with fetched data.
+     *
+     * @param \Illuminate\Support\Collection|YourEntity[] $items
+     * @return void
+     */
+    protected function fill(Collection $items): void
+    {
+        foreach ($items as $item) {
+            $row = $this->addRow($item->getKey());
+
+            $routeParams = [
+                'item' => $item->id
+            ];
+
+            // Edit
+            if ($this->user->can('module_yourmodule-edit')) {
+                $row->setDoubleClickAction(route('module.your_module.entity.edit', $routeParams));
+                $row->addControl(
+                    trans('module-yourmodule::entity/form.btn_edit'),
+                    route('module.your_module.entity.edit', $routeParams),
+                    'pencil-square-o'
+                );
+            }
+
+            // Delete
+            if ($this->user->can('module_yourmodule-delete')) {
+                $row->addControl(
+                    trans('module-yourmodule::entity/general.table.btn_delete'),
+                    route('module.your_module.entity.delete', [$item->getKey()]),
+                    'trash'
+                )->setDelete(trans('module-yourmodule::entity/general.confirm_delete'));
+            }
+
+            // Preview
+            $row->addControl(trans('module-yourmodule::entity/general.table.btn_preview'), $item->full_url, 'eye')
+                ->setTarget('_blank');
+
+            // Columns
+            $row->addColumn('name', $item->name);
+        }
+    }
+}
+```
+
+After create the datatable component, we can finish an implementation of `index` method. It will be simple and we can use
+just something similar below:
+
+```php
+...
+
+use Modules\YourModule\Components\DataTables\YourEntityTable;
+
+...
+
+    /**
+     * GET: Index
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\View\View
+     */
+    public function index(Request $request)
+    {
+        $this->setTitleDescription(
+            trans('module-yourmodule::entity/admin.pages.index.title'),
+            trans('module-yourmodule::entity/admin.pages.index.description'));
+
+        $table = new YourEntityTable($this->getUser());
+        return $table->toResponse($request, 'module-yourmodule::admin.entity.index');
+    }
+
+...
+```
+
+After this implementation, you need to create the `module-yourmodule::admin.entity.index` view. In the module's directory `admin/entity`
+(if this path does not exist then make it) create the `index` view there. In this view, there will be the source code below:
+
+```html
+<?php /** @var \Modules\YourModule\Components\DataTables\YourEntityTable $table */ ?>
+@extends('admin.layouts.master')
+
+@section('content')
+  <v-datatable :table="{{ $table->toJson() }}"></v-datatable>
+
+  @permission('module_yourmodule-create')
+    <a href="{{ route('module.your_module.entity.create') }}" class="btn bg-teal-400 btn-labeled">
+      <b class="fa fa-pencil-square-o"></b> {{ trans('module-yourmodule::entity/form.btn_create') }}
+    </a>
+  @endpermission
+@endsection
+
+@section('breadcrumb-elements')
+  @permission('module_yourmodule-create')
+    <li>
+      <a href="{{ route('module.module_yourmodule.entity.create') }}">
+        <i class="fa fa-pencil-square-o"></i> {{ trans('module-yourmodule::entity/form.btn_create') }}
+      </a>
+    </li>
+  @endpermission
+@endsection
+```
+
+The datatable will be loaded by **Vue.js** in the `index` view (`v-datatable` vue.js component).
+
+> For getting more about **Vue.js**, you can visit [the official documentation](https://vuejs.org/).
+
+It's everything what you need to do in the `index` view for your module entity. For sure, you can modify this view how you need.
+
+**`YourEntityController::create()`**
+
+The `create` method shows a form for creating a new entity item. Before this implementation, we will need to create a form component. Move to the
+`Components/Form` directory and create there `YourEntityForm` class. A source code can look like the source code below:
+
+```php
+<?php
+
+namespace Modules\YourModule\Components\Forms;
+
+use App\Components\Forms\AbstractForm;
+use Modules\YourModule\Models\YourEntity;
+
+class YourEntityForm extends AbstractForm
+{
+    /**
+     * View name.
+     *
+     * @var string
+     */
+    protected $view = 'module-yourmodule::admin.entity.form';
+
+    /**
+     * Your Entity.
+     *
+     * @var YourEntity
+     */
+    protected $entity;
+
+    /**
+     * Mix Manifest Directory
+     *
+     * @var mixed
+     */
+    protected $mixManifestDirectory = 'modules/YourModule';
+
+    /**
+     * Your Entity form.
+     *
+     * @param YourEntity $entity
+     * @throws \Exception
+     */
+    public function __construct(YourEntity $entity)
+    {
+        parent::__construct();
+        $this->entity = $entity;
+
+        $this->addScript(url('plugin/js/bootstrap-maxlength.js'));
+        $this->addScript(mix('entities.form.js', $this->mixManifestDirectory));
+    }
+
+    /**
+     * Get view data.
+     *
+     * @return array
+     */
+    public function getViewData(): array
+    {
+        $formAttributes = [
+            'name'
+        ];
+
+        return [
+            'entity' => $this->entity,
+            'formValuesJson' => $this->entity->getFormAttributesJson($formAttributes),
+            'submitUrl' => $this->entity->exists ?
+                route('module.your_module.entity.update', ['item' => $this->entity]) :
+                route('module.your_module.entity.store'),
+            'cancelUrl' => route('module.your_module.entity.index'),
+        ];
+    }
+}
+```
+
+> How you can notice in the source code above, this form component **will be used for create and edit** as well.
+
+For this form component, we need to create the `entities.form.js` javascript file and the `module-yourmodule::admin.entity.form` view.
+This javascript file will be stored in `Assets/js` folder with the basic source code below:
+
+```js
+import Form from '../../../../../../resources/assets/js/vendor/Form';
+
+Vue.component('yourmodule-entity-form', {
+    data() {
+        return {
+            form: new Form({
+                ...this.item
+            })
+        };
+    },
+
+    props: {
+        item: {
+            type: Object,
+            required: true
+        }
+    }
+
+});
+```
+
+You can extend this code how you need. Let's make the form view:
+
+```html
+<?php /** @var \Modules\YourModule\Models\YourEntity $item */ ?>
+@extends('admin.layouts.master')
+
+@section('content')
+    <yourmodule-entity-form inline-template
+                           :item="{{ $formValuesJson }}"
+                           v-cloak>
+        <div class="box-body">
+            <v-form :form="form"
+                    method="{{ $item->exists ? 'PATCH' : 'POST' }}"
+                    id="yourmodule-entity-form"
+                    action="{{ $submitUrl }}">
+                @include('module-yourmodule::admin.category.form.layout')
+
+                <div class="form-group mt15">
+                    {!! Form::button($item->exists ? trans('module-yourmodule::entity/form.btn_update') : trans('module-yourmodule::entity/form.btn_create'), [
+                        'class' => 'btn bg-teal-400',
+                        'type' => 'submit'
+                    ]) !!}
+
+                    <a href="{{ URL::previous() }}" class='btn btn-default'>
+                        {{ trans('module-yourmodule::entity/form.btn_cancel') }}
+                    </a>
+                </div>
+            </v-form>
+        </div>
+    </yourmodule-entity-form>
+@endsection
+
+@push('style')
+    @include('admin.vendor.form._styles')
+@endpush
+
+@push('script')
+    @include('admin.vendor.form._scripts')
+@endpush
+```
+
+With this view, we need to create a few partial views: `layout.blade.php` and `_tabs_detail.blade.php`.
+
+Now, we can go back to `YourEntityController` and implement there the source code. This code can look like the one below:
+
+```php 
+...
+
+use Modules\YourModule\Components\Forms\YourEntityForm;
+
+...
+
+    /**
+     * GET: Create
+     *
+     * @return \Illuminate\View\View
+     * @throws \Exception
+     */
+    public function create()
+    {
+        $this->setTitleDescription(
+            trans('module-yourmodule::entity/admin.pages.create.title'),
+            trans('module-yourmodule::entity/admin.pages.create.description'));
+
+        $item = new YourEntity();
+
+        $form = new YourEntityForm($item);
+        return $form->getView();
+    }
+
+...
+```
+
 ### SEO, Open Graph
 
 If you want to have a new entity with some editable SEO and Open Graph fields, then read this section.
