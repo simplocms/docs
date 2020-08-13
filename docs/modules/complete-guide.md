@@ -8,11 +8,9 @@ title: Complete Guide
 With modules, developers can extend an application and SIMPLO CMS about new entities or just extend only Grid Editor.
 If you are interesting about these things and how you can make them, you are on the right page. Let's develop them together.
 
-## Complete Guide - Make A New Entity
-
 For this complete guide, we will describe a lot of features, what SIMPLO CMS offers for developers with modules.
 
-### First Steps
+## First Steps
 
 For the first step, we need to make a module's directory with everything what we will need for the module's developing. The best and
 the easiest way is just make a copy of some existing module. Unfortunately by default, SIMPLO CMS consists of only modules, which are
@@ -272,7 +270,7 @@ in the next steps about our module's developing with us!
 
 > If you want, **you can use this starting position also for another modules**.
 
-### How To Make - Database, Models, Controllers, Compiling Assets, Events
+## How To Make - Database, Models, Controllers, Compiling Assets, Events
 
 Before the following rows, you need to get more, how to define a database migration, a model, a controller, an event or how to compiling
 assets. For these information, you can visit the following pages:
@@ -285,7 +283,7 @@ assets. For these information, you can visit the following pages:
 
 The best idea is when you will read all pages above. Then if you will know everything important, you can continue in this **Complete Guide**.
 
-### Basic Implementation
+## Basic Implementation
 
 After what you have read everything above, and you will know how to make a database migration, a model, a controller and another things
 for your model, you are ready to learn how you can implement your module into the administration of **SIMPLO CMS**.
@@ -1028,7 +1026,9 @@ more what SIMPLO CMS offers, continue in this guide.
 > If you **want to create routes** for **a public web**, then use for this purpose directly your **theme working place**. For working with a theme,
 > go to [Theme](../theme/general.md)
 
-### SEO, Open Graph
+## Permission
+
+## SEO, Open Graph
 
 If you want to have a new entity with some editable SEO and Open Graph fields, then read this section.
 
@@ -1223,7 +1223,7 @@ class YourEntityRequest extends AbstractFormRequest
 
 It's done! Now you can go to the administration of your module's entity and check if there will be new SEO and Open Graph tabs.
 
-### Multilingual
+## Multilingual
 
 SIMPLO CMS can have a multilingual content. The multilingual technique offers you to have different entity records for 
 all available languages. In the section, we will show you how you can do that.
@@ -1324,7 +1324,7 @@ After that, go to `YourEntityController` and according to the changes above, we 
 
 That's everything for the implementation of the multilingual technique in SIMPLO CMS!
 
-### Model URL
+## Model URL
 
 In this part of the complete guide, we will talk about **Model URL**. An entity can have SEO friendly url where users can visit
 an item of some entity on a public web. Including the SEO friendly url, this model url feature makes for example automatically redirects when
@@ -1493,3 +1493,1109 @@ If you do not want to have only single url then you can set `$hasSingleUrl` prop
 For turning off automatically url sync, you can use `$manualUrlsSync` property and set it to `true`. TODO!!!
 
 TODO !!! describe about redirecting and something like that.
+
+## Media Library File
+
+If you want to attach a file from [Media Library](../core/media-library.md), read this section of this complete guide.
+
+For the first step of course, we will need to increase a database table using a migration.
+
+```php 
+<?php
+...
+
+$table->media('file_id');
+
+...
+```
+
+You do not keep the `file_id` name for your media library file column. 
+
+> If **you are interested in** about the `media` macro, you can check the source code inside the `App\Providers\MediaLibraryProvider` service provider.
+
+After running this database migration, you will be able to store a file id to your database. 
+
+If you wish to attach only image file from Media Library, it's necessary to use `App\Traits\MediaImageTrait` trait in your
+`YourEntity` model. After that, add `file_id` column to `$fillable` array for [Mass Assignment](https://laravel.com/docs/5.8/eloquent#mass-assignment) and
+for better work with empty value, add this column to `$nullIfEmpty` as well. With that, make a correct integer casting for the `file_id` column using `$casts` array.
+How a last step in `YourEntity` model, add `$this->belongsTo(File::class, 'file_id');` relationship source code. In the `YourEntity` model, just we are done.
+
+For the next step, we must add `file_id` column to `$formAttributes` variable in `YourEntityForm`. With this update, it's necessary to increase the `admin/entity/form/_tab_details.blade.php` file
+about `file_id` input.
+
+```html
+...
+
+{{-- Media Library File --}}
+<v-form-group :has-error="form.hasError('file_id')">
+  {!! Form::label('file_id', trans("module-yourmodule::entity/form.labels.file_id")) !!}
+
+  <media-library-file-selector :image="true"
+                               name="file_id"
+                               :error="form.getError('file_id')"
+                               v-model="form.file_id"
+  ></media-library-file-selector>
+</v-form-group>
+
+...
+```
+
+If the file from Media Library will not be only image file, then you must remove `:image="true"` from the source code above.
+
+Now, it's only last step in front of us. Open `YourEntityRequest` and make the following changes:
+
+1. If your Media Library file will be only image, then add `'file_id' => ['nullable', new MediaImageRule]` rule validation. If it's not just an image file, then
+do not use `App\Rules\MediaImageRule`.
+2. Add your Media Library file column in the `getValues` method.
+
+After the steps above, you can try if everything is fine.
+
+## Publishing Mechanism
+
+## Grid Editor Implementation
+
+## Photogallery Entity
+
+SIMPLO CMS offers you to make a wonderful photogallery entity. Everything, what you will need, is a part of SIMPLO CMS.
+
+For the first step, it's necessary to prepare database tables. For a purpose of the photogallery, we need to have minimum 2 database
+tables - `photogalleries` and `photogallery_photos`.
+
+```php 
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreatePhotogalleriesTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('photogalleries', function (Blueprint $table) {
+            $table->increments('id');
+
+            $table->string('title');
+            $table->string('url');
+
+            $table->text('text')->nullable()->default(null);
+
+            $table->string('seo_title')->nullable()->default(null);
+            $table->text('seo_description')->nullable()->default(null);
+
+            $table->boolean('seo_index')->default(true);
+            $table->boolean('seo_follow')->default(true);
+            $table->boolean('seo_sitemap')->default(true);
+
+            $table->text('open_graph')->nullable();
+
+            $table->timestamps();
+        });
+
+        Schema::create('photogallery_photos', function (Blueprint $table) {
+            $table->increments('id');
+
+            $table->unsignedInteger('photogallery_id')->nullable()->default(null);
+            $table->foreign('photogallery_id')->references('id')->on('photogalleries')
+                ->onDelete('cascade');
+
+            $table->string('title')->nullable()->default(null);
+            $table->string('author')->nullable()->default(null);
+            $table->media('image_id');
+
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('photogallery_photos');
+        Schema::dropIfExists('photogalleries');
+    }
+}
+```
+
+You do not keep the source code strictly. If you are not comfortable to have [SEO, Open Graph](modules/complete-guide.md#seo-open-graph) 
+or [Model URL](modules/complete-guide#model-url) for your photogallery, you do not need to have it there. Just remove these database 
+migration columns and make your photogallery without them.
+
+After running these database migrations, make two models:
+
+```php
+<?php
+
+namespace Modules\YourModule\Models\Photogallery;
+
+use App\Contracts\PhotogalleryInterface;
+use App\Contracts\ViewableModelInterface;
+use App\Services\FrontWeb\FrontWebData;
+use App\Services\FrontWeb\FrontWebService;
+use App\Services\FrontWebTools\ToolbarOptions;
+use App\Traits\AdvancedEloquentTrait;
+use App\Traits\OpenGraphTrait;
+use App\Traits\PhotogalleryTrait;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Collection;
+
+/**
+ * Class Photogallery
+ * @package \Modules\YourModule\Models\Photogallery\Photogallery
+ * @author SIMPLO, s.r.o.
+ * @copyright SIMPLO, s.r.o.
+ *
+ * @property int views
+ * @property string title
+ * @property string url
+ * @property string|null text
+ * @property string|null seo_title
+ * @property string|null seo_description
+ * @property bool seo_index
+ * @property bool seo_follow
+ * @property bool seo_sitemap
+ * @property \Carbon\Carbon created_at
+ * @property \Carbon\Carbon updated_at
+ */
+class Photogallery extends Model implements
+    PhotogalleryInterface,
+    ViewableModelInterface
+{
+    use AdvancedEloquentTrait,
+        PhotogalleryTrait,
+        OpenGraphTrait;
+
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'photogalleries';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'title', 'url', 'text', 'open_graph',
+        'seo_title', 'seo_description', 'seo_index', 'seo_follow', 'seo_sitemap'
+    ];
+
+    /**
+     * The attributes that are set to null when the value is empty
+     *
+     * @var array
+     */
+    protected $nullIfEmpty = [
+        'text', 'seo_title', 'seo_description',
+    ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'seo_index' => 'boolean',
+        'seo_follow' => 'boolean',
+        'seo_sitemap' => 'boolean',
+    ];
+
+    /**
+     * Photos.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function photos(): HasMany
+    {
+        return $this->hasManyPhotos('photogallery_photos', 'photogallery_id');
+    }
+
+    /**
+     * Get view data of the model.
+     *
+     * @param \App\Services\FrontWeb\FrontWebData $data
+     * @return \App\Services\FrontWeb\FrontWebData
+     */
+    public function setFrontWebData(FrontWebData $data): FrontWebData
+    {
+        $data->setTitle($this->seo_title ?: $this->title);
+        $data->setDescription($this->seo_description);
+        $data->setIndex($this->seo_index);
+        $data->setFollow($this->seo_follow);
+        $data->setOpenGraphTags([
+            'og:title' => $this->open_graph->get('title'),
+            'og:description' => $this->open_graph->get('description'),
+            'og:type' => $this->open_graph->get('type', 'website'),
+            'og:url' => $this->open_graph->get('url'),
+            'og:image' => $this->open_graph->hasImage() ? $this->open_graph->makeImageLink()->getUrl() : null
+        ]);
+
+        return $data;
+    }
+
+    /**
+     * Set options for front-web toolbar.
+     *
+     * @param \App\Services\FrontWebTools\ToolbarOptions $options
+     */
+    public function setFrontWebToolbarOptions(ToolbarOptions $options): void
+    {
+        $options->addControl(
+            trans('module-yourmodule::photogallery/admin.frontweb_toolbar.btn_edit'),
+            route('module.your_module.photogallery.edit', [$this->id]),
+            'edit'
+        );
+    }
+
+    /**
+     * Search photogalleries for given term.
+     *
+     * @param string $term
+     * @return \Illuminate\Support\Collection
+     */
+    public static function search(string $term): Collection
+    {
+        if (!strlen($term)) {
+            return collect([]);
+        }
+
+        return self::query()
+            ->get()
+            ->filter(function (self $photogallery) use ($term) {
+                return mb_stripos($photogallery->title, $term) !== false ||
+                    mb_stripos($photogallery->seo_title, $term) !== false ||
+                    mb_stripos(strip_tags($photogallery->text), $term) !== false;
+            });
+    }
+
+}
+```
+
+```php
+<?php
+
+namespace Modules\YourEntity\Models\Photogallery;
+
+use App\Models\Media\File;
+use App\Traits\AdvancedEloquentTrait;
+use App\Traits\MediaImageTrait;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
+/**
+ * Class Photo
+ * @package \Modules\YourEntity\Models\Photogallery\Photo
+ * @author SIMPLO, s.r.o.
+ * @copyright SIMPLO, s.r.o.
+ *
+ * @property string|null title
+ * @property int image_id
+ *
+ * @property-read \App\Models\Media\File image
+ */
+class Photo extends Model
+{
+    use AdvancedEloquentTrait, 
+        MediaImageTrait;
+
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'photogallery_photos';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['title', 'image_id'];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'image_id' => 'int',
+    ];
+
+    /**
+     * Relation to image file.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function image(): BelongsTo
+    {
+        return $this->belongsTo(File::class, 'image_id');
+    }
+
+    /**
+     * Convert photo to array for photogallery.
+     *
+     * @return array
+     */
+    public function toArray()
+    {
+        return [
+            'id' => $this->getKey(),
+            'title' => $this->title,
+            'image' => optional($this->image)->toArray() ?? []
+        ];
+    }
+
+    /**
+     * Get image url.
+     *
+     * @return string
+     */
+    public function getUrl(): string
+    {
+        return $this->makeImageLink('image')->getUrl();
+    }
+
+    /**
+     * Create a new instance of the given model.
+     *
+     * @param  array  $attributes
+     * @param  bool  $exists
+     * @return Photo
+     */
+    public function newInstance($attributes = [], $exists = false)
+    {
+        /** @var Photo $model */
+        $model = parent::newInstance($attributes, $exists);
+        $model->setTable($this->getTable());
+
+        return $model;
+    }
+}
+```
+
+After creating all necessary models, open the `Http/routes.php` file in your module and make few routes:
+
+```php
+<?php
+
+Route::group([
+    'middleware' => 'web',
+    'prefix' => 'admin/module/your-module',
+    'namespace' => 'Modules\YourModule\Http\Controllers\Admin',
+    'as' => 'module.your_module.'
+], function () {
+
+    Route::group([
+        'prefix' => 'photogallery',
+        'as' => 'photogallery.'
+    ], function () {
+
+        Route::get('/', [
+            'as' => 'index',
+            'uses' => 'PhotogalleriesController@index',
+        ]);
+
+        Route::get('create', [
+            'as' => 'create',
+            'uses' => 'PhotogalleriesController@create',
+        ]);
+
+        Route::post('upload-photo/{photogallery?}', [
+            'as' => 'upload_photo',
+            'uses' => 'PhotogalleriesController@uploadPhoto',
+        ]);
+
+        Route::post('store', [
+            'as' => 'store',
+            'uses' => 'PhotogalleriesController@store',
+        ]);
+
+        Route::get('edit/{photogallery}', [
+            'as' => 'edit',
+            'uses' => 'PhotogalleriesController@edit',
+        ]);
+
+        Route::patch('update/{photogallery}', [
+            'as' => 'update',
+            'uses' => 'PhotogalleriesController@update',
+        ]);
+
+        Route::delete('delete/{photogallery}', [
+            'as' => 'delete',
+            'uses' => 'PhotogalleriesController@delete',
+        ]);
+
+        // Photo
+
+        Route::get('photo/list/{photogallery?}', [
+            'as' => 'photo.list',
+            'uses' => 'PhotogalleriesController@photoList',
+        ]);
+
+        Route::post('photo/update/{photogallery?}', [
+            'as' => 'photo.update',
+            'uses' => 'PhotogalleriesController@updatePhoto',
+        ]);
+
+        Route::delete('photo/{photo}/delete', [
+            'as' => 'photo.delete',
+            'uses' => 'PhotogalleriesController@deletePhoto',
+        ]);
+
+    });
+
+});
+```
+
+Now, we need to make a few classes - `PhotogalleryTable`, `PhotogalleryForm` and `PhotogalleryRequest`:
+
+```php
+<?php
+
+namespace Modules\YourModule\Components\DataTables;
+
+use App\Components\DataTables\AbstractDataTable;
+use App\Models\User;
+use App\Structures\DataTable\FilterOptions;
+use Illuminate\Support\Collection;
+use Modules\YourModule\Models\Photogallery\Photogallery;
+
+class PhotogalleryTable extends AbstractDataTable
+{
+    /** @var \App\Models\User */
+    private $user;
+
+    /**
+     * PhotogalleryTable constructor.
+     */
+    public function __construct(User $user)
+    {
+        $this->user = $user;
+
+        parent::__construct();
+    }
+
+    /**
+     * Initialize datatable.
+     */
+    protected function initialize(): void
+    {
+        $this->createColumn('title', trans('module-yourmodule::photogallery/general.table.columns.title'))
+            ->makeSortable();
+
+        $this->setActionsVisibility($this->user->can(['module_yourmodule-edit', 'module_yourmodule-delete']));
+    }
+
+    /**
+     * Get data query.
+     *
+     * @param \App\Structures\DataTable\FilterOptions $filterOptions
+     * @return \Illuminate\Database\Query\Builder
+     */
+    protected function getDataQuery(FilterOptions $filterOptions)
+    {
+        $query = Photogallery::query();
+
+        // check active a column for sorting
+        switch ($filterOptions->getSortingColumn()) {
+            case 'title':
+                $filterOptions->sort();
+                break;
+        }
+
+        $filterOptions->searchOnColumns('title');
+        return $query;
+    }
+
+    /**
+     * Fill table with fetched data.
+     *
+     * @param \Illuminate\Support\Collection|Photogallery[] $photogalleries
+     * @return void
+     */
+    protected function fill(Collection $photogalleries): void
+    {
+        foreach ($photogalleries as $photogallery) {
+            $row = $this->addRow($photogallery->getKey());
+
+            $routeParams = [
+                'photogallery' => $photogallery->id
+            ];
+
+            // Edit
+            if ($this->user->can('module_yourmodule-edit')) {
+                $row->setDoubleClickAction(route('module.your_module.photogallery.edit', $routeParams));
+                $row->addControl(
+                    trans('module-yourmodule::photogallery/general.table.btn_edit'),
+                    route('module.your_module.photogallery.edit', $routeParams),
+                    'pencil-square-o'
+                );
+            }
+
+            // Delete
+            if ($this->user->can('module_yourmodule-delete')) {
+                $row->addControl(
+                    trans('module-yourmodule::photogallery/general.table.btn_delete'),
+                    route('module.your_module.photogallery.delete', [$photogallery->getKey()]),
+                    'trash'
+                )->setDelete(trans('module-yourmodule::entity/general.confirm_delete'));
+            }
+
+            // Columns
+            $row->addColumn('title', $photogallery->title);
+        }
+    }
+}
+```
+
+In `PhotogalleryTable`, there is nothing what you would not know yet in this part of the complete guide. Let's continue and
+create `admin/photogallery/index.blade.php`:
+
+```html
+<?php /** @var \Modules\YourModule\Components\DataTables\PhotogalleryTable $table */ ?>
+@extends('admin.layouts.master')
+
+@section('content')
+  <v-datatable :table="{{ $table->toJson() }}"></v-datatable>
+
+  @permission('module_yourmodule-create')
+    <a href="{{ route('module.your_module.photogallery.create') }}" class="btn bg-teal-400 btn-labeled">
+      <b class="fa fa-pencil-square-o"></b> {{ trans('module-yourmodule::photogallery/form.btn_create') }}
+    </a>
+  @endpermission
+@endsection
+
+@section('breadcrumb-elements')
+  @permission('module_yourmodule-create')
+    <li>
+      <a href="{{ route('module.module_yourmodule.photogallery.create') }}">
+        <i class="fa fa-pencil-square-o"></i> {{ trans('module-yourmodule::photogallery/form.btn_create') }}
+      </a>
+    </li>
+  @endpermission
+@endsection
+```
+
+```php 
+<?php
+
+namespace Modules\YourModel\Components\Forms;
+
+use App\Components\Forms\AbstractForm;
+use Modules\OrganisationUnit\Models\Photogallery\Photogallery;
+
+class PhotogalleryForm extends AbstractForm
+{
+    /**
+     * View name.
+     *
+     * @var string
+     */
+    protected $view = 'module-yourmodule::admin.photogallery.form';
+
+    /**
+     * Photogallery.
+     *
+     * @var \Modules\YourModule\Models\Photogallery\Photogallery
+     */
+    protected $photogallery;
+
+    /**
+     * Mix Manifest Directory
+     *
+     * @var mixed
+     */
+    protected $mixManifestDirectory = 'modules/YourModule';
+
+    /**
+     * Photogallery form.
+     *
+     * @param Photogallery $photogallery
+     * @throws \Exception
+     */
+    public function __construct(Photogallery $photogallery)
+    {
+        parent::__construct();
+        $this->photogallery = $photogallery;
+
+        $this->addScript(url('plugin/js/bootstrap-maxlength.js'));
+        $this->addScript(mix('photogalleries.form.js', $this->mixManifestDirectory));
+    }
+
+    /**
+     * Get view data.
+     *
+     * @return array
+     */
+    public function getViewData(): array
+    {
+        return [
+            'photogallery' => $this->photogallery,
+            'formDataJson' => $this->photogallery->getFormAttributesJson([
+                'title', 'url', 'text', 'open_graph',
+                'seo_title', 'seo_description', 'seo_index', 'seo_follow', 'seo_sitemap'
+            ]),
+            'submitUrl' => $this->photogallery->exists ?
+                route('module.yourmodule.photogallery.update', ['photogallery' => $this->photogallery]) :
+                route('module.yourmodule.photogallery.store'),
+            'photos' => $this->photogallery->photos()->with('image')->get(),
+            'cancelUrl' => route('module.your_module.photogallery.edit', [$this->photogallery]),
+        ];
+    }
+}
+```
+
+Here is same situation like in `PhotogalleryTable`. Nothing special is in `PhotogalleryForm` what it's necessary to explain
+more. With this form, we need to create `photogalleries.form.js` and `admin/photogallery/form.blade.php` view:
+
+```js
+import Form from '../../../../../../resources/assets/js/vendor/Form';
+import SeoInputs from '../../../../../../resources/assets/js/vue-components/form/seo-inputs';
+import OpenGraphInputs from '../../../../../../resources/assets/js/vue-components/form/open-graph-inputs';
+import Photogallery from '../../../../../../resources/assets/js/vue-components/photogallery';
+
+Vue.component('yourmodule-photogallery-form', {
+    data() {
+        return {
+            form: new Form({
+                ...this.photogallery
+            }).addDataCollector(this.getFormData)
+        };
+    },
+
+    props: {
+        photogallery: {
+            type: Object,
+            required: true
+        }
+    },
+
+    components: {
+        'photogallery': Photogallery,
+        'seo-inputs': SeoInputs,
+        'open-graph-inputs': OpenGraphInputs,
+    },
+
+    methods: {
+        /**
+         * Fired when title is changed.
+         * @param {Event} $event
+         */
+        onTitleChanged($event) {
+            this.form.title = $event.target.value;
+
+            if (this.form.url === null || !this.form.url.length) {
+                this.form.url = this.form.title;
+            }
+        },
+
+        /**
+         * Fired when url is changed.
+         * @param {Event} $event
+         */
+        onUrlChanged($event) {
+            this.form.url = $event.target.value;
+        },
+
+        getFormData() {
+            return {
+                photogallery: this.$refs.photogallery.getFormData()
+            };
+        }
+    },
+
+    watch: {
+        'form.url'(newUrl) {
+            this.form.url = Converter.removeDiacritics(newUrl);
+        }
+    }
+
+});
+```
+
+In this javascript file, here is one new Vue.js component for you - **Photogallery**, which builds a wonderful photo
+uploader. Another things were used in the previous parts of this complete guide. If you want to get more information about them, go back
+and read them above.
+
+Now let's explain the source code for `admin/photogallery/form.blade.php`: 
+
+```html
+<?php /** @var \Modules\YourModule\Models\Photogallery\Photogallery $photogallery */ ?>
+@extends('admin.layouts.master')
+
+@section('content')
+    <yourmodule-photogallery-form inline-template
+                           :item="{{ $formValuesJson }}"
+                           v-cloak>
+        <div class="box-body">
+            <v-form :form="form"
+                    method="{{ $photogallery->exists ? 'PATCH' : 'POST' }}"
+                    id="yourmodule-photogallery-form"
+                    action="{{ $submitUrl }}">
+                @include('module-yourmodule::admin.photogallery.form.layout')
+
+                <div class="form-group mt15">
+                    {!! Form::button($photogallery->exists ? trans('module-yourmodule::photogallery/form.btn_update') : trans('module-yourmodule::photogallery/form.btn_create'), [
+                        'class' => 'btn bg-teal-400',
+                        'type' => 'submit'
+                    ]) !!}
+
+                    <a href="{{ URL::previous() }}" class="btn btn-default">
+                        {{ trans('module-yourmodule::photogallery/form.btn_cancel') }}
+                    </a>
+                </div>
+            </v-form>
+        </div>
+    </yourmodule-photogallery-form>
+@endsection
+
+@push('style')
+    @include('admin.vendor.form._styles')
+@endpush
+
+@push('script')
+    @include('admin.vendor.form._scripts')
+@endpush
+```
+
+`admin/photogallery/form/layout.blade.php`
+```html
+<?php /** @var \Modules\YourModule\Models\Photogallery\Photogallery $photogallery */ ?>
+
+@include('admin.vendor.form.panel_errors')
+
+<v-tabs class="nav-tabs-custom" no-fade>
+    {{-- General --}}
+    <v-tab title="{{ trans('module-yourmodule::photogallery/form.tabs.details') }}"
+           href="#general"
+           active>
+        @include('module-yourmodule::admin.photogallery.form._tab_details')
+    </v-tab>
+
+    {{-- Photogallery --}}
+    <v-tab title="{{ trans('module-yourmodule::photogallery/form.tabs.photogallery') }}"
+           href="#photogallery"
+    >
+      @include('module-yourmodule::admin.photogallery.form._tab_photogallery')
+    </v-tab>
+
+    {{-- SEO --}}
+    <v-tab title="{{ trans('module-yourmodule::photogallery/form.tabs.seo') }}"
+           href="#seo"
+    >
+      @include('module-yourmodule::admin.photogallery.form._tab_seo')
+    </v-tab>
+
+    {{-- OpenGraph --}}
+    <v-tab title="{{ trans('module-yourmodule::photogallery/form.tabs.og') }}"
+           href="#open-graph"
+    >
+      @include('module-yourmodule::admin.photogallery.form._tab_og_tags')
+    </v-tab>
+</v-tabs>
+```
+
+`admin/photogallery/form/layout.blade.php`
+```html
+<?php /** @var \Modules\YourModule\Models\Photogallery\Photogallery $photogallery */ ?>
+
+@include('admin.vendor.form.panel_errors')
+
+<v-tabs class="nav-tabs-custom" no-fade>
+    {{-- General --}}
+    <v-tab title="{{ trans('module-yourmodule::photogallery/form.tabs.details') }}"
+           href="#general"
+           active>
+        @include('module-yourmodule::admin.photogallery.form._tab_details')
+    </v-tab>
+
+    {{-- Photogallery --}}
+    <v-tab title="{{ trans('module-yourmodule::photogallery/form.tabs.photogallery') }}"
+           href="#photogallery"
+    >
+      @include('module-yourmodule::admin.photogallery.form._tab_photogallery')
+    </v-tab>
+
+    {{-- SEO --}}
+    <v-tab title="{{ trans('module-yourmodule::photogallery/form.tabs.seo') }}"
+           href="#seo"
+    >
+      @include('module-yourmodule::admin.photogallery.form._tab_seo')
+    </v-tab>
+
+    {{-- OpenGraph --}}
+    <v-tab title="{{ trans('module-yourmodule::photogallery/form.tabs.og') }}"
+           href="#open-graph"
+    >
+      @include('module-yourmodule::admin.photogallery.form._tab_og_tags')
+    </v-tab>
+</v-tabs>
+```
+
+I guess you know already how you can implement `admin/photogallery/form/_tab_details.blade.php`, `admin/photogallery/form/_tab_seo.blade.php` and
+`admin/photogallery/form/_tab_og_tags.blade.php` views. But what about `admin/photogallery/form/_tab_photogallery.blade.php` source code? Here we go.
+
+```html
+<photogallery ref="photogallery"
+              :photos="{{ isset($photos) ? $photos->toJson() : '[]' }}"
+              :trans="{{ json_encode(trans('admin/general.photogallery')) }}"
+></photogallery>
+```
+
+In the `_tab_photogallery.blade.php` view above, there is just using **Photogallery component**, which we imported by `photogalleries.form.js`. For this time, it's
+done with an implementation of the photogallery form.
+
+Let's continue for the next step and look the source code of `PhotogalleryRequest`:
+
+```php
+<?php
+
+namespace Modules\YourEntity\Http\Requests\Admin;
+
+use App\Contracts\PhotogalleryInterface;
+use App\Http\Requests\AbstractFormRequest;
+use Modules\OrganisationUnit\Models\Photogallery\Photogallery;
+use App\Traits\Requests\ValidatesAndReceivesPhotogalleryTrait;
+use App\Traits\Requests\ValidatesOpenGraphTrait;
+use App\Traits\Requests\ValidatesSeoTrait;
+
+class PhotogalleryRequest extends AbstractFormRequest
+{
+    use ValidatesAndReceivesPhotogalleryTrait,
+        ValidatesSeoTrait,
+        ValidatesOpenGraphTrait;
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        $rules = [
+            'title' => 'required|max:191',
+            'url' => 'required|max:191'
+        ];
+
+        return $this->mergeRules($rules, $this->getPhotogalleryRules(), $this->getSeoRules(), $this->getOpenGraphRules());
+    }
+
+    /**
+     * Get the validation messages.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return $this->mergeMessages(
+            'module-yourmodule::photogallery/form.messages', $this->getSeoMessages(), $this->getOpenGraphMessages()
+        );
+    }
+
+    /**
+     * Return input values
+     *
+     * @return array
+     */
+    public function getValues(): array
+    {
+        $input = $this->all([
+            'title', 'url', 'text', 'open_graph',
+            'seo_title', 'seo_description'
+        ]);
+
+        // SEO index
+        $input['seo_index'] = $this->input('seo_index', false);
+
+        // SEO follow
+        $input['seo_follow'] = $this->input('seo_follow', false);
+
+        // SEO sitemap
+        $input['seo_sitemap'] = $this->input('seo_sitemap', false);
+
+        return $input;
+    }
+
+    /**
+     * Get instance of model using photogallery.
+     *
+     * @return \App\Contracts\PhotogalleryInterface
+     */
+    protected function getModelWithPhotogallery(): PhotogalleryInterface
+    {
+        /** @var Photogallery $photogallery */
+        $photogallery = $this->route('photogallery');
+        return $photogallery ?? new Photogallery;
+    }
+}
+```
+
+Here is one new trait - `App\Traits\Requests\ValidatesAndReceivesPhotogalleryTrait`. This trait adds useful methods for your
+form class - mainly validation rules and collection of input photos (it's easier for storing them to a database then).
+
+After that, let's make our `PhotogalleriesController`:
+
+```php
+<?php
+
+namespace Modules\YourModule\Http\Controllers\Admin;
+
+use App\Http\Controllers\Admin\AdminController;
+use Illuminate\Database\Eloquent\Model;
+use Modules\YourModule\Http\Requests\Admin\PhotogalleryRequest;
+use Modules\YourModule\Models\Photogallery\Photogallery;
+use Modules\YourModule\Components\Forms\PhotogalleryForm;
+
+class PhotogalleriesController extends AdminController
+{
+    /**
+     * Active menu item nickname.
+     *
+     * @var string
+     */
+    protected $activeMenuItem;
+
+    /**
+     * PhotogalleriesController constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->middleware('permission:module_yourmodule-create')
+            ->only(['create', 'store']);
+
+        $this->middleware('permission:module_yourmodule-edit')
+            ->only(['edit', 'update']);
+
+        $this->middleware('permission:module_yourmodule-edit')
+            ->only(['updatePhoto', 'photoList', 'deletePhoto']);
+
+        $this->middleware('permission:module_yourmodule-delete')
+            ->only('delete');
+    }
+
+    /**
+     * GET: Index
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\View\View
+     */
+    public function index(Request $request)
+    {
+        $this->setTitleDescription(
+            trans('module-yourmodule::photogallery/admin.pages.index.title'),
+            trans('module-yourmodule::photogallery/admin.pages.index.description'));
+
+        $table = new PhotogalleryTable($this->getUser());
+        return $table->toResponse($request, 'module-yourmodule::admin.photogallery.index');
+    }
+
+    /**
+     * GET: Create
+     *
+     * @return \Illuminate\View\View
+     * @throws \Exception
+     */
+    public function create()
+    {
+        $this->setTitleDescription(
+            trans('module-yourmodule::photogallery/admin.pages.create.title'),
+            trans('module-yourmodule::photogallery/admin.pages.create.description')
+        );
+
+        $photogallery = new Photogallery();
+        $photogallery->forceFill([
+            'seo_index' => true,
+            'seo_follow' => true,
+            'seo_sitemap' => true,
+        ]);
+
+        $form = new PhotogalleryForm($photogallery);
+        return $form->getView();
+    }
+
+    /**
+     * POST: Store
+     *
+     * @param PhotogalleryRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store(PhotogalleryRequest $request)
+    {
+        // Create photogallery
+        $photogallery = Photogallery::query()->create($request->getValues());
+        $photogallery->save();
+
+        $photogallery->savePhotogallery($request->getPhotogallery());
+
+        flash(trans('module-yourmodule::photogallery/general.notifications.created'), 'success');
+        return $this->redirect(route('module.yourmodule.photogallery.index'));
+    }
+
+    /**
+     * GET: Edit
+     *
+     * @param Photogallery $photogallery
+     * @return \Illuminate\View\View
+     * @throws \Exception
+     */
+    public function edit(Photogallery $photogallery)
+    {
+        $this->setTitleDescription(
+            trans('module-yourmodule::photogallery/admin.pages.edit.title'),
+            trans('module-yourmodule::photogallery/admin.pages.edit.description'));
+
+        $form = new PhotogalleryForm($photogallery);
+        return $form->getView();
+    }
+
+    /**
+     * POST: Update
+     *
+     * @param PhotogalleryRequest $request
+     * @param Photogallery $photogallery
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(PhotogalleryRequest $request, Photogallery $photogallery)
+    {
+        // Save values
+        $photogallery->update($request->getValues());
+        $photogallery->savePhotogallery($request->getPhotogallery());
+
+        flash(trans('module-yourmodule::photogallery/general.notifications.updated'), 'success');
+        return $this->redirect(route('module.yourmodule.photogallery.edit', [$photogallery->id]));
+    }
+
+    /**
+     * DELETE: Delete
+     *
+     * @param Photogallery $photogallery
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
+    public function delete(Photogallery $photogallery)
+    {
+        $photogallery->delete();
+
+        flash(trans('module-yourmodule::photogallery/general.notifications.deleted'), 'success');
+        return $this->refresh();
+    }
+
+}
+```

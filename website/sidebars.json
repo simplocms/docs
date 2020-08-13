@@ -11,7 +11,8 @@
       "core/middleware",
       "core/artisan-console",
       "core/helpers",
-      "core/grid-editor"
+      "core/grid-editor",
+      "core/media-library"
     ],
     "Services": [
       "services/general",

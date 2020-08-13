@@ -41,8 +41,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a4413e82-a47e-49c1-b40b-bf3bdc6b5de0" name="Default Changelist" comment="feat: Update Modules / Complete Guide">
+      <change afterPath="$PROJECT_DIR$/docs/core/media-library.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/modules/complete-guide.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/modules/complete-guide.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/sidebars.json" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +75,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/docs/modules" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/docs/core" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
@@ -81,8 +83,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/docs/modules" />
       <recent name="$PROJECT_DIR$/docs/core" />
+      <recent name="$PROJECT_DIR$/docs/modules" />
       <recent name="$PROJECT_DIR$/docs/services" />
       <recent name="$PROJECT_DIR$/docs/theme" />
       <recent name="$PROJECT_DIR$/docs" />
@@ -133,14 +135,7 @@
       <workItem from="1596431076483" duration="16039000" />
       <workItem from="1597031224101" duration="4104000" />
       <workItem from="1597060096941" duration="1000" />
-      <workItem from="1597226206345" duration="23335000" />
-    </task>
-    <task id="LOCAL-00050" summary="feat: update Core / Helpers -&gt; Google Analytics helper">
-      <created>1578436524137</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1578436524139</updated>
+      <workItem from="1597226206345" duration="33362000" />
     </task>
     <task id="LOCAL-00051" summary="feat: update Core / Helpers - UrlHelper">
       <created>1578437012079</created>
@@ -478,7 +473,14 @@
       <option name="project" value="LOCAL" />
       <updated>1597276516109</updated>
     </task>
-    <option name="localTasksCounter" value="99" />
+    <task id="LOCAL-00099" summary="feat: update Modules/Complete Guide">
+      <created>1597315846005</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1597315846005</updated>
+    </task>
+    <option name="localTasksCounter" value="100" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -529,10 +531,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="144" y="79" key="DiffContextDialog/0.0.1440.900@0.0.1440.900" timestamp="1597048555745" />
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1597276524906">
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1597315851856">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1597276524906" />
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1597315851855" />
     <state x="427" y="205" width="586" height="490" key="find.popup" timestamp="1596228111663">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
