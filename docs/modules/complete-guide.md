@@ -1478,4 +1478,18 @@ class ServiceProvider extends BaseProvider implements DeferrableProvider
     }
 ```
 
-After that, it's just everything for the completed using the SEO friendly url slugs! 
+After that, it's just everything for the completed using the basic SEO friendly url slugs! With the Model URL, you can 
+set more things, and about them we will talk on the following rows.
+
+The `App/Traits/HasUrl` trait offers more methods for manipulate with generated urls. You can overwrite the `getUrlSuperiorModels` method,
+which provides an opportunity how define superior models. It means that when a system will generate a new url for your model item, these superior
+models will be included for this generating (prefixes).
+
+When you want to make an url prefix for the current model, then for this purpose it's possible to use `getUrlPrefix` what we have described 
+above already.
+
+If you do not want to have only single url then you can set `$hasSingleUrl` property on `true`. TODO!!!
+
+For turning off automatically url sync, you can use `$manualUrlsSync` property and set it to `true`. TODO!!!
+
+TODO !!! describe about redirecting and something like that.

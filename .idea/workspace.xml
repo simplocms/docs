@@ -42,7 +42,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a4413e82-a47e-49c1-b40b-bf3bdc6b5de0" name="Default Changelist" comment="feat: Update Modules / Complete Guide">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/getting-started/setting.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/getting-started/setting.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/modules/complete-guide.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/modules/complete-guide.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -134,14 +133,7 @@
       <workItem from="1596431076483" duration="16039000" />
       <workItem from="1597031224101" duration="4104000" />
       <workItem from="1597060096941" duration="1000" />
-      <workItem from="1597226206345" duration="20218000" />
-    </task>
-    <task id="LOCAL-00049" summary="feat: update Core / Helpers -&gt; Google Analytics helper">
-      <created>1578411353459</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1578411353459</updated>
+      <workItem from="1597226206345" duration="23335000" />
     </task>
     <task id="LOCAL-00050" summary="feat: update Core / Helpers -&gt; Google Analytics helper">
       <created>1578436524137</created>
@@ -479,7 +471,14 @@
       <option name="project" value="LOCAL" />
       <updated>1597256526122</updated>
     </task>
-    <option name="localTasksCounter" value="98" />
+    <task id="LOCAL-00098" summary="feat: update Modules/Complete Guide">
+      <created>1597276516109</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1597276516109</updated>
+    </task>
+    <option name="localTasksCounter" value="99" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -530,10 +529,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="144" y="79" key="DiffContextDialog/0.0.1440.900@0.0.1440.900" timestamp="1597048555745" />
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1597048556588">
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1597276524906">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1597048556588" />
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1597276524906" />
     <state x="427" y="205" width="586" height="490" key="find.popup" timestamp="1596228111663">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
