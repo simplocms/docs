@@ -1552,6 +1552,175 @@ After the steps above, you can try if everything is fine.
 
 ## Publishing Mechanism
 
+In this section, we will talk about publishing mechanism. It is mechanism which for developers offers to make some entity with
+publish stating. It means that through an administration panel, administrators can published or unpublished items of the entity.
+
+How in the previous things, for the first step here we need to make some database migrations as well. For our purpose, we need to add
+the following columns for our entity:
+
+```php
+<?php
+...
+
+$table->unsignedTinyInteger('state')
+                ->default(\App\Structures\Enums\PublishingStateEnum::PUBLISHED)
+                ->index();
+$table->dateTime('publish_at');
+$table->dateTime('unpublish_at')->nullable()->default(null);
+
+...
+```
+
+After running this new database migration, move to your entity model and make the following changes:
+
+1. Use `App\Traits\PlannedPublishingTrait`, which attach a few useful methods for your entity model.
+2. For better identification of your publishable model, implements `App\Contracts\PublishableModelInterface` interface.
+3. Add `publish_at`, `unpublish_at` and `state` to `$fillable` array.
+4. Add `publish_at` and `unpublish_at` to `$dates` because of correct and more comfortable working with these dates.
+5. For correct casting, you can add `state` to `$casts` with `int` value.
+6. Add the following methods in your entity model:
+
+```php
+<?php
+...
+
+use App\Structures\Enums\PublishingStateEnum;
+
+...
+
+    /**
+     * Check if model is public.
+     *
+     * @return bool
+     */
+    public function isPublic(): bool
+    {
+        return $this->state === PublishingStateEnum::PUBLISHED && $this->isInPublicPeriod();
+    }
+
+    /**
+     * Select only published articles
+     *
+     * @param \Illuminate\Database\Eloquent\Builder|self $query
+     */
+    public function scopePublished($query)
+    {
+        $query->publishedByDate()->where('state', PublishingStateEnum::PUBLISHED);
+    }
+
+...
+```
+
+After this step where you updated your entity model, open `YourEntityForm` and make the following changes inside the
+`getViewData` method:
+
+```php
+<?php
+...
+
+use App\Structures\Enums\PublishingStateEnum;
+
+...
+    /**
+     * Get view data.
+     *
+     * @return array
+     */
+    public function getViewData(): array
+    {
+        $formAttributes = [
+            ...
+            'state', 'publish_at_date', 'publish_at_time', 'unpublish_at_date', 'unpublish_at_time'
+        ];
+
+        return [
+            ...
+            'publishingStates' => PublishingStateEnum::toJson(),
+        ];
+    }
+...
+```
+
+With `YourEntityForm` you need to change `entities.form.js` file as well:
+
+```js
+...
+import PublishingStateInputs from '../../../../../../resources/assets/js/vue-components/form/publishing-state-inputs';
+
+Vue.component('yourentity-form', {
+    data() {
+        return {
+            form: new Form({
+                ...
+                set_unpublish_at: this.entity.unpublish_at_date !== null
+            }).addDataCollector(this.getFormData),
+            ...
+            showPublishingInputs: true
+        };
+    },
+    
+    ...
+
+    components: {
+        ...
+        'publishing-state-inputs': PublishingStateInputs,
+    },
+    
+    ...
+
+    methods: {
+        tabActivated (tab) {
+            // When first tab (index zero) is activated
+            this.showPublishingInputs = tab === 0;
+        },
+
+        ...
+    },
+
+    ...
+});
+```
+
+Now it's time to make a few changes inside `YourEntityRequest`:
+
+```php
+<?php
+...
+
+use App\Traits\Requests\ReceivesPlannedPublishingTrait;
+
+...
+
+class YourEntityRequest extends AbstractFormRequest
+{
+    use ReceivesPlannedPublishingTrait,
+        ...;
+
+    /**
+     * Return input values.
+     *
+     * @return array
+     */
+    public function getValues(): array
+    {
+        $input = $this->all([
+            ...
+        ]);
+
+        ...
+
+        $input['publish_at'] = $this->getPublishAt();
+        $input['unpublish_at'] = $this->get('set_unpublish_at') ? $this->getUnpublishAt() : null;
+
+        ...
+
+        return $input;
+    }
+
+    ...
+}
+```
+
 ## Grid Editor Implementation
 
 ## Photogallery Entity
