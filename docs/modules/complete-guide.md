@@ -265,7 +265,7 @@ Now just for a summary, here is the actual directory structure for our starting 
 └── webpack.mix.js
 ```
 
-If you have **the same directory structure** for our example module **Module Name**, CONGRATULATIONS! Then you can continue
+If you have **the same directory structure** for our example module **Your Module**, CONGRATULATIONS! Then you can continue
 in the next steps about our module's developing with us!
 
 > If you want, **you can use this starting position also for another modules**.
@@ -1028,6 +1028,8 @@ more what SIMPLO CMS offers, continue in this guide.
 
 ## Permission
 
+
+
 ## SEO, Open Graph
 
 If you want to have a new entity with some editable SEO and Open Graph fields, then read this section.
@@ -1641,7 +1643,7 @@ use App\Structures\Enums\PublishingStateEnum;
 ...
 ```
 
-With `YourEntityForm` you need to change `entities.form.js` file as well:
+With `YourEntityForm` you need to change `entities.form.js` file:
 
 ```js
 ...
@@ -1681,7 +1683,47 @@ Vue.component('yourentity-form', {
 });
 ```
 
-Now it's time to make a few changes inside `YourEntityRequest`:
+and `admin/entity/form/layout.blade.php` with `admin/entity/form/_tab_state.blade.php`:
+
+```html
+<?php /** @var \Modules\YourModule\Models\YourEntity $entity */ ?>
+
+@include('admin.vendor.form.panel_errors')
+
+<div class="row">
+  <div class="no-padding-right" :class="[showPublishingInputs ? 'col-md-9' : 'col-xs-12']">
+    <v-tabs class="nav-tabs-custom" @input="tabActivated" no-fade>
+        {{-- General --}}
+        <v-tab title="{{ trans('module-yourmodule::entity/form.tabs.details') }}"
+               href="#general"
+               active
+        >
+            @include('module-yourmodule::admin.entity.form._tab_details')
+        </v-tab>
+
+        ...
+    </v-tabs>
+  </div>
+  <div class="col-md-3 mt-20" v-show="showPublishingInputs">
+    <div class="panel panel-default mt-20">
+      <div class="panel-heading text-uppercase">{{ trans('module-yourmodule::entity/form.tabs.state') }}</div>
+      <div class="panel-body">
+        @include('module-yourmodule::admin.entity.form._tab_state')
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+```html
+<publishing-state-inputs :publishing-states="{{ $publishingStates }}"
+                         :form="form"
+                         :trans="{{ json_encode(trans('admin/general.publishing_states_component')) }}"
+></publishing-state-inputs>
+```
+
+How you can notice, for printing publishing state inputs we use Vue.js component. Now it's time to make a few 
+changes inside the `YourEntityRequest` request:
 
 ```php
 <?php
@@ -1721,7 +1763,541 @@ class YourEntityRequest extends AbstractFormRequest
 }
 ```
 
+That's everything and we can make finally changes in `YourEntityController`:
+
+```php
+<?php
+
+...
+
+use App\Structures\Enums\PublishingStateEnum;
+
+...
+
+class YourEntityController extends AdminController
+{
+    ...
+
+    /**
+     * GET: Create
+     *
+     * @return \Illuminate\View\View
+     * @throws \Exception
+     */
+    public function create()
+    {
+        ...
+
+        $entity = new YourEntity();
+        $entity->forceFill([
+            'publish_at' => \Carbon\Carbon::now(),
+            'state' => PublishingStateEnum::PUBLISHED,
+            ...
+        ]);
+
+        ...
+    }
+
+    ...
+}
+```
+
+> You do not need to keep this `YourEntityController` source code when you do not want to have these default values. It's up to you
+> how you will change them.
+
 ## Grid Editor Implementation
+
+This section will give you information about that how you can implement Grid Editor. It's a good way when you need to
+have editable layout content for your entity.
+
+> If you want to get more information about **Grid Editor**, visit [Grid Editor page](../core/grid-editor.md).
+
+How in general, for the first step we will increase database about a few new tables:
+
+```php
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateYourEntityContentsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('your_entity_contents', function (Blueprint $table) {
+            $table->increments('id');
+
+            $table->unsignedInteger('your_entity_id');
+            $table->foreign('your_entity_id')->references('id')->on('your_entity_table')
+                ->onUpdate('cascade')->onDelete('cascade');
+
+            $table->text('content')->nullable();
+            $table->boolean('is_active');
+
+            $table->softDeletes();
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('your_entity_contents');
+    }
+}
+```
+
+```php
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateYourEntitySectionsClosuresTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('your_entity_contents_closures', function (Blueprint $table) {
+            $table->unsignedInteger('ancestor_id');
+            $table->foreign('ancestor_id')
+                ->references('id')->on('your_entity_contents')
+                ->onDelete('cascade');
+
+            $table->unsignedInteger('descendant_id');
+            $table->foreign('descendant_id')
+                ->references('id')->on('your_entity_contents')
+                ->onDelete('cascade');
+
+            $table->unsignedSmallInteger('depth');
+
+            $table->primary(['ancestor_id', 'descendant_id']);
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('your_entity_contents_closures');
+    }
+}
+```
+
+After running this new database migration, move to your entity model and make the following changes:
+
+1. Your entity model must extend from `App\Structures\ClosureTable\HierarchicModel`.
+2. Implements `App\Models\Interfaces\UsesGridEditor`.
+3. Use `Illuminate\Database\Eloquent\SoftDeletes` and `App\Traits\GridEditor\GridEditorModel`.
+4. You can set `protected $useGridEditorVersions` to `true` value for Grid Editor versions. If you will turn on it, then
+your entity items will have versioning of all Grid Editor contents. Then you will be able to go back in your older changes of
+contents.
+5. Add another source code below for `YourEntity` model:
+
+```php 
+<?php
+...
+
+    /**
+     * Contents - versions.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function contents(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Content::class, 'your_entity_id');
+    }
+
+...
+
+    /**
+     * Get active content.
+     *
+     * @return string
+     */
+    public function getContent(): string
+    {
+        return $this->getActiveContent()->getHtml([
+            'language' => $this->language
+        ]);
+    }
+
+...
+```
+
+If you want to make your Grid Editor content searchable, make your `search` method like this below:
+
+```php 
+<?php
+
+...
+
+    /**
+     * Search in contents.
+     *
+     * @param string $term
+     * @param \App\Models\Web\Language $language
+     * @return \Illuminate\Support\Collection
+     */
+    public static function search(string $term, Language $language): Collection
+    {
+        if (!strlen($term)) {
+            return collect([]);
+        }
+
+        $items = self::whereLanguage($language)
+            ->with([
+                'contents' => function (HasMany $query): void {
+                    $query->where('is_active', true);
+                },
+            ])
+            ->get();
+
+        return self::searchGridContent($term, $items, $language, function (self $item) use ($term) {
+            return mb_stripos($item->title, $term) !== false || mb_stripos($item->seo_title, $term) !== false;
+        });
+    }
+
+...
+```
+
+For sure, it's up how you implemented your entity. But you must call the `searchGridContent` method and return her result.
+
+Now, the next step is up on your decision about versioning Grid Editor content. If you want to have versioning, then you need to
+add the following route in `Http/routes.php` of your module:
+
+```php
+<?php
+...
+    Route::get('{section}/switch-version/{version?}', [
+        'as' => 'switch_version',
+        'uses' => 'YourEntityController@switchVersion',
+    ]);
+...
+```
+
+After that, we can start to implement a form class.
+
+```php
+<?php
+
+namespace Modules\YourModule\Components\Forms;
+
+use App\Components\Forms\Templates\AbstractFormWithGridEditor;
+...
+
+class YourEntityForm extends AbstractFormWithGridEditor
+{
+    ...
+
+    /**
+     * Use grid editor versions?
+     *
+     * @var boolean
+     */
+    protected $useVersions = true;
+
+    ...
+
+    /**
+     * YourEntity form.
+     *
+     * ...
+     * @throws \Exception
+     */
+    public function __construct(...)
+    {
+        parent::__construct();
+        
+        ...
+
+        $this->addGridEditorScriptsAndStyle();
+
+        ...
+    }
+
+    /**
+     * Get view data.
+     *
+     * @return array
+     */
+    public function getViewData(): array
+    {
+        ...
+
+        $data = [
+            ...
+        ];
+
+        return $this->getGridEditorData($data);
+    }
+
+    /**
+     * Get content of the grid editor.
+     *
+     * @return \App\Models\Interfaces\IsGridEditorContent
+     */
+    protected function getGridEditorContent(): \App\Models\Interfaces\IsGridEditorContent
+    {
+        return $this->item->getActiveContent() ?: new YourEntityContent();
+    }
+
+    /**
+     * Get versions of the grid editor content.
+     *
+     * @return array
+     */
+    protected function getGridEditorVersions(): array
+    {
+        return $this->item->getGridEditorVersions();
+    }
+
+    /**
+     * Get versions of the grid editor content.
+     *
+     * @return string
+     */
+    protected function getGridEditorVersionSwitchUrl(): string
+    {
+        if (!$this->item->exists) {
+            return "";
+        }
+
+        return route('module.yourmodule.entity.switch_version', [$this->item]);
+    }
+}
+```
+
+When you will look at that source code above, you can notice that `YourEntityForm` extends `App\Components\Forms\Templates\AbstractFormWithGridEditor`.
+Except of this change, here is `$useVersions` set on `true` for Grid Editor versioning of your entity item content. About another changes,
+you will understand them probably.
+
+With `YourEntityForm`, you need to increase the `admin/entity/form/layout.blade.php` view as well:
+
+```html
+<?php /** @var \Modules\YourModule\Models\YourEntity $item */ ?>
+
+@include('admin.vendor.form.panel_errors')
+
+<v-tabs class="nav-tabs-custom" no-fade>
+    {{-- General --}}
+    <v-tab title="{{ trans('module-yourmodule::entity/form.tabs.details') }}"
+           href="#general"
+           active
+    >
+        @include('module-yourmodule::admin.entity.form._tab_details')
+    </v-tab>
+
+    {{-- Grid --}}
+    <v-tab title="{{ trans('module-yourmodule::entity/form.tabs.grid') }}"
+           href="#grid"
+    >
+        @include('module-yourmodule::admin.entity.form._tab_grid')
+    </v-tab>
+
+    ...
+</v-tabs>
+```
+
+In `admin/entity/form/_tab_grid.blade.php`, there will be the following source code below:
+
+```php 
+@include('admin.grideditor._input')
+```
+
+It's really simple and nothing more is needed.
+
+With `YourEntityForm` you need to change `entities.form.js` file:
+
+```js
+...
+
+Vue.component('yourmodule-entity-form', {
+
+    ...
+
+    methods: {
+        ...
+
+        getFormData() {
+            const additionalData = this.$refs.gridEditor.getFormData();
+
+            ...
+
+            return additionalData;
+        }
+    },
+
+    ...
+
+});
+```
+
+Now add the `getGridEditorContent` method in the `YourEntityRequest` request:
+
+```php
+<?php
+...
+
+    /**
+     * Get content.
+     *
+     * @return array|null
+     */
+    public function getGridEditorContent(): ?array
+    {
+        return $this->input('content');
+    }
+
+...
+```
+
+It's not necessary, but it's good for better manipulation with the request instance. After that implementation above, 
+we can make finally changes in `YourEntityController`:
+
+```php
+<?php
+
+...
+
+use App\Exceptions\GridEditorException;
+
+...
+
+class YourEntityController extends AdminController
+{
+    /**
+     * SectionsController constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+
+        ...
+
+        $this->middleware('permission:module_organisationunit-edit')
+            ->only(['edit', 'update', 'switchVersion']);
+
+        ...
+    }
+
+    ...
+
+    /**
+     * POST: Store
+     *
+     * @param YourEntityRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \App\Exceptions\GridEditorException
+     */
+    public function store(YourEntityRequest $request)
+    {
+        ...
+
+        // Save content.
+        try {
+            $item->createNewVersionIfChanged($request->getGridEditorContent());
+        } catch (GridEditorException $e) {
+            $section->forceDelete();
+            throw $e;
+        }
+
+        flash(trans('module-yourmodule::entity/general.notifications.created'), 'success');
+        return $this->redirect(route('module.yourmodule.entity.edit', [$item->id]));
+    }
+
+    ...
+
+    /**
+     * PATCH: Update
+     *
+     * @param YourEntityRequest $request
+     * @param YourEntity $item
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \App\Exceptions\GridEditorException
+     */
+    public function update(YourEntityRequest $request, YourEntity $item)
+    {
+        $item->fill($request->getValues());
+        $item->save();
+
+        // Set active content before content is examined for changes.
+        /** @var Content $activeContent */
+        $activeContent = $item->contents()->find($request->input('active_content_id'));
+        if ($activeContent) {
+            $activeContent->setActive();
+        }
+
+        // Examine content for changes and save it with modules.
+        /** @var Content $newVersion */
+        $newVersion = $item->createNewVersionIfChanged($request->getGridEditorContent());
+
+        $content = $newVersion ?? $activeContent;
+
+        $successMessage = trans('module-yourmodule::entity/general.notifications.updated');
+
+        if ($request->get('prevent_redirect')) {
+            return response()->json([
+                'message' => $successMessage,
+                'newContent' => $content && $content->wasRecentlyCreated ? $content->getRaw() : null,
+                'versions' => $content && $content->wasRecentlyCreated ? $item->getGridEditorVersions() : null,
+                'url' => $item->url
+            ]);
+        }
+
+        flash($successMessage, 'success');
+        return $this->redirect(route('module.organisationunit.entity.edit', [$item->id]));
+    }
+
+    ...
+
+    /**
+     * Switch active content.
+     *
+     * @param YourEntity $item
+     * @param int|null $versionId
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function switchVersion(YourEntity $item, $versionId = null): JsonResponse
+    {
+        if (!$versionId) {
+            abort(404);
+        }
+
+        /** @var Content $content */
+        $content = $item->contents()->find($versionId);
+
+        if (!$content) {
+            abort(404);
+        }
+
+        return response()->json([
+            'content' => $content->getRaw()
+        ]);
+    }
+}
+```
+
+That's all. Now you can try this implemented Grid Editor content!
 
 ## Photogallery Entity
 
