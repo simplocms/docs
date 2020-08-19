@@ -12,7 +12,8 @@
       "core/artisan-console",
       "core/helpers",
       "core/grid-editor",
-      "core/media-library"
+      "core/media-library",
+      "core/widget"
     ],
     "Services": [
       "services/general",

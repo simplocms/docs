@@ -2156,12 +2156,14 @@ class YourEntityForm extends AbstractFormWithGridEditor
     }
 
     /**
-     * Get versions of the grid editor content.
+     * Get version switch url
      *
      * @return string
      */
     protected function getGridEditorVersionSwitchUrl(): string
     {
+        // - for no existed entity item, we can return just only an empty string because probably in all cases
+        // it will be possible to switch versions only for an existed item
         if (!$this->item->exists) {
             return "";
         }
@@ -2172,8 +2174,10 @@ class YourEntityForm extends AbstractFormWithGridEditor
 ```
 
 When you will look at that source code above, you can notice that `YourEntityForm` extends `App\Components\Forms\Templates\AbstractFormWithGridEditor`.
-Except of this change, here is `$useVersions` set on `true` for Grid Editor versioning of your entity item content. About another changes,
-you will understand them probably.
+This extended class provides a few useful methods for working with data variables about Grid Editor and transmits them to a form view. All data variables
+for Grid Editor have a prefix `$_GE_` and developers can overwrite them in the `getViewData` method.
+Except of this change, here is `$useVersions` set on `true` for Grid Editor versioning of your entity item content. If you don't use a versioning, don't
+overwrite this instance variable at all.
 
 With `YourEntityForm`, you need to increase the `admin/entity/form/layout.blade.php` view as well:
 

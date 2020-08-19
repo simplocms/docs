@@ -41,11 +41,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a4413e82-a47e-49c1-b40b-bf3bdc6b5de0" name="Default Changelist" comment="feat: Update Modules / Complete Guide; add Core / Media Library - add in menu">
+      <change afterPath="$PROJECT_DIR$/docs/core/widgets.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/core/artisan-console.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/core/artisan-console.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/core/grid-editor.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/core/grid-editor.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/modules/complete-guide.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/modules/complete-guide.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/theme/views.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/theme/views.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/sidebars.json" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,16 +82,16 @@
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/docs/modules" />
+      <recent name="$PROJECT_DIR$/docs/basic" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/docs/core" />
       <recent name="$PROJECT_DIR$/docs/modules" />
       <recent name="$PROJECT_DIR$/docs/services" />
       <recent name="$PROJECT_DIR$/docs/theme" />
       <recent name="$PROJECT_DIR$/docs" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/docs/modules" />
-      <recent name="$PROJECT_DIR$/docs/basic" />
     </key>
   </component>
   <component name="SvnConfiguration">
@@ -137,14 +136,7 @@
       <workItem from="1597031224101" duration="4104000" />
       <workItem from="1597060096941" duration="1000" />
       <workItem from="1597226206345" duration="33458000" />
-      <workItem from="1597741746917" duration="33221000" />
-    </task>
-    <task id="LOCAL-00055" summary="feat: update Getting Started / Setting">
-      <created>1578944874270</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1578944874270</updated>
+      <workItem from="1597741746917" duration="35010000" />
     </task>
     <task id="LOCAL-00056" summary="feat: update Getting Started / Settings">
       <created>1578981201155</created>
@@ -482,7 +474,14 @@
       <option name="project" value="LOCAL" />
       <updated>1597840700192</updated>
     </task>
-    <option name="localTasksCounter" value="104" />
+    <task id="LOCAL-00104" summary="feat: update Core / Artisan Console, Modules / Complete Guide, Core / Grid Editor, Theme / Views">
+      <created>1597867878558</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1597867878559</updated>
+    </task>
+    <option name="localTasksCounter" value="105" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -501,7 +500,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: update Modules / Artisan Console" />
     <MESSAGE value="feat: update Modules / Resources" />
     <MESSAGE value="feat: update Modules / General" />
     <MESSAGE value="feat: update Modules / Configuration, remove / Creating, update / General" />
@@ -526,17 +524,18 @@
     <MESSAGE value="feat: update Modules / Complete Guide" />
     <MESSAGE value="feat: update Modules / Complete Guide, For Grid Editor" />
     <MESSAGE value="feat: update Modules / For Grid Editor" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: update Modules / For Grid Editor" />
+    <MESSAGE value="feat: update Core / Artisan Console, Modules / Complete Guide, Core / Grid Editor, Theme / Views" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: update Core / Artisan Console, Modules / Complete Guide, Core / Grid Editor, Theme / Views" />
   </component>
   <component name="WindowStateProjectService">
     <state x="144" y="79" key="DiffContextDialog" timestamp="1597048555745">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="144" y="79" key="DiffContextDialog/0.0.1440.900@0.0.1440.900" timestamp="1597048555745" />
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1597840705925">
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1597867887073">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1597840705925" />
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1597867887073" />
     <state x="427" y="205" width="586" height="490" key="find.popup" timestamp="1596228111663">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -545,9 +544,9 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="443" y="245" key="git4idea.merge.GitPullDialog/0.0.1440.900@0.0.1440.900" timestamp="1595407009071" />
-    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1597261704173">
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1597873197985">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1597261704173" />
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1597873197985" />
   </component>
 </project>
