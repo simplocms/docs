@@ -1807,12 +1807,13 @@ class YourEntityController extends AdminController
 
 ## Grid Editor Implementation
 
-This section will give you information about that how you can implement Grid Editor. It's a good way when you need to
-have editable layout content for your entity.
+This section will give you information about that how you can use Grid Editor content for your entity. It's a good way when you need to
+have editable layout content.
 
-> If you want to get more information about **Grid Editor**, visit [Grid Editor page](../core/grid-editor.md).
+> If you want to get more information about **Grid Editor**, visit [Grid Editor page](../core/grid-editor.md) first.
 
-How in general, for the first step we will increase database about a few new tables:
+How in general, for the first step we will increase database about a few new tables. For your entity model, which uses Grid Editor, it's not
+necessary to do anything special. But it's important to make a database migration for creating a table for Grid Editor content:
 
 ```php
 <?php
@@ -1838,9 +1839,12 @@ class CreateYourEntityContentsTable extends Migration
                 ->onUpdate('cascade')->onDelete('cascade');
 
             $table->text('content')->nullable();
-            $table->boolean('is_active');
+            $table->boolean('is_active'); // for versioned content
 
-            $table->softDeletes();
+            $table->unsignedInteger('author_user_id')->nullable()->default(null); // for versioned content
+            $table->foreign('author_user_id')->references('id')->on('users')
+                  ->onUpdate('cascade')->onDelete('set null');
+
             $table->timestamps();
         });
     }
@@ -1902,14 +1906,17 @@ class CreateYourEntitySectionsClosuresTable extends Migration
 }
 ```
 
-After running this new database migration, move to your entity model and make the following changes:
+For the content database table, there is mandatory to have `content` column and a foreign id column to your entity item. If you 
+want to have this content versioned, then you need to specify optional `is_active` and `author_user_id` columns.
+
+After running these database migrations, move to your entity model and make the following changes:
 
 1. Your entity model must extend from `App\Structures\ClosureTable\HierarchicModel`.
 2. Implements `App\Models\Interfaces\UsesGridEditor`.
-3. Use `Illuminate\Database\Eloquent\SoftDeletes` and `App\Traits\GridEditor\GridEditorModel`.
+3. Use `App\Traits\GridEditor\GridEditorModel` for easier implementation.
 4. You can set `protected $useGridEditorVersions` to `true` value for Grid Editor versions. If you will turn on it, then
-your entity items will have versioning of all Grid Editor contents. Then you will be able to go back in your older changes of
-contents.
+your entity items will have versioning of all Grid Editor contents. Then you will be able to go back to your older changes of
+these contents. Don't forget that a database content table must consist `is_active` and `author_user_id` columns.
 5. Add another source code below for `YourEntity` model:
 
 ```php 
@@ -1979,7 +1986,85 @@ If you want to make your Grid Editor content searchable, make your `search` meth
 ...
 ```
 
-For sure, it's up how you implemented your entity. But you must call the `searchGridContent` method and return her result.
+For sure, it's up how you implemented your entity (maybe your entity doesn't use `title` and `seo_title` columns. 
+But you must call the `searchGridContent` method and return her result.
+
+After making changes inside your entity module using Grid Editor content, then it's needed to define this content model as well:
+
+```php
+<?php
+
+namespace Modules\YourModule\Models;
+
+use App\Models\User;
+use App\Traits\AdvancedEloquentTrait;
+use Illuminate\Database\Eloquent\Model;
+use App\Traits\GridEditor\GridEditorContent;
+use App\Models\Interfaces\IsGridEditorContent;
+
+/**
+ * Class Content
+ * @package Modules\YourModule\Models
+ * @author SIMPLO, s.r.o.
+ * @copyright SIMPLO, s.r.o.
+ *
+ * @property int your_entity_id
+ * @property string content
+ * @property bool is_active
+ * @property int|null author_user_id
+ * @property \Carbon\Carbon created_at
+ * @property \Carbon\Carbon updated_at
+ *
+ * @property-read \App\Models\User author
+ */
+class Content extends Model implements IsGridEditorContent
+{
+    use AdvancedEloquentTrait, GridEditorContent;
+
+    /**
+     * Model table.
+     *
+     * @var string
+     */
+    protected $table = 'your_entity_contents';
+
+    /**
+     * Mass assignable attributes.
+     *
+     * @var array
+     */
+    protected $fillable = ['content', 'is_active'];
+
+    /**
+     * Author of content version.
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function author()
+    {
+        return $this->hasOne(User::class, 'id', 'author_user_id');
+    }
+
+    /**
+     * Set current content active.
+     */
+    public function setActive()
+    {
+        if ($this->is_active) {
+            return;
+        }
+
+        self::where('your_entity_id', $this->your_entity_id)
+            ->where('id', '<>', $this->id)
+            ->update([
+                'is_active' => false
+            ]);
+
+        $this->update([
+            'is_active' => true
+        ]);
+    }
+}
+```
 
 Now, the next step is up on your decision about versioning Grid Editor content. If you want to have versioning, then you need to
 add the following route in `Http/routes.php` of your module:
@@ -1987,7 +2072,7 @@ add the following route in `Http/routes.php` of your module:
 ```php
 <?php
 ...
-    Route::get('{section}/switch-version/{version?}', [
+    Route::get('{yourEntity}/switch-version/{contentId?}', [
         'as' => 'switch_version',
         'uses' => 'YourEntityController@switchVersion',
     ]);

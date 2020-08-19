@@ -37,11 +37,67 @@ Artisan Console commands.
 
 **`fix:paths`**
 
-During working with a theme, it can appear a problem with a public link of your active theme sometimes. If you will notice, that it's your case, you don't need to solve
-it by yourself. You can just call the following command below and everything will be fine:
+This command fixes symlinks of all installed modules and a default theme.
 
 ```text
 $ php artisan fix:paths
 ```
 
-For getting more SIMPLO CMS Artisan Console commands, just run `list` command.
+This command is convenient to run after localization changing of your project. 
+
+**`migrate:modules`**
+
+This command runs database migrations for all installed modules.
+
+```text
+$ php artisan migrate:modules
+```
+
+It's recommend to run immediately after `php artisan migrate`.
+
+**`migrate:urls {url} {replacement} {--I|info}`**
+
+This command replaces all specified url addresses by a new one. Be attention that this command does not make a validation of
+these url addresses (because of more reasons). It's necessary to be careful and before running this command with replacing,
+it's convenient to run this command with --I or --info parameter option for printing only information about the future replacements.
+After checking that everything is fine, you can run this command without this optional parameter.
+
+```text
+$ php artisan migrate:urls {url} {replacement} {--I|info}
+```
+
+The convenient steps are the following:
+
+1. php artisan migrate:urls ://old-domain.cz ://new-domain.cz -I
+2. Checking printed information in a command line
+3. php artisan migrate:urls ://old-domain.cz ://new-domain.cz
+
+**`module:install {module*}`**
+
+With this command, you can install one or more modules in the same time.
+
+```text
+$ php artisan module:install {module*}
+```
+
+For example: `php artisan module:install Image Link Text` - it will be installed `Image`, `Link` and `Text` modules.
+
+**`run-tests {--without-tty : Disable output to TTY}`**
+
+Using this command you can run all implemented tests. For running tests, it's recommend this command because of correct
+configuration of environment, clear cache, set a few configurations, etc. 
+
+```text
+$ php artisan run-tests {--without-tty : Disable output to TTY}
+```
+
+This command accepts the same parameters like `phpunit`. The given parameters are transmitted to `phpunit`, which will
+call with this command.
+
+For running only specific test, run this command: `php artisan run-tests --filter=ArticlesTest`
+
+> Because of limits in an implementation of this command, we **don't recommend strongly cancel processing of tests** before their finishing!
+
+**`update:run {name}`**
+
+TODO!!!

@@ -10,6 +10,19 @@ content of some page, and for developers as well. It's really simple to use it. 
 
 > The Grid Editor **uses Bootstrap Layout CSS** in the resulting HTML.
 
+## Hierarchy
+
+Hierarchy of Grid Editor has four levels. The first two levels must be implemented for each use separately, but another two levels
+are using for all uses in general.
+
+The first level represents a model which uses Grid Editor (for example `App\Models\Page\Page`). The second level is a content of Grid Editor for this model.
+Each content can be versioned (ex. for pages) or just only specified for a language (ex. for widgets). The third level represents
+entities. The entity is just like a bridge between a content inside Grid Editor and a specific module designed for Grid Editor. Inside the entity, a system
+is storing an information about a content placement in Grid Editor, a specific module and a specific configuration of this content as well.
+The last (fourth) level is a configuration model, which keeps implemented configurations and belongs to a specific entity item.
+
+![Grid Editor Hierarchy](../assets/images/grideditor-hierarchy.png "Grid Editor Hierarchy")
+
 ## How To Use Grid Editor
 
 By default, you can find the Grid Editor in administration of pages (under the "Grid" tab). Look in the image below:

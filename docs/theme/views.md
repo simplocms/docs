@@ -160,3 +160,131 @@ modify how you want, it's completely free to make custom searching logic specifi
 #### `breadcrumbs.blade.php`
 This is view file, which renders breadcrumb menu in all theme's views, where it will be imported the `theme::vendor.breadcrumbs` view. By default, 
 breadcrumb view is imported into the `pages.articles`, `pages.page`, `pages.search` and `articles.detail` and it's completely free to modify how developers need.
+
+## Demarcated Views
+
+In a theme, you have an option for definition of demarcated views. It's a view which SIMPLO CMS uses for specific purposes.
+
+### Pages
+
+If you want to define more templates for pages, then you can make more `*.blade.php` files inside the `pages` directory of your theme project. When you will define them,
+check a page form in administration panel. You will see these demarcated page views there. When you want to change a source code
+for rendering all pages, go to `Theme\Http\Controllers\PagesController` and change `show` method there how you need.
+
+### Modules
+
+### Universal Modules
+
+### Localization
+
+For better description of your demarcated views in a select input box, you can use localization files. Inside a language localization directory, there must be
+`theme.php` file. Under the `views` key, you can define an array with all demarcated views, which you wish to describe.
+
+```php
+<?php
+
+return [
+
+    'views' => [
+        'pages' => [
+            'articles' => 'List Of Articles', // for 'view/pages/articles.blade.php' view
+        ],
+
+        'modules' => [
+            'view' => [ // for View module
+                'your_view' => 'Your View', // for 'view/modules/view/your_view.blade.php' view
+            ]
+        ],
+
+        'universal_modules' => [
+            'questions' => [ // for Questions universal module
+                'your_view' => 'Your View',  // for 'view/universal_modules/questions/your_view.blade.php' view
+            ]
+        ]
+    ],
+
+];
+```
+
+## Helpers
+
+For work with these demarcated views, SIMPLO CMS consists of the `App\Helpers\ViewHelper` helper. These helper offers the following methods:
+
+**`ViewHelper::getDemarcatedViews(string $type): array`**
+
+The `getDemarcatedViews` method returns all demarcated views for a specific demarcation (type). The `$type` parameter is mandatory and 
+accepts a specific demarcation. A specific demarcation can be for example `pages`, `modules.view` or `universal_modules.questions`.
+
+Return example: 
+```php
+use App\Helpers\ViewHelper;
+
+print_r(ViewHelper::getDemarcatedViews('pages'));
+```
+```text
+TODO !!!
+```
+
+**`ViewHelper::getDemarcatedViewsKeys(string $type): array`**
+
+The `getDemarcatedViewsKeys` method returns all demarcated view keys for a specific demarcation (type). The `$type` parameter is mandatory and 
+accepts a specific demarcation. A specific demarcation can be for example `pages`, `modules.view` or `universal_modules.questions`. This method is 
+convenient mainly for a validation, when you need to check if a selected demarcated view by an administrator belongs to this specific demarcation.
+
+Return example: 
+```php
+use App\Helpers\ViewHelper;
+
+print_r(ViewHelper::getDemarcatedViewsKeys('pages'));
+```
+```text
+TODO !!!
+```
+
+**`ViewHelper::isViewDemarcated(string $type, string $view): bool`**
+
+The `isViewDemarcated` checks if a given view is demarcated for a given demarcation (type). The `$type` parameter is mandatory and 
+accepts a specific demarcation. A specific demarcation can be for example `pages`, `modules.view` or `universal_modules.questions`. 
+The `$view` parameter is mandatory as well and accepts a view key.
+
+Return example: 
+```php
+use App\Helpers\ViewHelper;
+
+print_r(ViewHelper::isViewDemarcated('pages', 'theme::pages.default'));
+```
+```text
+TODO !!!
+```
+
+**`ViewHelper::getViewName(string $type, string $view): string`**
+
+The `getViewName` returns a demarcated view name by a theme localization. The `$type` parameter is mandatory and 
+accepts a specific demarcation. A specific demarcation can be for example `pages`, `modules.view` or `universal_modules.questions`. 
+The `$view` parameter is mandatory as well and accepts a view key.
+
+Return example: 
+```php
+use App\Helpers\ViewHelper;
+
+print_r(ViewHelper::getViewName('pages', 'theme::pages.default'));
+```
+```text
+TODO !!!
+```
+
+**`ViewHelper::getViewVariables(string $view): array`**
+
+The `getViewVariables` returns a definition of variables in a given view. The `$view` parameter is mandatory and accepts a view key.
+
+Return example: 
+```php
+use App\Helpers\ViewHelper;
+
+print_r(ViewHelper::getViewVariables('theme::pages.default'));
+```
+```text
+TODO !!!
+```
+
+> TODO - link to View module (or just definition of view variables)
