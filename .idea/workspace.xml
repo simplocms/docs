@@ -41,10 +41,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a4413e82-a47e-49c1-b40b-bf3bdc6b5de0" name="Default Changelist" comment="feat: Update Modules / Complete Guide; add Core / Media Library - add in menu">
-      <change afterPath="$PROJECT_DIR$/docs/core/widgets.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/core/media-library.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/core/media-library.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/modules/complete-guide.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/modules/complete-guide.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/sidebars.json" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,14 +135,7 @@
       <workItem from="1597031224101" duration="4104000" />
       <workItem from="1597060096941" duration="1000" />
       <workItem from="1597226206345" duration="33458000" />
-      <workItem from="1597741746917" duration="35010000" />
-    </task>
-    <task id="LOCAL-00056" summary="feat: update Getting Started / Settings">
-      <created>1578981201155</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1578981201155</updated>
+      <workItem from="1597741746917" duration="37731000" />
     </task>
     <task id="LOCAL-00057" summary="feat: update Getting Started / Settings">
       <created>1578982675269</created>
@@ -481,7 +473,14 @@
       <option name="project" value="LOCAL" />
       <updated>1597867878559</updated>
     </task>
-    <option name="localTasksCounter" value="105" />
+    <task id="LOCAL-00105" summary="feat: add Core / Widgets, update Modules / Complete Guide">
+      <created>1597873385501</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1597873385502</updated>
+    </task>
+    <option name="localTasksCounter" value="106" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -500,7 +499,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: update Modules / Resources" />
     <MESSAGE value="feat: update Modules / General" />
     <MESSAGE value="feat: update Modules / Configuration, remove / Creating, update / General" />
     <MESSAGE value="feat: update Modules / Configuration" />
@@ -525,17 +523,18 @@
     <MESSAGE value="feat: update Modules / Complete Guide, For Grid Editor" />
     <MESSAGE value="feat: update Modules / For Grid Editor" />
     <MESSAGE value="feat: update Core / Artisan Console, Modules / Complete Guide, Core / Grid Editor, Theme / Views" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: update Core / Artisan Console, Modules / Complete Guide, Core / Grid Editor, Theme / Views" />
+    <MESSAGE value="feat: add Core / Widgets, update Modules / Complete Guide" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: add Core / Widgets, update Modules / Complete Guide" />
   </component>
   <component name="WindowStateProjectService">
     <state x="144" y="79" key="DiffContextDialog" timestamp="1597048555745">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="144" y="79" key="DiffContextDialog/0.0.1440.900@0.0.1440.900" timestamp="1597048555745" />
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1597867887073">
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1597873391339">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1597867887073" />
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1597873391339" />
     <state x="427" y="205" width="586" height="490" key="find.popup" timestamp="1596228111663">
       <screen x="0" y="0" width="1440" height="900" />
     </state>

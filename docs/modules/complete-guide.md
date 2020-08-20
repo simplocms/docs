@@ -1500,7 +1500,7 @@ TODO !!! describe about redirecting and something like that.
 
 If you want to attach a file from [Media Library](../core/media-library.md), read this section of this complete guide.
 
-For the first step of course, we will need to increase a database table using a migration.
+For the first step of course, we will need to increase a database table using a migration with `media` macro:
 
 ```php 
 <?php
@@ -1523,7 +1523,7 @@ for better work with empty value, add this column to `$nullIfEmpty` as well. Wit
 How a last step in `YourEntity` model, add `$this->belongsTo(File::class, 'file_id');` relationship source code. In the `YourEntity` model, just we are done.
 
 For the next step, we must add `file_id` column to `$formAttributes` variable in `YourEntityForm`. With this update, it's necessary to increase the `admin/entity/form/_tab_details.blade.php` file
-about `file_id` input.
+about `file_id` input for selecting a file.
 
 ```html
 ...
@@ -1547,7 +1547,7 @@ If the file from Media Library will not be only image file, then you must remove
 Now, it's only last step in front of us. Open `YourEntityRequest` and make the following changes:
 
 1. If your Media Library file will be only image, then add `'file_id' => ['nullable', new MediaImageRule]` rule validation. If it's not just an image file, then
-do not use `App\Rules\MediaImageRule`.
+do not use `App\Rules\MediaImageRule`. For sure, you can change `nullable` rule to `required` if you want that a user must select this file.
 2. Add your Media Library file column in the `getValues` method.
 
 After the steps above, you can try if everything is fine.
