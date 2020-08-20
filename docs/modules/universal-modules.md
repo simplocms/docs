@@ -93,3 +93,45 @@ When you need to get some attribute of the item, use the `getAttributeOfContent(
 `App\Models\UniversalModule\UniversalModuleItem` instance. This method returns this attribute from a unserialized content. 
 The `App\Models\UniversalModule\UniversalModuleItem` provides more useful methods:
 
+**`getUnserializedContent(): array`**
+
+The `getUnserializedContent()` method returns all available values from content. This content is unserialized and returns an array value.
+
+**`getContent(?Language $language = null): array`**
+
+The `getContent()` method returns all available values from content. This content is unserialized and returns an array value.
+
+**`getName(?Language $language = null): string`**
+
+The `getName()` method returns a name attribute if the item consists of this attribute at all. If not, then it's returned `Missing name` value.
+
+**`getAttributeOfContent(string $attribute, ?Language $language = null)`**
+
+The `getAttributeOfContent` method returns a given attribute value.
+
+**`isAttributeImage(string $key): bool`**
+
+The `isAttributeImage` method checks if a given `$key` is an image attribute.
+
+**`makeImageLink(string $key, ?Language $language = null): \App\Services\MediaLibrary\ImageBuilder`**
+
+The `makeImageLink` method makes an image and returns `App\Services\MediaLibrary\ImageBuilder` instance. Then you can manipulate
+with this object and applies some operations on the image.
+
+> For more information, you can visit [Media Library](../core/media-library.md).
+
+**`hasImage(string $key, ?Language $language = null): bool`**
+
+The `hasImage` method checks if a given `$key` has an image.
+
+**`getFile(string $key, ?Language $language = null): ?File`**
+
+The `getFile` method returns either `App\Models\Media\File` if a given `$key` is a file or `null` when this `$key` is not a valid file.
+
+**`toggle(): UniversalModuleItem`**
+
+The `toggle` method toggles `enabled` property and return `$this` pointer for chaining.
+
+**`getFullUrl(): ?string`**
+
+The `getFullUrl` method returns a full url address of a module item.
