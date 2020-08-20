@@ -1552,6 +1552,87 @@ do not use `App\Rules\MediaImageRule`. For sure, you can change `nullable` rule 
 
 After the steps above, you can try if everything is fine.
 
+#### How To Use
+
+For loading a collection of our models with files, we can use `with` method on our model class:
+
+```php
+<?php
+
+$items = YourModel::with('file')->get();
+```
+
+Then in some cycle (foreach), we will print each file using `makeLink` source code. If our file is only image, then
+we can use for better manipulation with this image the `makeImageLink` method directly on our model item:
+
+```php
+<?php
+
+$item->makeImageLink('image');
+```
+
+The `makeImageLink` method returns the `App\Services\MediaLibrary\ImageBuilder` instance which provides a lot of useful methods for
+manipulation with this image:
+
+**`resize(int $width, int $height): ImageBuilder`**
+Resizes a current image based on a given width and/or a height.
+
+**`fit(int $width, int $height): ImageBuilder`**
+Combine cropping and resizing to a format image by a smart way. The method will find the best fitting aspect 
+ratio of a given width and height on the current image automatically, cut it out and resize it to the given dimension.
+
+**`crop(int $width, int $height): ImageBuilder`**
+Cut out a rectangular part of the current image with given width and height.
+
+**`greyscale(): ImageBuilder`**
+Turns image into a greyscale version.
+
+**`fitCanvas(int $width, int $height, ?string $color = null): ImageBuilder`**
+Resize the boundaries of the current image to a given width and a height. You can also pass a background 
+color for the rest area of the image.
+
+**`allowedFormats(array $formats): ImageBuilder`**
+Returns image in one of given formats.
+
+**`formatPNG(): ImageBuilder`**
+Returns an image in PNG format.
+
+How you can notice, all these methods above returns the `App\Services\MediaLibrary\ImageBuilder` instance (by `$this` pointer).
+It means that you can make a chain for applying more operations. 
+
+All these operations are specified as parameters inside a query string of the image url link. By these parameters, a server generates
+a thumbnail of the image, which will be optimized, stored in a cache memory and returns as a response.
+
+For returning an url link for this image with all applied operations, call the `getUrl()` method on the instance.
+Including the `getUrl()` method, you can use `setFallbackUrl(string $imageUrl)` as well. For this method, you must define
+the `$imageUrl` parameter, what represents a fallback image url. This fallback image url will be returned by the `getUrl()` method, when
+the current image does not exist or it is not a valid image.
+
+> It's **a good way to use for all images** selected from Media Library just the `makeImageLink` method. Why? The reason is simple. 
+> All files (and for sure images) in Media Library **can be removed** by a user through this library or **can be renamed** with non valid 
+> image file as well. The `makeImageLink` method will always return an url link to a valid image. If this image will not exist or this image
+> will not be a valid image, then this method will return an url link to a placeholder.
+>
+> **Great advantage** about this attitude is also a fact that the `makeImageLink` method **always returns the specific url link to this placeholder.**
+> It means that if this `App\Services\MediaLibrary\ImageBuilder` instance will start to return a valid image after the placeholder later, this change will
+> be applied immediately (because this image will have a different url address than this placeholder).
+
+#### Example
+
+```php
+<?php
+
+// returns a black white image with size 200x200
+$imageUrl = $item->makeImageLink('image')->fitCanvas(200, 200)->greyscale()->getUrl();
+```
+
+```php
+<?php
+
+// example with set a fallback url
+$imageUrl = $item->makeImageLink('image')->setFallbackUrl('https://i.imgur.com/ycrW4Pv.png')->resize(400, 300)->getUrl();
+```
+
 ## Publishing Mechanism
 
 In this section, we will talk about publishing mechanism. It is mechanism which for developers offers to make some entity with

@@ -11,7 +11,9 @@
       "core/middleware",
       "core/artisan-console",
       "core/helpers",
+      "core/dynamic-forms",
       "core/grid-editor",
+      "core/widget",
       "core/media-library",
       "core/widget"
     ],
@@ -33,7 +35,8 @@
       "modules/localization",
       "modules/events",
       "modules/complete-guide",
-      "modules/for-grid-editor"
+      "modules/for-grid-editor",
+      "modules/universal-modules"
     ],
     "Theme": [
       "theme/general",
