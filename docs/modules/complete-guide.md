@@ -159,6 +159,8 @@ In this source code of `Providers/ServiceProvider.php`, change a namespace to `M
 > You can have the namespace of your module how you want of course, but it's necessary to write it everywhere with `module-` prefix. SIMPLO CMS can recognize your module well and 
 > the system will work with the module properly.
 
+> When you will not use views or translations for your module, then it's a convenient way to remove these register methods.
+
 For `Resources` directory, you will keep only the following directory structure:
 
 ```text
@@ -197,7 +199,7 @@ similar like the source code below:
 ```
 
 In this `composer.json` file, it's very important to write `psr-4` autoload to our new module correctly. Everything here will be just used for
-Composer's autoload.
+Composer's autoload. Using `composer.json` you are able to use third-party libraries as well.
 
 The next file for updating is `module.json`. There are a lot of important options for our new module. Everything there, we can set with the following values:
 
@@ -219,6 +221,13 @@ The next file for updating is `module.json`. There are a lot of important option
     "requires": []
 }
 ```
+
+- **name** - it is a key which must be set to the same name like a module's directory - format CamelCase
+- **alias** - it is a key which must be set to the same name like a module's directory - format lowecase
+- **active** - it can have either `1` or `0` value and this key indicates if the module can be used or no
+- **providers** - there can be defined all providers for the module
+- **files** - it is an array of files which are used for initialization of the module. It's necessary to be here `start.php`
+- **requires** - it is a list of another modules which this module requires for its functionality
 
 > Very useful `module.json` key is `providers`. It's a right place where you can define all providers of your module. For example there you can define a service provider for
 > [Modules/Events](modules/events.md).
@@ -264,6 +273,51 @@ Now just for a summary, here is the actual directory structure for our starting 
 ├── start.php
 └── webpack.mix.js
 ```
+
+#### Assets 
+
+It's a directory where are stored all asset resource files - ex. javascript, scss, etc. after their compilation, compiled files of
+these resource files will appear in `Dist` directory. By the way it's possible to store something directly inside `Dist` directory
+when the asset file is already compiled and ready for use in html.
+
+#### Dist 
+
+It's compiled source files about assets. You can insert here your source assets directly if these files are compiled and ready for use in html.
+If this directory is created in the module, then after an installation process of module it will be created a symlink with
+`public/modules/{module_name}` path linked to this module's `Dist` directory. To the assets you can access with `asset('modules/{NazevModulu}/image.jpeg')`
+helper function. If you want to use **Laravel Mix**, then it's possible to use `$module->mix('main.js')` method calling, where `$module` is an instance of
+`App\Models\Module\Module` class. This instance we can get using for example `$module = \Module::find("MyModule")`.
+
+> If a module is installed already and after that you will create `Dist` directory, it's necessary to reinstall this module
+> for creating a symlink to there and get your assets public.
+
+#### Config 
+
+It's a directory for storing all configuration files. Each configuration file must be registered in theme `ServiceProvider`.
+
+#### Database 
+
+It's a directory for storing database migrations and seeders. The same principle like in Laravel.
+
+#### Http 
+
+It's a directory which can contain of controllers, requests, routes, middleware, etc. All controllers for administration
+should be stored under the `Admin` directory and namespace, except of `ModuleController`.
+
+> The `ModuleController` is used for Grid Editor module only. For getting some information about this kind of module, you can
+> visit [Modules / For Grid Editor](for-grid-editor.md)
+
+#### Models 
+
+It's a directory for models.
+
+#### Providers 
+
+It's a place for storing providers. Don't forget to register them inside the `module.json` file.
+
+#### Resources 
+
+It's a location for storing all language and view files.
 
 If you have **the same directory structure** for our example module **Your Module**, CONGRATULATIONS! Then you can continue
 in the next steps about our module's developing with us!

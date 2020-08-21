@@ -5,8 +5,9 @@ title: General
 
 ## Introduction
 
-Modules are a convenient way, how developers can extend their projects built on SIMPLO CMS about new entities. Each
-module contains own controllers, views and models and module's work-flow corresponds with Laravel.
+Modules are a convenient way, how developers can extend their projects built on SIMPLO CMS about new units. Each
+module contains own controllers, views and models and module's work-flow corresponds with Laravel. With modules, it is possible
+to extend an administration panel, a public page or another things.
 
 For developing with modules, SIMPLO CMS uses popular Laravel's package **[nwidart/laravel-modules](https://github.com/nWidart/laravel-modules)**.
 If you know more about this package, it's a good idea to start in this official documentation.

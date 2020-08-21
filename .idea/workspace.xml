@@ -40,9 +40,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a4413e82-a47e-49c1-b40b-bf3bdc6b5de0" name="Default Changelist" comment="feat: update Core / Dynamic Forms, update Modules / Universal Modules, add a few asset images">
+    <list default="true" id="a4413e82-a47e-49c1-b40b-bf3bdc6b5de0" name="Default Changelist" comment="feat: update Modules / Universal Modules">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/modules/universal-modules.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/modules/universal-modules.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/modules/complete-guide.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/modules/complete-guide.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/modules/for-grid-editor.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/modules/for-grid-editor.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/modules/general.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/modules/general.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,14 +136,7 @@
       <workItem from="1597031224101" duration="4104000" />
       <workItem from="1597060096941" duration="1000" />
       <workItem from="1597226206345" duration="33458000" />
-      <workItem from="1597741746917" duration="52889000" />
-    </task>
-    <task id="LOCAL-00060" summary="feat: update Modules / General">
-      <created>1578993844992</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1578993844992</updated>
+      <workItem from="1597741746917" duration="57740000" />
     </task>
     <task id="LOCAL-00061" summary="feat: update Modules / Creating">
       <created>1579000793233</created>
@@ -479,7 +474,14 @@
       <option name="project" value="LOCAL" />
       <updated>1597941962235</updated>
     </task>
-    <option name="localTasksCounter" value="109" />
+    <task id="LOCAL-00109" summary="feat: update Modules / Universal Modules">
+      <created>1597948287678</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1597948287678</updated>
+    </task>
+    <option name="localTasksCounter" value="110" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -498,7 +500,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: update Modules / Configuration, Artisan Console, Compilling Assets, Database, Helpers, Resources" />
     <MESSAGE value="feat: update Modules / Events" />
     <MESSAGE value="feat: update Configuration, Directory Structure, Installation, Setting in Getting Started; update Directory Structure in Theme;" />
     <MESSAGE value="feat: update Getting Started / Directory Structure; Core / Helpers, Middleware, Artisan Console" />
@@ -523,17 +524,18 @@
     <MESSAGE value="feat: Update Modules / Complete Guide; add Core / Media Library" />
     <MESSAGE value="feat: add Core / Dynamic Forms, Modules / Universal Modules -&gt; add to menu; update Modules / Complete Guide" />
     <MESSAGE value="feat: update Core / Dynamic Forms, update Modules / Universal Modules, add a few asset images" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: update Core / Dynamic Forms, update Modules / Universal Modules, add a few asset images" />
+    <MESSAGE value="feat: update Modules / Universal Modules" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: update Modules / Universal Modules" />
   </component>
   <component name="WindowStateProjectService">
     <state x="144" y="79" key="DiffContextDialog" timestamp="1597048555745">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="144" y="79" key="DiffContextDialog/0.0.1440.900@0.0.1440.900" timestamp="1597048555745" />
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1597941968137">
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1597948295165">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1597941968137" />
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1597948295165" />
     <state x="427" y="205" width="586" height="490" key="find.popup" timestamp="1597947152014">
       <screen x="0" y="0" width="1440" height="900" />
     </state>

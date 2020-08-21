@@ -8,6 +8,8 @@ title: For Grid Editor
 In [Modules / Complete Guide](complete-guide.md), you can get an information about implementing modules for a new entity.
 If you want to extend directly Grid Editor about new possible module, this is the right page where you can learn it.
 
+A module designed for Grid Editor must meet several criteriums. The most important criteurim is mainly needed to make its entity.
+
 ## First Steps
 
 For the first step, it is necessary to make a new module's directory. It's simple more than for a module with entity, because 
@@ -110,10 +112,13 @@ It's a good idea to read all pages above before reading the next rows.
 ## Implementation
 
 Now it's important to decide for which purpose you will use your new Grid Editor module. When you will check default SIMPLO CMS modules 
-for Grid Editor, you can notice that there is one common database migration for all these modules - `configurations`. In this table, 
-there are storing all active items which will be added into Grid Editor content. We can try to make a module which will render
-a view with some entity items. It's possible to understand that we make a module which will offer to us (administrators) an option for
-printing items from our entity in some Grid Editor content on public website then. Let's start to develop it.
+for Grid Editor, you can notice that there is one common database migration for all these modules - `configurations`. It's a table
+where will be stored all configuration for module's entities, about which we mentioned in the introduction of this guide. 
+
+Second thing for decision, how will look our configuration table, is a purpose for which we will implement this Grid Editor module.
+We can try to make in this example a module which will render a view with some model items. It's possible to understand that we 
+make a module which will offer to us (administrators) an option for printing items from our model items in some Grid Editor content 
+on public website then. Let's start to develop it.
 
 For the first step of course, we need to create a database migration:
 
@@ -174,6 +179,8 @@ Route::group([
 
 });
 ```
+
+> For Grid Editor module, it's not necessary to define more routes. Enough is just only define the `create` route.
 
 Now we need to make models for our Grid Editor module. First, we will create `Configuration` module
 
