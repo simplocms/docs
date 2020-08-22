@@ -3568,3 +3568,15 @@ class PhotogalleriesController extends AdminController
 
 }
 ```
+
+## Third Party Libraries
+
+When you need to install third-party libraries using `composer.json`, then it's necessary to insert the source code below inside
+`start.php` file:
+
+```php
+<?php
+
+// Register The Auto Loader
+require __DIR__.'/vendor/autoload.php';
+```

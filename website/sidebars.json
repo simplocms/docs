@@ -36,7 +36,8 @@
       "modules/events",
       "modules/complete-guide",
       "modules/for-grid-editor",
-      "modules/universal-modules"
+      "modules/universal-modules",
+      "modules/default-modules"
     ],
     "Theme": [
       "theme/general",

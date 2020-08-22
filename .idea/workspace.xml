@@ -40,11 +40,16 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a4413e82-a47e-49c1-b40b-bf3bdc6b5de0" name="Default Changelist" comment="feat: update Modules / Universal Modules">
+    <list default="true" id="a4413e82-a47e-49c1-b40b-bf3bdc6b5de0" name="Default Changelist" comment="feat: update Modules / For Grid Editor, Modules / Complete Guide, Modules / General">
+      <change afterPath="$PROJECT_DIR$/docs/modules/default-modules.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/modules/complete-guide.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/modules/complete-guide.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/modules/for-grid-editor.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/modules/for-grid-editor.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/modules/general.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/modules/general.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/modules/specific/articles-list.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/modules/specific/forms-plugin.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/modules/specific/image.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/modules/specific/view.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/sidebars.json" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +80,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/docs/core" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/docs/modules" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
@@ -87,8 +92,8 @@
       <recent name="$PROJECT_DIR$/docs/basic" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/docs/core" />
       <recent name="$PROJECT_DIR$/docs/modules" />
+      <recent name="$PROJECT_DIR$/docs/core" />
       <recent name="$PROJECT_DIR$/docs/services" />
       <recent name="$PROJECT_DIR$/docs/theme" />
       <recent name="$PROJECT_DIR$/docs" />
@@ -136,14 +141,7 @@
       <workItem from="1597031224101" duration="4104000" />
       <workItem from="1597060096941" duration="1000" />
       <workItem from="1597226206345" duration="33458000" />
-      <workItem from="1597741746917" duration="57740000" />
-    </task>
-    <task id="LOCAL-00061" summary="feat: update Modules / Creating">
-      <created>1579000793233</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1579000793233</updated>
+      <workItem from="1597741746917" duration="61106000" />
     </task>
     <task id="LOCAL-00062" summary="feat: update Modules / Creating">
       <created>1579004717137</created>
@@ -481,7 +479,14 @@
       <option name="project" value="LOCAL" />
       <updated>1597948287678</updated>
     </task>
-    <option name="localTasksCounter" value="110" />
+    <task id="LOCAL-00110" summary="feat: update Modules / For Grid Editor, Modules / Complete Guide, Modules / General">
+      <created>1598023463270</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1598023463270</updated>
+    </task>
+    <option name="localTasksCounter" value="111" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -500,7 +505,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: update Modules / Events" />
     <MESSAGE value="feat: update Configuration, Directory Structure, Installation, Setting in Getting Started; update Directory Structure in Theme;" />
     <MESSAGE value="feat: update Getting Started / Directory Structure; Core / Helpers, Middleware, Artisan Console" />
     <MESSAGE value="feat: Update Core / Artisan Console, Modules / Artisan Console, Modules / Compilling Assets, Theme / Compilling Assets, etc." />
@@ -525,21 +529,22 @@
     <MESSAGE value="feat: add Core / Dynamic Forms, Modules / Universal Modules -&gt; add to menu; update Modules / Complete Guide" />
     <MESSAGE value="feat: update Core / Dynamic Forms, update Modules / Universal Modules, add a few asset images" />
     <MESSAGE value="feat: update Modules / Universal Modules" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: update Modules / Universal Modules" />
+    <MESSAGE value="feat: update Modules / For Grid Editor, Modules / Complete Guide, Modules / General" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: update Modules / For Grid Editor, Modules / Complete Guide, Modules / General" />
   </component>
   <component name="WindowStateProjectService">
     <state x="144" y="79" key="DiffContextDialog" timestamp="1597048555745">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="144" y="79" key="DiffContextDialog/0.0.1440.900@0.0.1440.900" timestamp="1597048555745" />
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1597948295165">
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1598023471321">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1597948295165" />
-    <state x="427" y="205" width="586" height="490" key="find.popup" timestamp="1597947152014">
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1598023471321" />
+    <state x="427" y="205" width="586" height="490" key="find.popup" timestamp="1598091599468">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="427" y="205" width="586" height="490" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1597947152014" />
+    <state x="427" y="205" width="586" height="490" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1598091599468" />
     <state x="443" y="245" key="git4idea.merge.GitPullDialog" timestamp="1595407009071">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
